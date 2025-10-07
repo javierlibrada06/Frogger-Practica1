@@ -9,6 +9,7 @@
 
 #include <SDL3/SDL.h>
 #include <SDL3_image/SDL_image.h>
+#include "game.h"
 
 using namespace std;
 
@@ -47,6 +48,8 @@ void firstTest()
 
 int main(int argc, char* argv[])
 {
-	firstTest();
+	//firstTest();
+	Game game = Game();
+	game.run();
 	return 0;
 }

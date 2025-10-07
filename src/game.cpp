@@ -10,7 +10,7 @@ using namespace std;
 
 // Constantes
 constexpr const char* const WINDOW_TITLE = "Frogger 1.0";
-constexpr const char* const MAP_FILE = "../assets/maps/default.txt";
+constexpr const char* const MAP_FILE = "assets/maps/default.txt";
 
 // Estructura para especificar las texturas que hay que
 // cargar y el tamaño de su matriz de frames
@@ -21,7 +21,7 @@ struct TextureSpec
 	int ncols = 1;
 };
 
-constexpr const char* imgBase = "../assets/images/";
+constexpr const char* imgBase = "assets/images/";
 
 constexpr array<TextureSpec, Game::NUM_TEXTURES> textureList{
 	TextureSpec{"frog.png", 1, 2},
@@ -66,10 +66,13 @@ void
 Game::render() const
 {
 	SDL_RenderClear(renderer);
+	//for (int i = 0; i < textures.size(); ++i)
+	//	SDL_RenderTexture(renderer, textures[i]ᜮᝄ);//ᜨ᜾ Pinta la textura
+	for (size_t i = 0; i < textures.size(); i++) {
 
-	// TODO
-
-	SDL_RenderPresent(renderer);
+		textures[i]->render();
+	}
+	SDL_RenderPresent(renderer); //ᜨ᜾ Muestra la escena
 }
 
 void
@@ -82,7 +85,7 @@ void
 Game::run()
 {
 	while (!exit) {
-		// TODO
+		render();
 	}
 }
 
