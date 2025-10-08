@@ -10,7 +10,7 @@ class Frog
 	Vector2D<int> position;
 	int lives;
 public:
-	Frog();
+	Frog(Game*,Texture*, Vector2D<int>&, int);
 	~Frog();
 	void Render();
 	void Update();
