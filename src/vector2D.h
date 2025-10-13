@@ -14,17 +14,35 @@ class Vector2D
 public:
 	Vector2D(T x, T y) : x(x), y(y) { }
 	Vector2D() : Vector2D(0, 0) { }
+	~Vector2D() delete;
 
 	// Coordenadas del vector
 	const T& getX() const { return x; }
+	const T& getY() const { return y; }
+
 
 	// Operadores
 	Vector2D operator+(const Vector2D& otro) const {
 		return {x + otro.x, y + otro.y};
 	}
 
-	// TODO: completar
+	Vector2D operator-(const Vector2D& otro) const
+	{
+		return { x - otro.x, y - otro.y };
+	}
+	Vector2D operator*(const T& otro) const
+	{
+		return { x * otro, y * otro };
+	}
+	T operator*(const Vector2D& otro) const
+	{
+		return { x * otro.x + y * otro.y };
+	}
 
+	Vector2D Point2D(int x, int y)
+	{
+		return Vector2D(x, y);
+	}
 	// Operadores de entrada/salida
 	friend std::ostream& operator<<(std::ostream& out, const Vector2D& v) {
 		return out << '{' << v.x << ", " << v.y << '}';
