@@ -1,2 +1,8 @@
-﻿  game.cpp
+﻿  Vehicle.cpp
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\game.h(39,9): warning C4624: 'Game::Collision': el destructor se definió implícitamente como eliminado
+  (compilando archivo de origen "Vehicle.cpp")
+  
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\Vehicle.h(4,7): warning C4624: 'Vehicle': el destructor se definió implícitamente como eliminado
+  (compilando archivo de origen "Vehicle.cpp")
+  
   src.vcxproj -> C:\Users\User\Documents\GitHub\Frogger-Practica1\bin\srcDebug.exe

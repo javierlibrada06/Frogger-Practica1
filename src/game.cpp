@@ -105,9 +105,8 @@ Game::handleEvents()
 	}
 }
 
-bool
-Game::checkCollision(const SDL_FRect& rect) const
-{
-	// TODO: cambiar el tipo de retorno a Collision e implementar
-	return false;
-}
+//Collision Game::checkCollision(const SDL_FRect& rect) const
+//{
+//	// TODO: cambiar el tipo de retorno a Collision e implementar
+//	return false;
+//}

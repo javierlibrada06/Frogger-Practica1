@@ -5,6 +5,7 @@
 #include <array>
 #include <istream>
 #include <vector>
+#include "vector2D.h"
 
 // Declaraciones anticipadas
 class Texture;
@@ -30,6 +31,16 @@ public:
 		NUM_TEXTURES
 	};
 
+	enum Type
+	{
+		NONE, ENEMY, PLATFORM
+	};
+
+	struct Collision
+	{
+		Type type;
+		Vector2D<int> speed;
+	};
 private:
 	SDL_Window* window;
 	SDL_Renderer* renderer;
@@ -55,7 +66,7 @@ public:
 	void run();
 
 	// Comprueba si hay algún objeto colocado en ese rectángulo
-	bool checkCollision(const SDL_FRect& rect) const;
+	Collision checkCollision(const SDL_FRect& rect) const;
 };
 
 inline Texture*
