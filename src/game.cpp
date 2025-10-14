@@ -59,10 +59,9 @@ Game::Game()
 		auto [name, nrows, ncols] = textureList[i];
 		textures[i] = new Texture(renderer, (string(imgBase) + name).c_str(), nrows, ncols);
 	}
-
+	vehicles;
 	// Configura que se pueden utilizar capas translúcidas
 	// SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
-	vehicles;
 }
 
 Game::~Game()
@@ -80,6 +79,9 @@ Game::render() const
 		textures[i]->render();
 	}*/
 	// TODO
+	vehicles[0].render();
+	vehicles[1].render();
+	vehicles[2].render();
 
 	SDL_RenderPresent(renderer);
 }
@@ -93,10 +95,9 @@ Game::update()
 void
 Game::run()
 {
-	//AuxVehicles();
+	AuxVehicles();
 	while (!exit) {
 		render();
-		AuxVehicles();
 		// TODO: implementar bucle del juego
 	}
 
@@ -127,6 +128,8 @@ void
 Game::AuxVehicles()
 {
 	//Auxiliar para iniciar los vehiculos
-	vehicles = new Vehicle(this, textures[Game::CAR1], Vector2D<int>(3,5), Point2D<int>(200, 352));
-	vehicles->update();
+	vehicles.push_back(Vehicle(this, textures[Game::CAR1], Vector2D<int>(3, 5), Point2D<int>(250, 352)));
+	vehicles.push_back(Vehicle(this, textures[Game::CAR2], Vector2D<int>(3, 5), Point2D<int>(200, 352)));
+	vehicles.push_back(Vehicle(this, textures[Game::CAR3], Vector2D<int>(3, 5), Point2D<int>(150, 352)));
+
 }

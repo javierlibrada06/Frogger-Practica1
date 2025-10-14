@@ -30,10 +30,10 @@ void
 Vehicle::render() const
 {
 	SDL_FRect rect{
-		position.getX(),
-		position.getY(),
-		texture->getFrameWidth(),
-		texture->getFrameHeight()
+		rect.x = position.getX(),
+		rect.y = position.getY(),
+		rect.w = texture->getFrameWidth(),
+		rect.h = texture->getFrameHeight()
 	};
 	texture->render(rect);
 }
