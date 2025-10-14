@@ -6,6 +6,8 @@
 
 #include "texture.h"
 
+#include "vehicle.h"
+
 using namespace std;
 
 // Constantes
@@ -26,6 +28,11 @@ constexpr const char* const imgBase = "../assets/images/";
 constexpr array<TextureSpec, Game::NUM_TEXTURES> textureList{
 	TextureSpec{"frog.png", 1, 2},
 	{"background.png"},
+	{"car1.png"},
+	{"car2.png"},
+	{"car3.png"},
+	{"car4.png"},
+	{"car5.png"},
 };
 
 Game::Game()
@@ -55,6 +62,7 @@ Game::Game()
 
 	// Configura que se pueden utilizar capas translúcidas
 	// SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
+	vehicles;
 }
 
 Game::~Game()
@@ -66,7 +74,7 @@ void
 Game::render() const
 {
 	SDL_RenderClear(renderer);
-	textures[1]->render();
+	textures[Game::BACKGROUND]->render();
 	/*for (size_t i = 0; i < textures.size(); i++)
 	{
 		textures[i]->render();
@@ -85,10 +93,13 @@ Game::update()
 void
 Game::run()
 {
+	//AuxVehicles();
 	while (!exit) {
 		render();
+		AuxVehicles();
 		// TODO: implementar bucle del juego
 	}
+
 }
 
 void
@@ -105,8 +116,17 @@ Game::handleEvents()
 	}
 }
 
-//Collision Game::checkCollision(const SDL_FRect& rect) const
+//Game::Collision 
+//Game::checkCollision(const SDL_FRect& rect) const
 //{
 //	// TODO: cambiar el tipo de retorno a Collision e implementar
-//	return false;
+//	return ;
 //}
+
+void 
+Game::AuxVehicles()
+{
+	//Auxiliar para iniciar los vehiculos
+	vehicles = new Vehicle(this, textures[Game::CAR1], Vector2D<int>(3,5), Point2D<int>(200, 352));
+	vehicles->update();
+}

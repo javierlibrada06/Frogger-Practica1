@@ -6,9 +6,11 @@
 #include <istream>
 #include <vector>
 #include "vector2D.h"
+//#include "vehicle.h"
 
 // Declaraciones anticipadas
 class Texture;
+class Vehicle;
 
 /**
  * Clase principal del juego.
@@ -28,9 +30,13 @@ public:
 	{
 		FROG = 0,
 		BACKGROUND,
+		CAR1,
+		CAR2,
+		CAR3,
+		CAR4,
+		CAR5,
 		NUM_TEXTURES
 	};
-
 	enum Type
 	{
 		NONE, ENEMY, PLATFORM
@@ -41,6 +47,8 @@ public:
 		Type type;
 		Vector2D<int> speed;
 	};
+	
+
 private:
 	SDL_Window* window;
 	SDL_Renderer* renderer;
@@ -55,6 +63,8 @@ private:
 	// Elemento del juego
 	// TODO: añadir atributos para los objetos del juego
 
+	Vehicle* vehicles;
+
 public:
 	Game();
 	~Game();
@@ -67,6 +77,8 @@ public:
 
 	// Comprueba si hay algún objeto colocado en ese rectángulo
 	Collision checkCollision(const SDL_FRect& rect) const;
+
+	void AuxVehicles();
 };
 
 inline Texture*

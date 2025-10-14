@@ -14,7 +14,7 @@ class Vector2D
 public:
 	Vector2D(T x, T y) : x(x), y(y) { }
 	Vector2D() : Vector2D(0, 0) { }
-	~Vector2D() = delete;
+	~Vector2D() = default;
 
 	// Coordenadas del vector
 	const T& getX() const { return x; }
