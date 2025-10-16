@@ -49,7 +49,7 @@ public:
 	struct Collision
 	{
 		Type type;
-		Vector2D<int> speed;
+		Vector2D<float> speed;
 	};
 	
 

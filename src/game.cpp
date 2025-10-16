@@ -173,9 +173,21 @@ Game::handleEvents()
 	}
 }
 
-//Game::Collision 
-//Game::checkCollision(const SDL_FRect& rect) const
-//{
-//	// TODO: cambiar el tipo de retorno a Collision e implementar
-//	return ;
-//}
+Game::Collision 
+Game::checkCollision(const SDL_FRect& rect) const
+{
+	Collision collision;
+	collision.type = NONE;
+	int i = 0;
+	while (i < vehicles.size() && collision.type == NONE) {
+		collision = vehicles[i]->checkCollision(rect);
+		i++;
+	}
+	i = 0;
+	while (i < logs.size() && collision.type == NONE) {
+		collision = logs[i]->checkCollision(rect);
+		i++;
+	}
+	return collision;
+
+}

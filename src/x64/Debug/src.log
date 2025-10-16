@@ -1,4 +1,6 @@
 ﻿  Frog.cpp
 C:\Users\julia\source\repos\Frogger-Practica1\src\Frog.cpp(35,33): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
 C:\Users\julia\source\repos\Frogger-Practica1\src\Frog.cpp(36,34): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\julia\source\repos\Frogger-Practica1\src\Frog.cpp(45,33): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\julia\source\repos\Frogger-Practica1\src\Frog.cpp(46,34): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
   src.vcxproj -> C:\Users\julia\source\repos\Frogger-Practica1\bin\srcDebug.exe

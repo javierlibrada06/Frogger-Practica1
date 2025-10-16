@@ -39,11 +39,34 @@ Frog::render() const {
 void 
 Frog::update() {
 
-	if (position.getX() < 0.0f) position = Point2D<float>(0.0f, position.getY());
-	if (position.getX() > 420.0f) position = Point2D<float>(420.0f, position.getY());
-	if (position.getY() < 0.0f) position = Point2D<float>(position.getX(), 0.0f);
-	if (position.getY() > 402.0f) position = Point2D<float>(position.getX(), 402.0f);
-	if (lastPosition != position) lastPosition = position;
+	SDL_FRect rect;
+	rect.x = position.getX();
+	rect.y = position.getY();
+	rect.w = texture->getFrameWidth();
+	rect.h = texture->getFrameHeight();
+
+	Game::Collision collision = game->checkCollision(rect);
+
+	if (collision.type == Game::NONE) {
+		if (position.getX() < 0.0f) position = Point2D<float>(0.0f, position.getY());
+		if (position.getX() > 420.0f) position = Point2D<float>(420.0f, position.getY());
+		if (position.getY() < 0.0f) position = Point2D<float>(position.getX(), 0.0f);
+		if (position.getY() > 402.0f) position = Point2D<float>(position.getX(), 402.0f);
+		
+		if (lastPosition != position) lastPosition = position;
+	}
+	else if (collision.type == Game::ENEMY) {
+		
+		position = Point2D<float>(50, 402);
+		lastPosition = Point2D<float>(50, 402);
+	}
+	else if (collision.type == Game::PLATFORM) 
+	{
+		float deltaTime = 0.05f / Game::FRAME_RATE;
+		position = position + (collision.speed * deltaTime);
+		lastPosition = position;
+	}
+
 
 }
 void 
