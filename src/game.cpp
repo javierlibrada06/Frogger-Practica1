@@ -105,7 +105,6 @@ Game::Game()
 	logs.push_back(new Log(this, Point2D<float>(-130, 121), 96, 1));
 	logs.push_back(new Log(this, Point2D<float>(-40, 121), 96, 0));
 
-
 	//Tercera fila de troncos
 	logs.push_back(new Log(this, Point2D<float>(30, 153), 48, 0));
 	logs.push_back(new Log(this, Point2D<float>(180, 153), 48, 0));

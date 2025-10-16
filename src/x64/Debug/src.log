@@ -1,11 +1,6 @@
-﻿  Log.cpp
-C:\Users\User\Documents\GitHub\Frogger-Practica1\src\Log.cpp(30,33): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\User\Documents\GitHub\Frogger-Practica1\src\Log.cpp(31,34): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\User\Documents\GitHub\Frogger-Practica1\src\Log.cpp(44,61): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
-C:\Users\User\Documents\GitHub\Frogger-Practica1\src\Log.cpp(44,61): warning C4244:         with
-C:\Users\User\Documents\GitHub\Frogger-Practica1\src\Log.cpp(44,61): warning C4244:         [
-C:\Users\User\Documents\GitHub\Frogger-Practica1\src\Log.cpp(44,61): warning C4244:             T=float
-C:\Users\User\Documents\GitHub\Frogger-Practica1\src\Log.cpp(44,61): warning C4244:         ]
-C:\Users\User\Documents\GitHub\Frogger-Practica1\src\Log.cpp(54,33): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\User\Documents\GitHub\Frogger-Practica1\src\Log.cpp(55,34): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+﻿  Vehicle.cpp
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\Vehicle.cpp(33,33): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\Vehicle.cpp(34,34): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\Vehicle.cpp(58,33): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\Vehicle.cpp(59,34): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
   src.vcxproj -> C:\Users\User\Documents\GitHub\Frogger-Practica1\bin\srcDebug.exe

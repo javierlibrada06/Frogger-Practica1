@@ -41,9 +41,8 @@ Log::update()
 {
 	float deltaTime = 0.05f / Game::FRAME_RATE;
 	position = position + (speed * deltaTime);
-	//Hay que revisar lo de delta time y la reaparicion, Problemas para Julia y Javi del futuro :)
-	if (position.getX() <= -150.0f) position = Point2D<float>(448.0f, position.getY());
-	if (position.getX() >= 598.0f) position = Point2D<float>(0 - texture->getFrameWidth(), position.getY());
+	//Hay que revisar lo de delta time, Problemas para Julia y Javi del futuro :)
+	if (position.getX() >= 598.0f) position = Point2D<float>(-150.0f, position.getY());
 	rect.x = position.getX();
 	rect.y = position.getY();
 }
