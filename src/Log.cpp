@@ -8,10 +8,11 @@
 
 Log::Log()
 {
-	game;
-	texture;
-	speed;
-	position;
+	game = nullptr;
+	texture = nullptr;
+	speed = Vector2D<float>(0, 0);
+	position = Point2D<float>(0,0);
+	rect = { 0,0,0,0 };
 }
 Log::Log(Game* g, Point2D<float> pos, float s, int type)
 {
@@ -33,6 +34,7 @@ Log::Log(Game* g, Point2D<float> pos, float s, int type)
 Log::~Log()
 {
 	//Eliminar Memoria
+	if (texture) delete texture, texture = nullptr;
 }
 void
 Log::update()

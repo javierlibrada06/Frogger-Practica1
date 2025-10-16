@@ -7,10 +7,11 @@
 
 Vehicle::Vehicle()
 {
-	game;
-	texture;
-	speed;
-	position;
+	game = nullptr;
+	texture = nullptr;
+	speed = Vector2D<float>(0, 0);
+	position = Point2D<float>(0, 0);
+	rect = { 0,0,0,0 };
 }
 Vehicle::Vehicle(Game* g, Point2D<float> pos, float s, int type)
 {
@@ -35,6 +36,7 @@ Vehicle::Vehicle(Game* g, Point2D<float> pos, float s, int type)
 Vehicle::~Vehicle()
 {
 	//Eliminar Memoria
+	if (texture) delete texture, texture = nullptr;
 }
 void 
 Vehicle::update()
