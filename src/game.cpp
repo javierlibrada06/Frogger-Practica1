@@ -8,6 +8,8 @@
 
 #include "vehicle.h"
 
+#include "log.h"
+
 using namespace std;
 
 // Constantes
@@ -33,6 +35,9 @@ constexpr array<TextureSpec, Game::NUM_TEXTURES> textureList{
 	{"car3.png"},
 	{"car4.png"},
 	{"car5.png"},
+	{"log1.png"},
+	{"log2.png"},
+
 };
 
 Game::Game()
@@ -83,6 +88,28 @@ Game::Game()
 	//Quinta fila de coches
 	vehicles.push_back(new Vehicle(this, Point2D<float>(165, 252), -72, 5));
 	vehicles.push_back(new Vehicle(this, Point2D<float>(365, 252), -72, 5));
+
+	//----- TRONCOS -----
+
+	//Primera fila de troncos
+	logs.push_back(new Log(this, Point2D<float>(-100, 60), 72.6, 1));
+	logs.push_back(new Log(this, Point2D<float>(75, 60), 72.6, 1));
+	logs.push_back(new Log(this, Point2D<float>(250, 60), 72.6, 1));
+	logs.push_back(new Log(this, Point2D<float>(425, 60), 72.6, 1));
+
+	//Segunda fila de troncos
+	logs.push_back(new Log(this, Point2D<float>(370, 121), 96, 1));
+	logs.push_back(new Log(this, Point2D<float>(460, 121), 96, 0));
+	logs.push_back(new Log(this, Point2D<float>(120, 121), 96, 1));
+	logs.push_back(new Log(this, Point2D<float>(210, 121), 96, 0));
+	logs.push_back(new Log(this, Point2D<float>(-130, 121), 96, 1));
+	logs.push_back(new Log(this, Point2D<float>(-40, 121), 96, 0));
+
+
+	//Tercera fila de troncos
+	logs.push_back(new Log(this, Point2D<float>(30, 153), 48, 0));
+	logs.push_back(new Log(this, Point2D<float>(180, 153), 48, 0));
+	logs.push_back(new Log(this, Point2D<float>(330, 153), 48, 0));
 	// Configura que se pueden utilizar capas translúcidas
 	// SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
 }
@@ -99,6 +126,7 @@ Game::render() const
 
 	textures[Game::BACKGROUND]->render();
 	for (int i = 0;i < vehicles.size();i++) vehicles[i]->render();
+	for (int i = 0;i < logs.size();i++) logs[i]->render();
 
 	SDL_RenderPresent(renderer);
 }
@@ -107,6 +135,8 @@ void
 Game::update()
 {
 	for (int i = 0;i < vehicles.size();i++) vehicles[i]->update();
+	for (int i = 0;i < logs.size();i++) logs[i]->update();
+
 	// TODO
 }
 

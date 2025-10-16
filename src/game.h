@@ -11,6 +11,7 @@
 // Declaraciones anticipadas
 class Texture;
 class Vehicle;
+class Log;
 
 /**
  * Clase principal del juego.
@@ -35,6 +36,8 @@ public:
 		CAR3,
 		CAR4,
 		CAR5,
+		LOG1,
+		LOG2,
 		NUM_TEXTURES
 	};
 	enum Type
@@ -64,6 +67,7 @@ private:
 	// TODO: añadir atributos para los objetos del juego
 
 	std::vector<Vehicle*> vehicles;
+	std::vector<Log*> logs;
 
 public:
 	Game();
