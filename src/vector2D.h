@@ -39,6 +39,10 @@ public:
 	{
 		return { x * otro.x + y * otro.y };
 	}
+	bool operator==(const Vector2D& otro) const
+	{
+		return { x == otro.x && y == otro.y };
+	}
 	
 	// Operadores de entrada/salida
 	friend std::ostream& operator<<(std::ostream& out, const Vector2D& v) {

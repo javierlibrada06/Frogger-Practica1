@@ -1,6 +1,4 @@
-﻿  Vehicle.cpp
-C:\Users\User\Documents\GitHub\Frogger-Practica1\src\Vehicle.cpp(33,33): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\User\Documents\GitHub\Frogger-Practica1\src\Vehicle.cpp(34,34): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\User\Documents\GitHub\Frogger-Practica1\src\Vehicle.cpp(58,33): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\User\Documents\GitHub\Frogger-Practica1\src\Vehicle.cpp(59,34): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-  src.vcxproj -> C:\Users\User\Documents\GitHub\Frogger-Practica1\bin\srcDebug.exe
+﻿  Frog.cpp
+C:\Users\julia\source\repos\Frogger-Practica1\src\Frog.cpp(35,33): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\julia\source\repos\Frogger-Practica1\src\Frog.cpp(36,34): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+  src.vcxproj -> C:\Users\julia\source\repos\Frogger-Practica1\bin\srcDebug.exe

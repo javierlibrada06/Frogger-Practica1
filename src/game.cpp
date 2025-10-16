@@ -10,6 +10,8 @@
 
 #include "log.h"
 
+#include "frog.h"
+
 using namespace std;
 
 // Constantes
@@ -64,6 +66,10 @@ Game::Game()
 		auto [name, nrows, ncols] = textureList[i];
 		textures[i] = new Texture(renderer, (string(imgBase) + name).c_str(), nrows, ncols);
 	}
+
+	//AUX
+
+	frog = new Frog(this);
 
 	//Primera fila de coches
 	vehicles.push_back(new Vehicle(this, Point2D<float>(50, 372), -48, 1));	
@@ -126,6 +132,7 @@ Game::render() const
 	textures[Game::BACKGROUND]->render();
 	for (int i = 0;i < vehicles.size();i++) vehicles[i]->render();
 	for (int i = 0;i < logs.size();i++) logs[i]->render();
+	frog->render();
 
 	SDL_RenderPresent(renderer);
 }
@@ -135,7 +142,7 @@ Game::update()
 {
 	for (int i = 0;i < vehicles.size();i++) vehicles[i]->update();
 	for (int i = 0;i < logs.size();i++) logs[i]->update();
-
+	frog->update();
 	// TODO
 }
 
@@ -144,6 +151,7 @@ Game::run()
 {
 	while (!exit) {
 		// TODO: implementar bucle del juego
+		handleEvents();
 		render();
 		update();
 	}
@@ -159,6 +167,7 @@ Game::handleEvents()
 	while (SDL_PollEvent(&event)) {
 		if (event.type == SDL_EVENT_QUIT)
 			exit = true;
+		frog->handleEvent(event);
 
 		// TODO
 	}

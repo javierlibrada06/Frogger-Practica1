@@ -12,6 +12,7 @@
 class Texture;
 class Vehicle;
 class Log;
+class Frog;
 
 /**
  * Clase principal del juego.
@@ -68,6 +69,7 @@ private:
 
 	std::vector<Vehicle*> vehicles;
 	std::vector<Log*> logs;
+	Frog* frog;
 
 public:
 	Game();
