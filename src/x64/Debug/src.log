@@ -1,2 +1,11 @@
-﻿  game.cpp
+﻿  Vehicle.cpp
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\Vehicle.cpp(32,33): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\Vehicle.cpp(33,34): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\Vehicle.cpp(46,60): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\Vehicle.cpp(46,60): warning C4244:         with
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\Vehicle.cpp(46,60): warning C4244:         [
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\Vehicle.cpp(46,60): warning C4244:             T=float
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\Vehicle.cpp(46,60): warning C4244:         ]
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\Vehicle.cpp(56,33): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\Vehicle.cpp(57,34): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
   src.vcxproj -> C:\Users\User\Documents\GitHub\Frogger-Practica1\bin\srcDebug.exe

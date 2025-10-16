@@ -59,7 +59,30 @@ Game::Game()
 		auto [name, nrows, ncols] = textureList[i];
 		textures[i] = new Texture(renderer, (string(imgBase) + name).c_str(), nrows, ncols);
 	}
-	vehicles;
+
+	//Primera fila de coches
+	vehicles.push_back(new Vehicle(this, Point2D<float>(50, 372), -48, 1));	
+	vehicles.push_back(new Vehicle(this, Point2D<float>(200, 372), -48, 1));
+	vehicles.push_back(new Vehicle(this, Point2D<float>(350, 372), -48, 1));
+
+	//Segunda fila de coches
+	vehicles.push_back(new Vehicle(this, Point2D<float>(25, 342), 48, 2));
+	vehicles.push_back(new Vehicle(this, Point2D<float>(175, 342), 48, 2));
+	vehicles.push_back(new Vehicle(this, Point2D<float>(325, 342), 48, 2));
+
+	//Tercera fila de coches
+	vehicles.push_back(new Vehicle(this, Point2D<float>(175, 312), -72, 3));
+	vehicles.push_back(new Vehicle(this, Point2D<float>(325, 312), -72, 3));
+	vehicles.push_back(new Vehicle(this, Point2D<float>(475, 312), -72, 3));
+
+	//Cuarta fila de coches
+	vehicles.push_back(new Vehicle(this, Point2D<float>(150, 280), 48, 4));
+	vehicles.push_back(new Vehicle(this, Point2D<float>(0, 280), 48, 4));
+	vehicles.push_back(new Vehicle(this, Point2D<float>(-150, 280), 48, 4));
+
+	//Quinta fila de coches
+	vehicles.push_back(new Vehicle(this, Point2D<float>(165, 252), -72, 5));
+	vehicles.push_back(new Vehicle(this, Point2D<float>(365, 252), -72, 5));
 	// Configura que se pueden utilizar capas translúcidas
 	// SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
 }
@@ -73,15 +96,9 @@ void
 Game::render() const
 {
 	SDL_RenderClear(renderer);
+
 	textures[Game::BACKGROUND]->render();
-	/*for (size_t i = 0; i < textures.size(); i++)
-	{
-		textures[i]->render();
-	}*/
-	// TODO
-	vehicles[0].render();
-	vehicles[1].render();
-	vehicles[2].render();
+	for (int i = 0;i < vehicles.size();i++) vehicles[i]->render();
 
 	SDL_RenderPresent(renderer);
 }
@@ -89,16 +106,17 @@ Game::render() const
 void
 Game::update()
 {
+	for (int i = 0;i < vehicles.size();i++) vehicles[i]->update();
 	// TODO
 }
 
 void
 Game::run()
 {
-	AuxVehicles();
 	while (!exit) {
-		render();
 		// TODO: implementar bucle del juego
+		render();
+		update();
 	}
 
 }
@@ -123,13 +141,3 @@ Game::handleEvents()
 //	// TODO: cambiar el tipo de retorno a Collision e implementar
 //	return ;
 //}
-
-void 
-Game::AuxVehicles()
-{
-	//Auxiliar para iniciar los vehiculos
-	vehicles.push_back(Vehicle(this, textures[Game::CAR1], Vector2D<int>(3, 5), Point2D<int>(250, 352)));
-	vehicles.push_back(Vehicle(this, textures[Game::CAR2], Vector2D<int>(3, 5), Point2D<int>(200, 352)));
-	vehicles.push_back(Vehicle(this, textures[Game::CAR3], Vector2D<int>(3, 5), Point2D<int>(150, 352)));
-
-}

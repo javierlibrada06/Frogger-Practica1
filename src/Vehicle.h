@@ -6,12 +6,13 @@ class Vehicle
 {
 	Game* game;
 	Texture* texture;
-	Vector2D<int> speed;
-	Point2D <int> position;
+	Vector2D<float> speed;
+	Point2D <float> position;
+	SDL_FRect rect;
 
 	public:
 	Vehicle();
-	Vehicle(Game*, Texture*,Vector2D<int>, Point2D<int>);
+	Vehicle(Game*, Vector2D<float>, float, int);
 	~Vehicle();
 	void update();
 	void render() const;
