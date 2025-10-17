@@ -8,6 +8,12 @@
 
 #include "vehicle.h"
 
+#include "log.h"
+
+#include "frog.h"
+#include <fstream>
+#include <vector>
+
 using namespace std;
 
 // Constantes
@@ -33,6 +39,9 @@ constexpr array<TextureSpec, Game::NUM_TEXTURES> textureList{
 	{"car3.png"},
 	{"car4.png"},
 	{"car5.png"},
+	{"log1.png"},
+	{"log2.png"},
+
 };
 
 Game::Game()
@@ -59,31 +68,10 @@ Game::Game()
 		auto [name, nrows, ncols] = textureList[i];
 		textures[i] = new Texture(renderer, (string(imgBase) + name).c_str(), nrows, ncols);
 	}
-	vehicles;
 
-	//Primera fila de coches
-	vehicles.push_back(new Vehicle(this, getTexture(CAR1), Vector2D<float>(-48,0), Point2D<float>(50, 372)));
-	vehicles.push_back(new Vehicle(this, getTexture(CAR1), Vector2D<float>(-48,0), Point2D<float>(200, 372)));
-	vehicles.push_back(new Vehicle(this, getTexture(CAR1), Vector2D<float>(-48,0), Point2D<float>(350, 372)));
+	//AUX
 
-	//Segunda fila de coches
-	vehicles.push_back(new Vehicle(this, getTexture(CAR2), Vector2D<float>(3, 5), Point2D<float>(25, 342)));
-	vehicles.push_back(new Vehicle(this, getTexture(CAR2), Vector2D<float>(3, 5), Point2D<float>(175, 342)));
-	vehicles.push_back(new Vehicle(this, getTexture(CAR2), Vector2D<float>(3, 5), Point2D<float>(325, 342)));
-	
-	//Tercera fila de coches
-	vehicles.push_back(new Vehicle(this, getTexture(CAR3), Vector2D<float>(3, 5), Point2D<float>(250, 312)));
-	vehicles.push_back(new Vehicle(this, getTexture(CAR3), Vector2D<float>(3, 5), Point2D<float>(200, 312)));
-	vehicles.push_back(new Vehicle(this, getTexture(CAR3), Vector2D<float>(3, 5), Point2D<float>(150, 312)));
-
-	//Cuarta fila de coches
-	vehicles.push_back(new Vehicle(this, getTexture(CAR4), Vector2D<float>(3, 5), Point2D<float>(250, 280)));
-	vehicles.push_back(new Vehicle(this, getTexture(CAR4), Vector2D<float>(3, 5), Point2D<float>(200, 280)));
-	vehicles.push_back(new Vehicle(this, getTexture(CAR4), Vector2D<float>(3, 5), Point2D<float>(150, 280)));
-
-	//Cuarta fila de coches
-	vehicles.push_back(new Vehicle(this, getTexture(CAR5), Vector2D<float>(3, 5), Point2D<float>(250, 252)));
-	vehicles.push_back(new Vehicle(this, getTexture(CAR5), Vector2D<float>(3, 5), Point2D<float>(200, 252)));
+	frog = new Frog(this);
 
 	// Configura que se pueden utilizar capas translúcidas
 	// SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
@@ -98,14 +86,11 @@ void
 Game::render() const
 {
 	SDL_RenderClear(renderer);
-	textures[Game::BACKGROUND]->render();
-	/*for (size_t i = 0; i < textures.size(); i++)
-	{
-		textures[i]->render();
-	}*/
-	// TODO
-	for (int i=0;i<vehicles.size();i++) vehicles[i]->render();
 
+	textures[Game::BACKGROUND]->render();
+	for (int i = 0;i < vehicles.size();i++) vehicles[i]->render();
+	for (int i = 0;i < logs.size();i++) logs[i]->render();
+	frog->render();
 
 	SDL_RenderPresent(renderer);
 }
@@ -113,7 +98,9 @@ Game::render() const
 void
 Game::update()
 {
-	for (int i = 0; i < vehicles.size(); i++) vehicles[i]->update();
+	for (int i = 0;i < vehicles.size();i++) vehicles[i]->update();
+	for (int i = 0;i < logs.size();i++) logs[i]->update();
+	frog->update();
 	// TODO
 }
 
@@ -121,9 +108,10 @@ void
 Game::run()
 {
 	while (!exit) {
+		// TODO: implementar bucle del juego
+		handleEvents();
 		render();
 		update();
-		// TODO: implementar bucle del juego
 	}
 
 }
@@ -137,22 +125,64 @@ Game::handleEvents()
 	while (SDL_PollEvent(&event)) {
 		if (event.type == SDL_EVENT_QUIT)
 			exit = true;
+		frog->handleEvent(event);
 
 		// TODO
 	}
 }
 
-//Game::Collision 
-//Game::checkCollision(const SDL_FRect& rect) const
-//{
-//	// TODO: cambiar el tipo de retorno a Collision e implementar
-//	return ;
-//}
-
-void 
-Game::AuxVehicles()
+Game::Collision 
+Game::checkCollision(const SDL_FRect& rect) const
 {
-	//Auxiliar para iniciar los vehiculos
-	
+	Collision collision;
+	collision.type = NONE;
+	int i = 0;
+	while (i < vehicles.size() && collision.type == NONE) {
+		collision = vehicles[i]->checkCollision(rect);
+		i++;
+	}
+	i = 0;
+	while (i < logs.size() && collision.type == NONE) {
+		collision = logs[i]->checkCollision(rect);
+		i++;
+	}
+	return collision;
 
 }
+
+void 
+Game::loadGame() {
+
+	 ifstream inputMap;
+	 inputMap.open(MAP_FILE);
+	 if (!inputMap.is_open()) cout << "No se encuentra el fichero" << endl;
+	 else
+	 {
+		 char c;
+		 while (inputMap >> c) {
+
+			 if (c == 'V') {
+				 Vehicle* v = new Vehicle();
+				 v->loadVehicle(inputMap, this);
+				 vehicles.push_back(v);
+			 }
+			 else if (c == 'L') {
+				 Log* l = new Log();
+				 l->loadLog(inputMap, this);
+				 logs.push_back(l);
+			 }
+			 //switch (c) {
+			 //case 'V': 
+
+				// break;
+			 //case 'L':
+
+				// break;
+			 //}
+			
+
+		 }
+		 inputMap.close();
+	 }
+}
+

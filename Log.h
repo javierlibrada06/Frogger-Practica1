@@ -2,7 +2,7 @@
 #include "game.h"
 #include "vector2D.h"
 #include "texture.h"
-class Vehicle
+class Log
 {
 	Game* game;
 	Texture* texture;
@@ -11,11 +11,10 @@ class Vehicle
 	SDL_FRect rect;
 
 	public:
-	Vehicle();
-	void loadVehicle(std::istream& entrada, Game* g);
-	~Vehicle();
+	Log();
+	void loadLog(std::istream& entrada, Game* g);
+	~Log();
 	void update();
 	void render() const;
 	Game::Collision checkCollision(const SDL_FRect&);
 };
-

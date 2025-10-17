@@ -11,6 +11,8 @@
 // Declaraciones anticipadas
 class Texture;
 class Vehicle;
+class Log;
+class Frog;
 
 /**
  * Clase principal del juego.
@@ -35,6 +37,8 @@ public:
 		CAR3,
 		CAR4,
 		CAR5,
+		LOG1,
+		LOG2,
 		NUM_TEXTURES
 	};
 	enum Type
@@ -45,7 +49,7 @@ public:
 	struct Collision
 	{
 		Type type;
-		Vector2D<int> speed;
+		Vector2D<float> speed;
 	};
 	
 
@@ -64,11 +68,12 @@ private:
 	// TODO: añadir atributos para los objetos del juego
 
 	std::vector<Vehicle*> vehicles;
+	std::vector<Log*> logs;
+	Frog* frog;
 
 public:
 	Game();
 	~Game();
-
 	// Obtiene una textura por su nombre
 	Texture* getTexture(TextureName name) const;
 
@@ -79,6 +84,8 @@ public:
 	Collision checkCollision(const SDL_FRect& rect) const;
 
 	void AuxVehicles();
+	void loadGame();
+
 };
 
 inline Texture*
