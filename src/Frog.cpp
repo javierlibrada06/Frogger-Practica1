@@ -9,17 +9,9 @@ Frog::Frog()
 	position = Point2D<float>(205, 402);
 	lastPosition = Point2D<float>(205, 402);
 	state = 0;
+	angle = 0;
 	rect = { 0,0,0,0 };
 }
-
-//Frog::Frog(Game* g)
-//{
-//	game = g;
-//	texture = texture = g->getTexture(Game::FROG);
-//	position = Point2D<float>(205, 402);
-//	lastPosition = Point2D<float>(205, 402);
-//	rect = { 0,0,0,0 };
-//}
 
 Frog::~Frog()
 {
@@ -34,7 +26,7 @@ Frog::render() const {
 	rect.y = lastPosition.getY();
 	rect.w = texture->getFrameWidth();
 	rect.h = texture->getFrameHeight();
-	texture->renderFrame(rect, 0, state);
+	texture->renderFrame(rect, 0, state, angle);
 }
 void 
 Frog::update() {
@@ -82,22 +74,26 @@ Frog::handleEvent(const SDL_Event& event) {
 		switch (event.key.key) {
 		case SDLK_DOWN:
 			state = 1;
-			position = position + Point2D<float>(0.0f, Game::WINDOW_HEIGHT/15);
+			angle = 180;
+			position = position + Point2D<float>(0.0f, Game::WINDOW_HEIGHT / 15);
 			break;
 
 		case SDLK_UP:
 			//texture->renderFrame(rect, 0, 1);
 			state = 1;
+			angle = 0;
 			position = position + Point2D<float>(0.0f, -Game::WINDOW_HEIGHT/15); break;
 
 		case SDLK_LEFT:
 			//texture->renderFrame(rect, 0, 1);
 			state = 1;
+			angle = -90;
 			position = position + Point2D<float>(-Game::WINDOW_WIDTH/15, 0.0f); break;
 
 		case SDLK_RIGHT:
 			//texture->renderFrame(rect, 0, 1);
 			state = 1;
+			angle = 90;
 			position = position + Point2D<float>(Game::WINDOW_WIDTH/15, 0.0f); break;
 		
 		}

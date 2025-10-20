@@ -184,17 +184,29 @@ Game::loadGame() {
 				 f->loadFrog(inputMap, this);
 				 frog = f;
 			 }
-			 //switch (c) {
-			 //case 'V': 
+			 else inputMap.ignore('#', '\n');
+			 /*switch (c) {
+			 case 'V':
+				 Vehicle * v = new Vehicle();
+				 v->loadVehicle(inputMap, this);
+				 vehicles.push_back(v);
+				 break;
+			 case 'L':
+				 Log * l = new Log();
+				 l->loadLog(inputMap, this);
+				 logs.push_back(l);
+				 break;
 
-				// break;
-			 //case 'L':
-
-				// break;
-			 //}
-			
-
+			 case 'F':
+				 Frog * f = new Frog();
+				 f->loadFrog(inputMap, this);
+				 frog = f;
+				 break;
+			 default:
+				 break;
+			 }*/
 		 }
+		 
 		 inputMap.close();
 	 }
 }

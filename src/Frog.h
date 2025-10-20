@@ -11,6 +11,7 @@ class Frog
 	int lives;
 	SDL_FRect rect;
 	int state;
+	double angle;
 public:
 	Frog();
 	//Frog(Game*);
