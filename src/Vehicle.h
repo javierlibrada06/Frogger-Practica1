@@ -12,13 +12,10 @@ class Vehicle
 
 	public:
 	Vehicle();
-	Vehicle(Game*, Vector2D<float>, float, int);
+	void loadVehicle(std::istream& entrada, Game* g);
 	~Vehicle();
 	void update();
 	void render() const;
 	Game::Collision checkCollision(const SDL_FRect&);
-
-
-
 };
 

@@ -11,6 +11,8 @@
 #include "log.h"
 
 #include "frog.h"
+#include <fstream>
+#include <vector>
 
 using namespace std;
 
@@ -71,50 +73,6 @@ Game::Game()
 
 	frog = new Frog(this);
 
-	//Primera fila de coches
-	vehicles.push_back(new Vehicle(this, Point2D<float>(50, 372), -48, 1));	
-	vehicles.push_back(new Vehicle(this, Point2D<float>(200, 372), -48, 1));
-	vehicles.push_back(new Vehicle(this, Point2D<float>(350, 372), -48, 1));
-
-	//Segunda fila de coches
-	vehicles.push_back(new Vehicle(this, Point2D<float>(25, 342), 48, 2));
-	vehicles.push_back(new Vehicle(this, Point2D<float>(175, 342), 48, 2));
-	vehicles.push_back(new Vehicle(this, Point2D<float>(325, 342), 48, 2));
-
-	//Tercera fila de coches
-	vehicles.push_back(new Vehicle(this, Point2D<float>(175, 312), -72, 3));
-	vehicles.push_back(new Vehicle(this, Point2D<float>(325, 312), -72, 3));
-	vehicles.push_back(new Vehicle(this, Point2D<float>(475, 312), -72, 3));
-
-	//Cuarta fila de coches
-	vehicles.push_back(new Vehicle(this, Point2D<float>(150, 280), 48, 4));
-	vehicles.push_back(new Vehicle(this, Point2D<float>(0, 280), 48, 4));
-	vehicles.push_back(new Vehicle(this, Point2D<float>(-150, 280), 48, 4));
-
-	//Quinta fila de coches
-	vehicles.push_back(new Vehicle(this, Point2D<float>(165, 252), -72, 5));
-	vehicles.push_back(new Vehicle(this, Point2D<float>(365, 252), -72, 5));
-
-	//----- TRONCOS -----
-
-	//Primera fila de troncos
-	logs.push_back(new Log(this, Point2D<float>(-100, 60), 72.6, 1));
-	logs.push_back(new Log(this, Point2D<float>(75, 60), 72.6, 1));
-	logs.push_back(new Log(this, Point2D<float>(250, 60), 72.6, 1));
-	logs.push_back(new Log(this, Point2D<float>(425, 60), 72.6, 1));
-
-	//Segunda fila de troncos
-	logs.push_back(new Log(this, Point2D<float>(370, 121), 96, 1));
-	logs.push_back(new Log(this, Point2D<float>(460, 121), 96, 0));
-	logs.push_back(new Log(this, Point2D<float>(120, 121), 96, 1));
-	logs.push_back(new Log(this, Point2D<float>(210, 121), 96, 0));
-	logs.push_back(new Log(this, Point2D<float>(-130, 121), 96, 1));
-	logs.push_back(new Log(this, Point2D<float>(-40, 121), 96, 0));
-
-	//Tercera fila de troncos
-	logs.push_back(new Log(this, Point2D<float>(30, 153), 48, 0));
-	logs.push_back(new Log(this, Point2D<float>(180, 153), 48, 0));
-	logs.push_back(new Log(this, Point2D<float>(330, 153), 48, 0));
 	// Configura que se pueden utilizar capas translúcidas
 	// SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
 }
@@ -191,3 +149,40 @@ Game::checkCollision(const SDL_FRect& rect) const
 	return collision;
 
 }
+
+void 
+Game::loadGame() {
+
+	 ifstream inputMap;
+	 inputMap.open(MAP_FILE);
+	 if (!inputMap.is_open()) cout << "No se encuentra el fichero" << endl;
+	 else
+	 {
+		 char c;
+		 while (inputMap >> c) {
+
+			 if (c == 'V') {
+				 Vehicle* v = new Vehicle();
+				 v->loadVehicle(inputMap, this);
+				 vehicles.push_back(v);
+			 }
+			 else if (c == 'L') {
+				 Log* l = new Log();
+				 l->loadLog(inputMap, this);
+				 logs.push_back(l);
+			 }
+			 //switch (c) {
+			 //case 'V': 
+
+				// break;
+			 //case 'L':
+
+				// break;
+			 //}
+			
+
+		 }
+		 inputMap.close();
+	 }
+}
+

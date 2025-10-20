@@ -74,7 +74,6 @@ private:
 public:
 	Game();
 	~Game();
-
 	// Obtiene una textura por su nombre
 	Texture* getTexture(TextureName name) const;
 
@@ -85,6 +84,8 @@ public:
 	Collision checkCollision(const SDL_FRect& rect) const;
 
 	void AuxVehicles();
+	void loadGame();
+
 };
 
 inline Texture*

@@ -2,13 +2,12 @@
 #include "vector2D.h"
 #include "game.h"
 #include "texture.h"
-
 Frog::Frog()
 {
 	game = nullptr;
 	texture = nullptr;
-	position = Point2D<float>(50, 402);
-	lastPosition = Point2D<float>(50, 402);
+	position = Point2D<float>(205, 402);
+	lastPosition = Point2D<float>(205, 402);
 	rect = { 0,0,0,0 };
 }
 
@@ -16,8 +15,8 @@ Frog::Frog(Game* g)
 {
 	game = g;
 	texture = texture = g->getTexture(Game::FROG);
-	position = Point2D<float>(50, 402);
-	lastPosition = Point2D<float>(50, 402);
+	position = Point2D<float>(205, 402);
+	lastPosition = Point2D<float>(205, 402);
 	rect = { 0,0,0,0 };
 }
 
@@ -40,6 +39,7 @@ void
 Frog::update() {
 
 	SDL_FRect rect;
+
 	rect.x = position.getX();
 	rect.y = position.getY();
 	rect.w = texture->getFrameWidth();
@@ -57,23 +57,44 @@ Frog::update() {
 	}
 	else if (collision.type == Game::ENEMY) {
 		
-		position = Point2D<float>(50, 402);
-		lastPosition = Point2D<float>(50, 402);
+		position = Point2D<float>(205, 402);
+		lastPosition = Point2D<float>(205, 402);
 	}
 	else if (collision.type == Game::PLATFORM) 
 	{
 		float deltaTime = 0.05f / Game::FRAME_RATE;
 		position = position + (collision.speed * deltaTime);
+		if (position.getX() > 420.0f) position = Point2D<float>(205, 402);
 		lastPosition = position;
 	}
 
+	rect.x = position.getX();
+	rect.y = position.getY();
+	rect.w = texture->getFrameWidth();
+	rect.h = texture->getFrameHeight();
 
 }
 void 
 Frog::handleEvent(const SDL_Event& event) {
 
-	if ((event.key.key == SDLK_DOWN)) position = position + Point2D<float>(0.0f, 16.0f);
-	else if ((event.key.key == SDLK_UP)) position = position + Point2D<float>(0.0f, -16.0f);
-	else if ((event.key.key == SDLK_LEFT)) position = position + Point2D<float>(-12.0f, 0.0f);
-	else if ((event.key.key== SDLK_RIGHT)) position = position + Point2D<float>(12.0f, 0.0f);
+	if (event.type == SDL_EVENT_KEY_DOWN) {
+		switch (event.key.key) {
+		case SDLK_DOWN:
+			//texture->renderFrame(rect, 0, 1);
+			position = position + Point2D<float>(0.0f, Game::WINDOW_HEIGHT/15);
+			break;
+
+		case SDLK_UP:
+			//texture->renderFrame(rect, 0, 1);
+			position = position + Point2D<float>(0.0f, -Game::WINDOW_HEIGHT/15); break;
+
+		case SDLK_LEFT:
+			//texture->renderFrame(rect, 0, 1);
+			position = position + Point2D<float>(-Game::WINDOW_WIDTH/11, 0.0f); break;
+
+		case SDLK_RIGHT:
+			//texture->renderFrame(rect, 0, 1);
+			position = position + Point2D<float>(Game::WINDOW_WIDTH/11, 0.0f); break;
+		}
+	}
 }

@@ -12,7 +12,7 @@ class Log
 
 	public:
 	Log();
-	Log(Game*, Vector2D<float>, float, int);
+	void loadLog(std::istream& entrada, Game* g);
 	~Log();
 	void update();
 	void render() const;
