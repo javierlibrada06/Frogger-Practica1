@@ -45,6 +45,11 @@ Frog::update() {
 		if (position.getX() > 420.0f) position = Point2D<float>(420.0f, position.getY());
 		if (position.getY() < 0.0f) position = Point2D<float>(position.getX(), 0.0f);
 		if (position.getY() > 402.0f) position = Point2D<float>(position.getX(), 402.0f);
+		if (position.getY() < 210.0f) {
+
+			position = Point2D<float>(205, 402);
+			lastPosition = Point2D<float>(205, 402);
+		}
 		
 		if (lastPosition != position) lastPosition = position;
 	}
