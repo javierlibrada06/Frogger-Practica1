@@ -21,7 +21,8 @@ Log::Log()
 Log::~Log()
 {
 	//Eliminar Memoria
-	if (texture) delete texture, texture = nullptr;
+	texture = nullptr;
+	game = nullptr;
 }
 void
 Log::update()

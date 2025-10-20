@@ -75,7 +75,18 @@ Game::Game()
 
 Game::~Game()
 {
-	// TODO: liberar memoria reservada por la clase
+	for (Vehicle* v : vehicles) {
+		delete v;     
+	}
+	vehicles.clear();
+	for (Log* l : logs) {
+		delete l;
+	}
+	logs.clear();
+	delete frog;
+	for (auto t : textures) {
+		delete t;
+	}
 }
 
 void
@@ -119,8 +130,9 @@ Game::handleEvents()
 
 	// Only quit is handled directly, everything else is delegated
 	while (SDL_PollEvent(&event)) {
-		if (event.type == SDL_EVENT_QUIT)
+		if (event.type == SDL_EVENT_QUIT) {
 			exit = true;
+		}
 		frog->handleEvent(event);
 
 		// TODO

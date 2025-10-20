@@ -10,6 +10,7 @@ class Frog
 	Point2D <float> position;
 	int lives;
 	SDL_FRect rect;
+	int state;
 public:
 	Frog();
 	//Frog(Game*);

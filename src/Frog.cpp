@@ -8,6 +8,7 @@ Frog::Frog()
 	texture = nullptr;
 	position = Point2D<float>(205, 402);
 	lastPosition = Point2D<float>(205, 402);
+	state = 0;
 	rect = { 0,0,0,0 };
 }
 
@@ -22,8 +23,8 @@ Frog::Frog()
 
 Frog::~Frog()
 {
-	//Eliminar Memoria
-	if (texture) delete texture, texture = nullptr;
+	texture = nullptr;
+	game = nullptr;
 }
 
 void 
@@ -33,7 +34,7 @@ Frog::render() const {
 	rect.y = lastPosition.getY();
 	rect.w = texture->getFrameWidth();
 	rect.h = texture->getFrameHeight();
-	texture->renderFrame(rect, 0, 0);
+	texture->renderFrame(rect, 0, state);
 }
 void 
 Frog::update() {
@@ -80,23 +81,29 @@ Frog::handleEvent(const SDL_Event& event) {
 	if (event.type == SDL_EVENT_KEY_DOWN) {
 		switch (event.key.key) {
 		case SDLK_DOWN:
-			//texture->renderFrame(rect, 0, 1);
+			state = 1;
 			position = position + Point2D<float>(0.0f, Game::WINDOW_HEIGHT/15);
 			break;
 
 		case SDLK_UP:
 			//texture->renderFrame(rect, 0, 1);
+			state = 1;
 			position = position + Point2D<float>(0.0f, -Game::WINDOW_HEIGHT/15); break;
 
 		case SDLK_LEFT:
 			//texture->renderFrame(rect, 0, 1);
-			position = position + Point2D<float>(-Game::WINDOW_WIDTH/11, 0.0f); break;
+			state = 1;
+			position = position + Point2D<float>(-Game::WINDOW_WIDTH/15, 0.0f); break;
 
 		case SDLK_RIGHT:
 			//texture->renderFrame(rect, 0, 1);
-			position = position + Point2D<float>(Game::WINDOW_WIDTH/11, 0.0f); break;
+			state = 1;
+			position = position + Point2D<float>(Game::WINDOW_WIDTH/15, 0.0f); break;
+		
 		}
+	
 	}
+	else state = 0;
 }
 
 void
