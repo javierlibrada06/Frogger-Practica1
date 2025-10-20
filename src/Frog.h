@@ -12,10 +12,11 @@ class Frog
 	SDL_FRect rect;
 public:
 	Frog();
-	Frog(Game*);
+	//Frog(Game*);
 	~Frog();
 	void render() const;
 	void update();
 	void handleEvent(const SDL_Event&);
+	void loadFrog(std::istream&, Game*);
 };
 

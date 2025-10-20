@@ -11,14 +11,14 @@ Frog::Frog()
 	rect = { 0,0,0,0 };
 }
 
-Frog::Frog(Game* g)
-{
-	game = g;
-	texture = texture = g->getTexture(Game::FROG);
-	position = Point2D<float>(205, 402);
-	lastPosition = Point2D<float>(205, 402);
-	rect = { 0,0,0,0 };
-}
+//Frog::Frog(Game* g)
+//{
+//	game = g;
+//	texture = texture = g->getTexture(Game::FROG);
+//	position = Point2D<float>(205, 402);
+//	lastPosition = Point2D<float>(205, 402);
+//	rect = { 0,0,0,0 };
+//}
 
 Frog::~Frog()
 {
@@ -97,4 +97,20 @@ Frog::handleEvent(const SDL_Event& event) {
 			position = position + Point2D<float>(Game::WINDOW_WIDTH/11, 0.0f); break;
 		}
 	}
+}
+
+void
+Frog::loadFrog(std::istream& entrada, Game* g)
+{
+	float posX, posY, s;
+	int type;
+	entrada >> posX >> posY >> s >> type;
+	game = g;
+	position = Point2D<float>(posX, posY);
+	lastPosition = Point2D<float>(posX, posY);
+	texture = texture = g->getTexture(Game::FROG);
+	rect.x = position.getX();
+	rect.y = position.getY();
+	rect.h = texture->getFrameHeight();
+	rect.w = texture->getFrameWidth();
 }

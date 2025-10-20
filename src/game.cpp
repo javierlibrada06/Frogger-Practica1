@@ -69,10 +69,6 @@ Game::Game()
 		textures[i] = new Texture(renderer, (string(imgBase) + name).c_str(), nrows, ncols);
 	}
 
-	//AUX
-
-	frog = new Frog(this);
-
 	// Configura que se pueden utilizar capas translúcidas
 	// SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
 }
@@ -170,6 +166,11 @@ Game::loadGame() {
 				 Log* l = new Log();
 				 l->loadLog(inputMap, this);
 				 logs.push_back(l);
+			 }
+			 else if (c == 'F') {
+				 Frog* f = new Frog();
+				 f->loadFrog(inputMap, this);
+				 frog = f;
 			 }
 			 //switch (c) {
 			 //case 'V': 
