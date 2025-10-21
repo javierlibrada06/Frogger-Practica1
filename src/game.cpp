@@ -10,9 +10,15 @@
 
 #include "log.h"
 
+#include "HomeFrog.h"
+
+#include "Wasp.h"
+
 #include "frog.h"
+
 #include <fstream>
 #include <vector>
+#include <random>
 
 using namespace std;
 
@@ -41,6 +47,7 @@ constexpr array<TextureSpec, Game::NUM_TEXTURES> textureList{
 	{"car5.png"},
 	{"log1.png"},
 	{"log2.png"},
+	{"wasp.png"},
 
 };
 
@@ -69,6 +76,8 @@ Game::Game()
 		textures[i] = new Texture(renderer, (string(imgBase) + name).c_str(), nrows, ncols);
 	}
 
+	nextWasp = getRandomRange(1,10);
+
 	// Configura que se pueden utilizar capas translúcidas
 	// SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
 }
@@ -83,6 +92,14 @@ Game::~Game()
 		delete l;
 	}
 	logs.clear();
+	for (HomeFrog* h : homeFrogs) {
+		delete h;
+	}
+	homeFrogs.clear();
+	for (Wasp* w : wasps) {
+		delete w;
+	}
+	wasps.clear();
 	delete frog;
 	for (auto t : textures) {
 		delete t;
@@ -97,8 +114,9 @@ Game::render() const
 	textures[Game::BACKGROUND]->render();
 	for (int i = 0;i < vehicles.size();i++) vehicles[i]->render();
 	for (int i = 0;i < logs.size();i++) logs[i]->render();
+	for (int i = 0; i < homeFrogs.size(); i++) homeFrogs[i]->render();
+	for (int i = 0; i < wasps.size(); i++) wasps[i]->render();
 	frog->render();
-
 	SDL_RenderPresent(renderer);
 }
 
@@ -107,8 +125,19 @@ Game::update()
 {
 	for (int i = 0;i < vehicles.size();i++) vehicles[i]->update();
 	for (int i = 0;i < logs.size();i++) logs[i]->update();
+	for (int i = 0; i < homeFrogs.size(); i++) homeFrogs[i]->update();
+	for (int i = 0; i < wasps.size(); i++) { 
+		wasps[i]->update(); 
+		if (!wasps[i]->isAlive()) delete wasps[i];
+		float dieWasp = getRandomRange(1, 10);
+		nextWasp = getRandomRange(dieWasp, 20);
+		Wasp* wasp = new Wasp(this, homeFrogsPos[getRandomRange(0, 5)], dieWasp);
+		wasps[i] = wasp;
+	}
 	frog->update();
 	// TODO
+	float deltaTime = 0.05f / Game::FRAME_RATE;
+	if (nextWasp > 0) nextWasp = nextWasp - (1 * deltaTime);
 }
 
 void
@@ -145,6 +174,11 @@ Game::checkCollision(const SDL_FRect& rect) const
 	Collision collision;
 	collision.type = NONE;
 	int i = 0;
+	while (i < wasps.size() && collision.type == NONE) {
+		collision = wasps[i]->checkCollision(rect);
+		i++;
+	}
+	i = 0;
 	while (i < vehicles.size() && collision.type == NONE) {
 		collision = vehicles[i]->checkCollision(rect);
 		i++;
@@ -154,13 +188,21 @@ Game::checkCollision(const SDL_FRect& rect) const
 		collision = logs[i]->checkCollision(rect);
 		i++;
 	}
+	i = 0;
+	while (i < homeFrogs.size() && collision.type == NONE) {
+		collision = homeFrogs[i]->checkCollision(rect);
+		i++;
+	}
 	return collision;
 
 }
 
 void 
 Game::loadGame() {
-
+	 for (int i = 0; i < NUMBER_HFROGS; i++) { 
+		 HomeFrog* homeFrog = new HomeFrog(this, homeFrogsPos[i]);
+		 homeFrogs.push_back(homeFrog);
+	 }
 	 ifstream inputMap;
 	 inputMap.open(MAP_FILE);
 	 if (!inputMap.is_open()) cout << "No se encuentra el fichero" << endl;
@@ -185,29 +227,17 @@ Game::loadGame() {
 				 frog = f;
 			 }
 			 else inputMap.ignore('#', '\n');
-			 /*switch (c) {
-			 case 'V':
-				 Vehicle * v = new Vehicle();
-				 v->loadVehicle(inputMap, this);
-				 vehicles.push_back(v);
-				 break;
-			 case 'L':
-				 Log * l = new Log();
-				 l->loadLog(inputMap, this);
-				 logs.push_back(l);
-				 break;
-
-			 case 'F':
-				 Frog * f = new Frog();
-				 f->loadFrog(inputMap, this);
-				 frog = f;
-				 break;
-			 default:
-				 break;
-			 }*/
 		 }
 		 
 		 inputMap.close();
 	 }
+}
+
+int 
+Game::getRandomRange(int min, int max) {
+	static std::random_device rd;
+	static std::mt19937 randomGenerator(rd());
+	std::uniform_int_distribution<int> dist(min, max);
+	return dist(randomGenerator);
 }
 

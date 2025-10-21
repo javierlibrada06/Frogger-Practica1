@@ -5,14 +5,16 @@
 #include <array>
 #include <istream>
 #include <vector>
+#include <random>
 #include "vector2D.h"
-//#include "vehicle.h"
 
 // Declaraciones anticipadas
 class Texture;
 class Vehicle;
 class Log;
 class Frog;
+class HomeFrog;
+class Wasp;
 
 /**
  * Clase principal del juego.
@@ -27,6 +29,8 @@ public:
 	static constexpr int WINDOW_HEIGHT = 484;
 	// Extremo inferior del río
 	static constexpr int RIVER_LOW = 210;
+	// Numero de HomeFrogs
+	static constexpr int NUMBER_HFROGS = 5;
 
 	enum TextureName
 	{
@@ -39,11 +43,12 @@ public:
 		CAR5,
 		LOG1,
 		LOG2,
+		WASP,
 		NUM_TEXTURES
 	};
 	enum Type
 	{
-		NONE, ENEMY, PLATFORM
+		NONE, ENEMY, PLATFORM, HOME
 	};
 
 	struct Collision
@@ -63,12 +68,21 @@ private:
 	void handleEvents();
 
 	bool exit;
+	float nextWasp;
 
 	// Elemento del juego
 	// TODO: añadir atributos para los objetos del juego
 
 	std::vector<Vehicle*> vehicles;
 	std::vector<Log*> logs;
+	std::vector<HomeFrog*> homeFrogs;
+	std::vector<Wasp*> wasps;
+
+	std::vector<Point2D<float>> homeFrogsPos = {Point2D<float>(16.0f,19.0f),
+												Point2D<float>(112.0f,19.0f),
+												Point2D<float>(208.0f,19.0f),
+												Point2D<float>(304.0f,19.0f),
+												Point2D<float>(400.0f,19.0f), };
 	Frog* frog;
 
 public:
@@ -85,6 +99,7 @@ public:
 
 	void AuxVehicles();
 	void loadGame();
+	int getRandomRange(int, int);
 
 };
 

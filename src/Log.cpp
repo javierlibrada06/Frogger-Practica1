@@ -14,10 +14,7 @@ Log::Log()
 	position = Point2D<float>(0,0);
 	rect = { 0,0,0,0 };
 }
-//Log::Log(Game* g, Point2D<float> pos, float s, int type)
-//{
-//	
-//}
+
 Log::~Log()
 {
 	//Eliminar Memoria
@@ -56,8 +53,8 @@ Game::Collision Log::checkCollision(const SDL_FRect& frog)
 	rect.h = texture->getFrameHeight();
 	if (SDL_HasRectIntersectionFloat(&frog, &rect)){
 		collision.type = Game::PLATFORM;
-	collision.speed = speed;
-}
+		collision.speed = speed;
+	}
 	return collision;
 	
 }
