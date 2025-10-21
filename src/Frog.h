@@ -10,6 +10,7 @@ class Frog
 	Point2D <float> position;
 	int lives;
 	SDL_FRect rect;
+	SDL_FRect rectCollider;
 	int state;
 	double angle;
 public:

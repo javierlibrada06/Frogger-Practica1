@@ -38,7 +38,10 @@ Frog::update() {
 	rect.w = texture->getFrameWidth();
 	rect.h = texture->getFrameHeight();
 
-	Game::Collision collision = game->checkCollision(rect);
+	rectCollider.x = position.getX() + 2;
+	rectCollider.y = position.getY() + 2;
+
+	Game::Collision collision = game->checkCollision(rectCollider);
 
 	if (collision.type == Game::NONE) {
 		if (position.getX() < 0.0f) position = Point2D<float>(0.0f, position.getY());
@@ -71,6 +74,8 @@ Frog::update() {
 	rect.w = texture->getFrameWidth();
 	rect.h = texture->getFrameHeight();
 
+	rectCollider.x = position.getX() + 2;
+	rectCollider.y = position.getY() + 2;
 }
 void 
 Frog::handleEvent(const SDL_Event& event) {
@@ -80,26 +85,26 @@ Frog::handleEvent(const SDL_Event& event) {
 		case SDLK_DOWN:
 			state = 1;
 			angle = 180;
-			position = position + Point2D<float>(0.0f, Game::WINDOW_HEIGHT / 15);
+			position = position + Point2D<float>(0.0f, 32.0f);
 			break;
 
 		case SDLK_UP:
 			//texture->renderFrame(rect, 0, 1);
 			state = 1;
 			angle = 0;
-			position = position + Point2D<float>(0.0f, -Game::WINDOW_HEIGHT/15); break;
+			position = position + Point2D<float>(0.0f, -32.0f); break;
 
 		case SDLK_LEFT:
 			//texture->renderFrame(rect, 0, 1);
 			state = 1;
 			angle = -90;
-			position = position + Point2D<float>(-Game::WINDOW_WIDTH/15, 0.0f); break;
+			position = position + Point2D<float>(-32.0f, 0.0f); break;
 
 		case SDLK_RIGHT:
 			//texture->renderFrame(rect, 0, 1);
 			state = 1;
 			angle = 90;
-			position = position + Point2D<float>(Game::WINDOW_WIDTH/15, 0.0f); break;
+			position = position + Point2D<float>(32.0f, 0.0f); break;
 		
 		}
 	
@@ -121,4 +126,9 @@ Frog::loadFrog(std::istream& entrada, Game* g)
 	rect.y = position.getY();
 	rect.h = texture->getFrameHeight();
 	rect.w = texture->getFrameWidth();
+	rectCollider.x = rect.x + 2;
+	rectCollider.y = rect.y + 2;
+	rectCollider.h = rect.h - 6;
+	rectCollider.w = rect.w - 6;
+
 }

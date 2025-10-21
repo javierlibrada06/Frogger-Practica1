@@ -3,8 +3,8 @@ C:\Users\usuario_local\source\repos\Frogger-Practica1\src\Frog.cpp(27,33): warni
 C:\Users\usuario_local\source\repos\Frogger-Practica1\src\Frog.cpp(28,34): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
 C:\Users\usuario_local\source\repos\Frogger-Practica1\src\Frog.cpp(38,33): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
 C:\Users\usuario_local\source\repos\Frogger-Practica1\src\Frog.cpp(39,34): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\Frog.cpp(71,33): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\Frog.cpp(72,34): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\Frog.cpp(122,34): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\Frog.cpp(123,33): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\usuario_local\source\repos\Frogger-Practica1\src\Frog.cpp(74,33): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\usuario_local\source\repos\Frogger-Practica1\src\Frog.cpp(75,34): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\usuario_local\source\repos\Frogger-Practica1\src\Frog.cpp(127,34): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\usuario_local\source\repos\Frogger-Practica1\src\Frog.cpp(128,33): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
   src.vcxproj -> C:\Users\usuario_local\source\repos\Frogger-Practica1\bin\srcDebug.exe
