@@ -76,7 +76,7 @@ Game::Game()
 		textures[i] = new Texture(renderer, (string(imgBase) + name).c_str(), nrows, ncols);
 	}
 
-	nextWasp = getRandomRange(1,10);
+	nextWasp = getRandomRange(1,30);
 
 	// Configura que se pueden utilizar capas translúcidas
 	// SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
@@ -123,21 +123,44 @@ Game::render() const
 void
 Game::update()
 {
+
+	float deltaTime = 0.05f / Game::FRAME_RATE;
+	if (nextWasp > 0) nextWasp = nextWasp - (1 * deltaTime);
+	else
+	{
+		// Aqui se eliminan todas las avispas muertas
+		for (int i = (int)wasps.size() - 1; i >= 0; i--)
+		{
+			if (!wasps[i]->isAlive())
+			{
+				delete wasps[i];
+				wasps[i] = wasps.back();
+				wasps.pop_back();
+			}
+		}
+		if (wasps.size() == 0 && frog->GetHomesReached() != 4)
+		{
+			// Genera nueva avispa
+			float lifeTime = (float)getRandomRange(5, 20);
+			nextWasp = (float)getRandomRange(5, 10);
+			bool encontrado = false;
+			int hf = 0;
+			while (!encontrado)
+			{
+				hf = getRandomRange(0, 4);
+				if (!homeFrogs[hf]->IsActive()) encontrado = true;
+			}
+			Point2D<float> pos = homeFrogs[hf]->GetPosition();
+			Vector2D<float> speed(0, 0);
+			wasps.push_back(new Wasp(this, pos, lifeTime, speed));
+		}
+	}
 	for (int i = 0;i < vehicles.size();i++) vehicles[i]->update();
 	for (int i = 0;i < logs.size();i++) logs[i]->update();
 	for (int i = 0; i < homeFrogs.size(); i++) homeFrogs[i]->update();
-	for (int i = 0; i < wasps.size(); i++) { 
-		wasps[i]->update(); 
-		if (!wasps[i]->isAlive()) delete wasps[i];
-		float dieWasp = getRandomRange(1, 10);
-		nextWasp = getRandomRange(dieWasp, 20);
-		Wasp* wasp = new Wasp(this, homeFrogsPos[getRandomRange(0, 5)], dieWasp);
-		wasps[i] = wasp;
-	}
+	for (int i = 0; i < wasps.size(); i++) wasps[i]->update();
 	frog->update();
 	// TODO
-	float deltaTime = 0.05f / Game::FRAME_RATE;
-	if (nextWasp > 0) nextWasp = nextWasp - (1 * deltaTime);
 }
 
 void
@@ -145,11 +168,20 @@ Game::run()
 {
 	while (!exit) {
 		// TODO: implementar bucle del juego
+		if (frog->GetHomesReached() == 1)
+		{
+			cout << "Has alcanzado todos los nidos" << endl;
+			exit = true;
+		}
+		else if (frog->GetLives() == 0)
+		{
+			cout << "Te has quedado sin vidas (0/3)" << endl;
+			exit = true;
+		}
 		handleEvents();
-		render();
 		update();
+		render();
 	}
-
 }
 
 void
@@ -199,10 +231,6 @@ Game::checkCollision(const SDL_FRect& rect) const
 
 void 
 Game::loadGame() {
-	 for (int i = 0; i < NUMBER_HFROGS; i++) { 
-		 HomeFrog* homeFrog = new HomeFrog(this, homeFrogsPos[i]);
-		 homeFrogs.push_back(homeFrog);
-	 }
 	 ifstream inputMap;
 	 inputMap.open(MAP_FILE);
 	 if (!inputMap.is_open()) cout << "No se encuentra el fichero" << endl;
@@ -230,6 +258,12 @@ Game::loadGame() {
 		 }
 		 
 		 inputMap.close();
+	 }
+
+	 for (int i = 0; i < NUMBER_HFROGS; i++)
+	 {
+		 HomeFrog* homeFrog = new HomeFrog(this, homeFrogsPos[i], frog);
+		 homeFrogs.push_back(homeFrog);
 	 }
 }
 

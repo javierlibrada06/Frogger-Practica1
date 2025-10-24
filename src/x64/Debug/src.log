@@ -1,6 +1,3 @@
 ﻿  game.cpp
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\game.cpp(79,27): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\game.cpp(132,17): warning C4244: 'inicializando': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\game.cpp(133,29): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\game.cpp(133,28): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-  src.vcxproj -> C:\Users\usuario_local\source\repos\Frogger-Practica1\bin\srcDebug.exe
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\game.cpp(79,27): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+  src.vcxproj -> C:\Users\User\Documents\GitHub\Frogger-Practica1\bin\srcDebug.exe

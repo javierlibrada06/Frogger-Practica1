@@ -9,13 +9,15 @@ Wasp::Wasp() {
 	texture = nullptr;
 	position = Point2D<float>(0, 0);
 	liveSpawn = 0.0f;
+	speed = Vector2D<float>(0, 0);
 }
 
-Wasp::Wasp(Game* g, Point2D<float> pos, float l) {
+Wasp::Wasp(Game* g, Point2D<float> pos, float l, Vector2D<float> s) {
 	game = g;
 	texture = g->getTexture(Game::WASP);
 	position = pos;
 	liveSpawn = l;
+	speed = s;
 }
 
 Wasp::~Wasp() {
@@ -27,6 +29,7 @@ void
 Wasp::update() {
 	float deltaTime = 0.05f / Game::FRAME_RATE;
 	liveSpawn = liveSpawn - (1 * deltaTime);
+	position = position + (speed * deltaTime);
 }
 
 void 

@@ -9,9 +9,11 @@ Frog::Frog()
 	position = Point2D<float>(205, 402);
 	lastPosition = Point2D<float>(205, 402);
 	state = 0;
+	lives = 0;
 	angle = 0;
 	rect = { 0,0,0,0 };
 	rectCollider = { 0,0,0,0 };
+	homesReached = 0;
 }
 
 Frog::~Frog()
@@ -127,7 +129,8 @@ Frog::loadFrog(std::istream& entrada, Game* g)
 	position = Point2D<float>(posX, posY);
 	lastPosition = Point2D<float>(posX, posY);
 	texture = texture = g->getTexture(Game::FROG);
-
+	homesReached = 0;
+	lives = 3;
 	rect.x = position.getX();
 	rect.y = position.getY();
 	rect.h = texture->getFrameHeight();
@@ -139,3 +142,13 @@ Frog::loadFrog(std::istream& entrada, Game* g)
 	rectCollider.w = rect.w - 9;
 
 }
+
+int
+Frog::GetHomesReached() { return homesReached; }
+
+int 
+Frog::GetLives() { return lives; }
+
+void
+Frog::HomeReached() { homesReached++; }
+

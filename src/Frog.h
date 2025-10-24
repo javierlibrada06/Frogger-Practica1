@@ -13,6 +13,7 @@ class Frog
 	SDL_FRect rectCollider;
 	int state;
 	double angle;
+	int homesReached;
 public:
 	Frog();
 	//Frog(Game*);
@@ -21,5 +22,8 @@ public:
 	void update();
 	void handleEvent(const SDL_Event&);
 	void loadFrog(std::istream&, Game*);
+	int GetHomesReached();
+	int GetLives();
+	void HomeReached();
 };
 

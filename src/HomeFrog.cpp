@@ -13,8 +13,9 @@ HomeFrog::HomeFrog()
 	active = false;
 }
 
-HomeFrog::HomeFrog(Game* g, Point2D<float> pos)
+HomeFrog::HomeFrog(Game* g, Point2D<float> pos, Frog* f)
 {
+	frog = f;
 	game = g;
 	position = pos;
 	texture = g->getTexture(Game::FROG);
@@ -48,7 +49,7 @@ HomeFrog::update() {
 
 }
 
-Game::Collision HomeFrog::checkCollision(const SDL_FRect& frog)
+Game::Collision HomeFrog::checkCollision(const SDL_FRect& f)
 {
 	Game::Collision collision;
 	collision.type = Game::NONE;
@@ -57,10 +58,16 @@ Game::Collision HomeFrog::checkCollision(const SDL_FRect& frog)
 	rect.y = position.getY();
 	rect.w = texture->getFrameWidth();
 	rect.h = texture->getFrameHeight();
-	if (SDL_HasRectIntersectionFloat(&frog, &rect) && !active) {
+	if (SDL_HasRectIntersectionFloat(&f, &rect) && !active) {
 		collision.type = Game::HOME;
 		active = true;
+		frog->HomeReached();
 	}
 	return collision;
 
 }
+Vector2D<float>
+HomeFrog::GetPosition() { return position; }
+
+bool
+HomeFrog::IsActive() { return active; }
