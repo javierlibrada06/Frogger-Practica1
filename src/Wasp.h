@@ -9,11 +9,12 @@ class Wasp
 	Vector2D<float> speed;
 	Point2D <float> position;
 	SDL_FRect rect;
-	float liveSpawn;
+	int liveSpawn;
+	int timeAlive;
 
 public:
 	Wasp();
-	Wasp(Game*, Point2D<float>, float, Vector2D<float>);
+	Wasp(Game*, Point2D<float>, int, Vector2D<float>);
 	~Wasp();
 	void update();
 	void render() const;

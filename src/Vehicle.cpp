@@ -26,11 +26,10 @@ Vehicle::~Vehicle()
 void 
 Vehicle::update()
 {
-	float deltaTime = 0.05f / Game::FRAME_RATE;
-	position = position + (speed*deltaTime);
+	position = position + (speed );
 	//Hay que revisar lo de delta time, Problemas para Julia y Javi del futuro :)
-	if (position.getX() <= -150.0f) position = Point2D<float>(448.0f, position.getY());
-	if (position.getX() >= 598.0f) position = Point2D<float>(0.0f - texture->getFrameWidth(), position.getY());
+	if (position.getX() <= Game::GAME_END_LEFT) position = Point2D<float>(Game::GAME_START_RIGHT, position.getY());
+	if (position.getX() >= Game::GAME_END_RIGHT) position = Point2D<float>(Game::GAME_START_LEFT - texture->getFrameWidth(), position.getY());
 	rect.x = position.getX();
 	rect.y = position.getY();
 }
@@ -65,6 +64,7 @@ Vehicle::loadVehicle(istream& entrada, Game* g)
 	 float posX, posY, s;
 	 int type;
 	entrada >> posX >> posY >> s >> type;
+	s = s / Game::FRAME_RATE;
 	game = g;
 	speed = Vector2D<float>(s, 0);
 	position = Point2D<float>(posX,posY);

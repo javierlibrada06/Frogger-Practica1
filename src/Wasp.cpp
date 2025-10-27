@@ -12,11 +12,12 @@ Wasp::Wasp() {
 	speed = Vector2D<float>(0, 0);
 }
 
-Wasp::Wasp(Game* g, Point2D<float> pos, float l, Vector2D<float> s) {
+Wasp::Wasp(Game* g, Point2D<float> pos, int l, Vector2D<float> s) {
 	game = g;
 	texture = g->getTexture(Game::WASP);
 	position = pos;
 	liveSpawn = l;
+	timeAlive = SDL_GetTicks();
 	speed = s;
 }
 
@@ -27,8 +28,7 @@ Wasp::~Wasp() {
 
 void 
 Wasp::update() {
-	float deltaTime = 0.05f / Game::FRAME_RATE;
-	liveSpawn = liveSpawn - (1 * deltaTime);
+	float deltaTime = Game::TICK / Game::FRAME_RATE;
 	position = position + (speed * deltaTime);
 }
 
@@ -59,6 +59,5 @@ Wasp::checkCollision(const SDL_FRect& frog) {
 
 bool 
 Wasp::isAlive() {
-	if (liveSpawn > 0) return true;
-	return false;
+	return (SDL_GetTicks() - timeAlive < liveSpawn);
 }

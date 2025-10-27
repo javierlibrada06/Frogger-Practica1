@@ -138,7 +138,7 @@ Game::update()
 				wasps.pop_back();
 			}
 		}
-		if (wasps.size() == 0 && frog->GetHomesReached() != 4)
+		if (wasps.size() == 0 && frog->GetHomesReached() != Game::NUMBER_HFROGS - 1)
 		{
 			// Genera nueva avispa
 			float lifeTime = (float)getRandomRange(5, 20);
@@ -147,7 +147,7 @@ Game::update()
 			int hf = 0;
 			while (!encontrado)
 			{
-				hf = getRandomRange(0, 4);
+				hf = getRandomRange(0, Game::NUMBER_HFROGS-1);
 				if (!homeFrogs[hf]->IsActive()) encontrado = true;
 			}
 			Point2D<float> pos = homeFrogs[hf]->GetPosition();
@@ -166,9 +166,15 @@ Game::update()
 void
 Game::run()
 {
+	const Uint32 frameDelay = TICK / FRAME_RATE;
+	Uint32 frameStart;
+	Uint32 frameTime;
+
 	while (!exit) {
 		// TODO: implementar bucle del juego
-		if (frog->GetHomesReached() == 1)
+
+		frameStart = SDL_GetTicks();
+		if (frog->GetHomesReached() == 5)
 		{
 			cout << "Has alcanzado todos los nidos" << endl;
 			exit = true;
@@ -181,6 +187,11 @@ Game::run()
 		handleEvents();
 		update();
 		render();
+
+		frameTime = SDL_GetTicks() - frameStart;
+		if (frameDelay > frameTime) {
+			SDL_Delay(frameDelay - frameTime);
+		}
 	}
 }
 

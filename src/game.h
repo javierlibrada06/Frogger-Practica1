@@ -31,6 +31,33 @@ public:
 	static constexpr int RIVER_LOW = 210;
 	// Numero de HomeFrogs
 	static constexpr int NUMBER_HFROGS = 5;
+	// Pos Y dE HomeFrogs
+	static constexpr float POS_Y_HOMEFROG = 19;
+	// Pos x del primer HomeFrogs
+	static constexpr float POS_X_HOMEFROG = 13;
+	// Separacion HomeFrogs
+	static constexpr float SEPARATION_HOMEFROG = 96;
+	// Fin juego fuera pantalla izquierda
+	static constexpr float GAME_END_LEFT = -150.0f;
+	// Fin juego fuera pantalla derecha
+	static constexpr float GAME_END_RIGHT = 598.0f;
+
+	// Inicio juego fuera pantalla derecha
+	static constexpr float GAME_START_LEFT = 0.0f;
+	// Inicio juego fuera pantalla derecha
+	static constexpr float GAME_START_RIGHT = 448.0f;
+
+	// Fin pantalla x
+	static constexpr float GAME_SCREENEND_X = 420.0f;
+	// Fin pantalla x
+	static constexpr float GAME_SCREENEND_Y = 402.0f;
+	// Pos Rana Inicio
+	static constexpr float FROG_INICIO = 205.0f;
+	// Pasos Rana
+	static constexpr float FROG_STEP = 32.0f;
+
+	// Tick
+	static constexpr int TICK = 1000;
 
 	enum TextureName
 	{
@@ -78,11 +105,11 @@ private:
 	std::vector<HomeFrog*> homeFrogs;
 	std::vector<Wasp*> wasps;
 
-	std::vector<Point2D<float>> homeFrogsPos = {Point2D<float>(16.0f,19.0f),
-												Point2D<float>(112.0f,19.0f),
-												Point2D<float>(208.0f,19.0f),
-												Point2D<float>(304.0f,19.0f),
-												Point2D<float>(400.0f,19.0f), };
+	std::vector<Point2D<float>> homeFrogsPos = {Point2D<float>(POS_X_HOMEFROG,POS_Y_HOMEFROG),
+												Point2D<float>(POS_X_HOMEFROG+SEPARATION_HOMEFROG * 1,POS_Y_HOMEFROG),
+												Point2D<float>(POS_X_HOMEFROG + SEPARATION_HOMEFROG * 2,POS_Y_HOMEFROG),
+												Point2D<float>(POS_X_HOMEFROG + SEPARATION_HOMEFROG * 3,POS_Y_HOMEFROG),
+												Point2D<float>(POS_X_HOMEFROG + SEPARATION_HOMEFROG * 4,POS_Y_HOMEFROG), };
 	Frog* frog;
 
 public:

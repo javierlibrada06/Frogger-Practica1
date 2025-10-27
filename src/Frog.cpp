@@ -6,8 +6,8 @@ Frog::Frog()
 {
 	game = nullptr;
 	texture = nullptr;
-	position = Point2D<float>(205, 402);
-	lastPosition = Point2D<float>(205, 402);
+	position = Point2D<float>(Game::FROG_INICIO, Game::GAME_SCREENEND_Y);
+	lastPosition = Point2D<float>(Game::FROG_INICIO, Game::GAME_SCREENEND_Y);
 	state = 0;
 	lives = 0;
 	angle = 0;
@@ -46,14 +46,14 @@ Frog::update() {
 
 	if (collision.type == Game::NONE) {
 		if (position.getX() < 0.0f) position = Point2D<float>(0.0f, position.getY());
-		if (position.getX() > 420.0f) position = Point2D<float>(420.0f, position.getY());
+		if (position.getX() > Game::GAME_SCREENEND_X) position = Point2D<float>(Game::GAME_SCREENEND_X, position.getY());
 		if (position.getY() < 0.0f) position = Point2D<float>(position.getX(), 0.0f);
-		if (position.getY() > 402.0f) position = Point2D<float>(position.getX(), 402.0f);
+		if (position.getY() > Game::GAME_SCREENEND_Y) position = Point2D<float>(position.getX(), Game::GAME_SCREENEND_Y);
 		if (position.getY() < Game::RIVER_LOW) {
 
 			lives--;
-			position = Point2D<float>(205, 402);
-			lastPosition = Point2D<float>(205, 402);
+			position = Point2D<float>(Game::FROG_INICIO, Game::GAME_SCREENEND_Y);
+			lastPosition = Point2D<float>(Game::FROG_INICIO, Game::GAME_SCREENEND_Y);
 			angle = 0;
 		}
 		
@@ -61,22 +61,21 @@ Frog::update() {
 	}
 	else if (collision.type == Game::ENEMY) {
 		lives--;
-		position = Point2D<float>(205, 402);
-		lastPosition = Point2D<float>(205, 402);
+		position = Point2D<float>(Game::FROG_INICIO, Game::GAME_SCREENEND_Y);
+		lastPosition = Point2D<float>(Game::FROG_INICIO, Game::GAME_SCREENEND_Y);
 		angle = 0;
 	}
 	else if (collision.type == Game::PLATFORM) 
 	{
-		float deltaTime = 0.05f / Game::FRAME_RATE;
-		position = position + (collision.speed * deltaTime);
-		if (position.getX() > 420.0f) position = Point2D<float>(205, 402);
+		position = position + (collision.speed);
+		if (position.getX() > Game::GAME_SCREENEND_X) position = Point2D<float>(Game::FROG_INICIO, Game::GAME_SCREENEND_Y);
 		lastPosition = position;
 		angle = 0;
 	}
 	else if (collision.type == Game::HOME) 
 	{
-		position = Point2D<float>(205, 402);
-		lastPosition = Point2D<float>(205, 402);
+		position = Point2D<float>(Game::FROG_INICIO, Game::GAME_SCREENEND_Y);
+		lastPosition = Point2D<float>(Game::FROG_INICIO, Game::GAME_SCREENEND_Y);
 		angle = 0;
 	}
 
@@ -96,22 +95,22 @@ Frog::handleEvent(const SDL_Event& event) {
 		case SDLK_DOWN:
 			state = 1;
 			angle = 180;
-			position = position + Point2D<float>(0.0f, 32.0f); break;
+			position = position + Point2D<float>(0.0f, Game::FROG_STEP); break;
 
 		case SDLK_UP:
 			state = 1;
 			angle = 0;
-			position = position + Point2D<float>(0.0f, -32.0f); break;
+			position = position + Point2D<float>(0.0f, -Game::FROG_STEP); break;
 
 		case SDLK_LEFT:
 			state = 1;
 			angle = -90;
-			position = position + Point2D<float>(-32.0f, 0.0f); break;
+			position = position + Point2D<float>(-Game::FROG_STEP, 0.0f); break;
 
 		case SDLK_RIGHT:
 			state = 1;
 			angle = 90;
-			position = position + Point2D<float>(32.0f, 0.0f); break;
+			position = position + Point2D<float>(Game::FROG_STEP, 0.0f); break;
 		
 		}
 	
@@ -122,15 +121,15 @@ Frog::handleEvent(const SDL_Event& event) {
 void
 Frog::loadFrog(std::istream& entrada, Game* g)
 {
-	float posX, posY, s;
-	int type;
-	entrada >> posX >> posY >> s >> type;
+	float posX, posY;
+	int l;
+	entrada >> posX >> posY >> l;
 	game = g;
 	position = Point2D<float>(posX, posY);
 	lastPosition = Point2D<float>(posX, posY);
 	texture = texture = g->getTexture(Game::FROG);
 	homesReached = 0;
-	lives = 3;
+	lives = l;
 	rect.x = position.getX();
 	rect.y = position.getY();
 	rect.h = texture->getFrameHeight();
