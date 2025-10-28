@@ -147,8 +147,10 @@ Game::update()
 			while (!encontrado)
 			{
 				if (!homeFrogs[hf]->IsActive()) encontrado = true;
-				hf++;
-				if (hf > Game::NUMBER_HFROGS - 1) hf = 0;
+				else {
+					hf++;
+					if (hf > Game::NUMBER_HFROGS - 1) hf = 0;
+				}
 			}
 			Point2D<float> pos = homeFrogs[hf]->GetPosition();
 			pos = pos + Point2D<float>(Game::WASP_OFFSET_X, Game::WASP_OFFSET_Y);

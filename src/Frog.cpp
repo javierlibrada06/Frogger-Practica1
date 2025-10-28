@@ -4,15 +4,7 @@
 #include "texture.h"
 Frog::Frog()
 {
-	game = nullptr;
-	texture = nullptr;
-	position = Point2D<float>(Game::FROG_INICIO, Game::GAME_SCREENEND_Y);
-	lastPosition = Point2D<float>(Game::FROG_INICIO, Game::GAME_SCREENEND_Y);
-	state = 0;
 	lives = 0;
-	angle = 0;
-	rect = { 0,0,0,0 };
-	rectCollider = { 0,0,0,0 };
 	homesReached = 0;
 }
 
@@ -21,24 +13,9 @@ Frog::~Frog()
 	texture = nullptr;
 	game = nullptr;
 }
-
 void 
-Frog::render() const {
-	SDL_FRect rect;
-	rect.x = lastPosition.getX();
-	rect.y = lastPosition.getY();
-	rect.w = texture->getFrameWidth();
-	rect.h = texture->getFrameHeight();
-	texture->renderFrame(rect, 0, state, angle);
-}
-void 
-Frog::update() {
-	SDL_FRect rect;
-	rect.x = position.getX();
-	rect.y = position.getY();
-	rect.w = texture->getFrameWidth();
-	rect.h = texture->getFrameHeight();
-	
+GameObject::update() {
+	rect = getBoundingBox();
 	rectCollider.x = position.getX() + Game::COLLISION_OFFSET_FROG;
 	rectCollider.y = position.getY() + Game::COLLISION_OFFSET_FROG;
 	Game::Collision collision = game->checkCollision(rectCollider);

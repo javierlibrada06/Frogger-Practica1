@@ -1,29 +1,22 @@
 #pragma once
 #include "game.h"
+#include "SceneObject.h"
 #include "vector2D.h"
 #include "texture.h"
-class Frog
-{
-	Game* game;
-	Texture* texture;
-	Point2D<float> lastPosition;
-	Point2D <float> position;
+class Frog : public SceneObject
+{	
 	int lives;
-	SDL_FRect rect;
-	SDL_FRect rectCollider;
-	int state;
-	double angle;
 	int homesReached;
+	Point2D<float> lastPosition;
+	SDL_FRect rectCollider;
 public:
 	Frog();
-	//Frog(Game*);
 	~Frog();
-	void render() const;
-	void update();
+	//void update();
 	void handleEvent(const SDL_Event&);
 	void loadFrog(std::istream&, Game*);
-	int GetHomesReached() const;
 	int GetLives() const;
+	int GetHomesReached() const;
 	void HomeReached();
 };
 
