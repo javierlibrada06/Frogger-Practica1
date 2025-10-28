@@ -4,7 +4,6 @@
 #include "texture.h"
 #include <iostream>
 using namespace std;
-//V  50 372  -48 1
 
 Vehicle::Vehicle()
 {
@@ -14,10 +13,6 @@ Vehicle::Vehicle()
 	position = Point2D<float>(0, 0);
 	rect = { 0,0,0,0 };
 }
-//Vehicle::Vehicle(Game* g, Point2D<float> pos, float s, int type)
-//{
-//	
-//}
 Vehicle::~Vehicle()
 {
 	texture = nullptr;
@@ -26,8 +21,7 @@ Vehicle::~Vehicle()
 void 
 Vehicle::update()
 {
-	position = position + (speed );
-	//Hay que revisar lo de delta time, Problemas para Julia y Javi del futuro :)
+	position = position + (speed);
 	if (position.getX() <= Game::GAME_END_LEFT) position = Point2D<float>(Game::GAME_START_RIGHT, position.getY());
 	if (position.getX() >= Game::GAME_END_RIGHT) position = Point2D<float>(Game::GAME_START_LEFT - texture->getFrameWidth(), position.getY());
 	rect.x = position.getX();

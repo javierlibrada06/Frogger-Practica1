@@ -6,15 +6,15 @@
 
 #include "texture.h"
 
-#include "vehicle.h"
+#include "Vehicle.h"
 
-#include "log.h"
+#include "Log.h"
 
 #include "HomeFrog.h"
 
 #include "Wasp.h"
 
-#include "frog.h"
+#include "Frog.h"
 
 #include <fstream>
 #include <vector>
@@ -76,7 +76,8 @@ Game::Game()
 		textures[i] = new Texture(renderer, (string(imgBase) + name).c_str(), nrows, ncols);
 	}
 
-	nextWasp = getRandomRange(1,30);
+	nextWasp = getRandomRange(MIN_WASP_GENERATOR, MAX_WASP_GENERATOR);
+	waspSpawn = SDL_GetTicks();
 
 	// Configura que se pueden utilizar capas translúcidas
 	// SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
@@ -123,34 +124,34 @@ Game::render() const
 void
 Game::update()
 {
-
-	float deltaTime = 0.05f / Game::FRAME_RATE;
-	if (nextWasp > 0) nextWasp = nextWasp - (1 * deltaTime);
-	else
+	// Aqui se eliminan todas las avispas muertas
+	for (int i = (int)wasps.size() - 1; i >= 0; i--)
 	{
-		// Aqui se eliminan todas las avispas muertas
-		for (int i = (int)wasps.size() - 1; i >= 0; i--)
+		if (!wasps[i]->isAlive())
 		{
-			if (!wasps[i]->isAlive())
-			{
-				delete wasps[i];
-				wasps[i] = wasps.back();
-				wasps.pop_back();
-			}
+			delete wasps[i];
+			wasps[i] = wasps.back();
+			wasps.pop_back();
 		}
-		if (wasps.size() == 0 && frog->GetHomesReached() != Game::NUMBER_HFROGS - 1)
+	}
+	if (SDL_GetTicks() - waspSpawn >= nextWasp)
+	{
+		waspSpawn = SDL_GetTicks();
+		if (frog->GetHomesReached() != Game::NUMBER_HFROGS - 1)
 		{
 			// Genera nueva avispa
-			float lifeTime = (float)getRandomRange(5, 20);
-			nextWasp = (float)getRandomRange(5, 10);
+			nextWasp = (float)getRandomRange(MIN_WASP_GENERATOR, MAX_WASP_GENERATOR);
+			float lifeTime = (float)getRandomRange(MIN_WASP_LIFE, MAX_WASP_LIFE);
 			bool encontrado = false;
-			int hf = 0;
+			int hf = getRandomRange(0, Game::NUMBER_HFROGS - 1);
 			while (!encontrado)
 			{
-				hf = getRandomRange(0, Game::NUMBER_HFROGS-1);
 				if (!homeFrogs[hf]->IsActive()) encontrado = true;
+				hf++;
+				if (hf > Game::NUMBER_HFROGS - 1) hf = 0;
 			}
 			Point2D<float> pos = homeFrogs[hf]->GetPosition();
+			pos = pos + Point2D<float>(Game::WASP_OFFSET_X, Game::WASP_OFFSET_Y);
 			Vector2D<float> speed(0, 0);
 			wasps.push_back(new Wasp(this, pos, lifeTime, speed));
 		}
@@ -160,7 +161,6 @@ Game::update()
 	for (int i = 0; i < homeFrogs.size(); i++) homeFrogs[i]->update();
 	for (int i = 0; i < wasps.size(); i++) wasps[i]->update();
 	frog->update();
-	// TODO
 }
 
 void
@@ -174,7 +174,7 @@ Game::run()
 		// TODO: implementar bucle del juego
 
 		frameStart = SDL_GetTicks();
-		if (frog->GetHomesReached() == 5)
+		if (frog->GetHomesReached() == NUMBER_HFROGS)
 		{
 			cout << "Has alcanzado todos los nidos" << endl;
 			exit = true;

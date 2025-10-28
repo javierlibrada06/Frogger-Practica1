@@ -22,8 +22,8 @@ public:
 	void update();
 	void handleEvent(const SDL_Event&);
 	void loadFrog(std::istream&, Game*);
-	int GetHomesReached();
-	int GetLives();
+	int GetHomesReached() const;
+	int GetLives() const;
 	void HomeReached();
 };
 

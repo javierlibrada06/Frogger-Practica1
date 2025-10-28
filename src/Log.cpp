@@ -25,7 +25,6 @@ void
 Log::update()
 {
 	position = position + (speed);
-	//Hay que revisar lo de delta time, Problemas para Julia y Javi del futuro :)
 	if (position.getX() >= Game::GAME_END_RIGHT) position = Point2D<float>(Game::GAME_END_LEFT, position.getY());
 	rect.x = position.getX();
 	rect.y = position.getY();

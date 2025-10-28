@@ -19,8 +19,8 @@ public:
 
 	void render() const;
 	void update(); 
-	bool IsActive();
-	Vector2D<float> GetPosition();
+	bool IsActive() const;
+	Vector2D<float> GetPosition() const;
 	Game::Collision checkCollision(const SDL_FRect&);
 };
 

@@ -9,7 +9,7 @@ class Wasp
 	Vector2D<float> speed;
 	Point2D <float> position;
 	SDL_FRect rect;
-	int liveSpawn;
+	Uint32 liveSpawn;
 	int timeAlive;
 
 public:
@@ -19,6 +19,6 @@ public:
 	void update();
 	void render() const;
 	Game::Collision checkCollision(const SDL_FRect&);
-	bool isAlive();
+	bool isAlive() const;
 };
 

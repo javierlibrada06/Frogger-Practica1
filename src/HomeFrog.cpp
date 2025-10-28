@@ -1,4 +1,4 @@
-#include "homeFrog.h"
+#include "HomeFrog.h"
 #include "Frog.h"
 #include "vector2D.h"
 #include "game.h"
@@ -67,7 +67,7 @@ Game::Collision HomeFrog::checkCollision(const SDL_FRect& f)
 
 }
 Vector2D<float>
-HomeFrog::GetPosition() { return position; }
+HomeFrog::GetPosition() const { return position; }
 
 bool
-HomeFrog::IsActive() { return active; }
+HomeFrog::IsActive() const { return active; }

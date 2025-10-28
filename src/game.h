@@ -56,8 +56,25 @@ public:
 	// Pasos Rana
 	static constexpr float FROG_STEP = 32.0f;
 
+	// FROG -- (colision offset)
+	static constexpr int COLLISION_OFFSET_FROG = 3;
+	static constexpr int COLLISION_OFFSET_SCREEN = 9;
 	// Tick
 	static constexpr int TICK = 1000;
+
+	// WASP -- (tiempo en milisegundos)
+	// Avispas tiempo de vida max 
+	static constexpr float MAX_WASP_LIFE = 7000.0f;
+	// Avispas tiempo de vida max
+	static constexpr float MIN_WASP_LIFE = 5000.0f;
+	// Avispas tiempo de generacion max
+	static constexpr float MIN_WASP_GENERATOR = 7500.0f;
+	// Avispas tiempo de generacion min
+	static constexpr float MAX_WASP_GENERATOR = 9500.0f;
+	// WASP -- (wasp offset)
+	static constexpr int WASP_OFFSET_X = 8;
+	static constexpr int WASP_OFFSET_Y = 4;
+
 
 	enum TextureName
 	{
@@ -96,6 +113,7 @@ private:
 
 	bool exit;
 	float nextWasp;
+	Uint32 waspSpawn;
 
 	// Elemento del juego
 	// TODO: añadir atributos para los objetos del juego
