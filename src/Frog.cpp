@@ -4,6 +4,12 @@
 #include "texture.h"
 Frog::Frog()
 {
+	game = nullptr;
+	texture = nullptr;
+	rect = { 0,0,0,0 };
+	rectCollider = { 0,0,0,0 };
+	position = Point2D<float>(0, 0);
+	lastPosition = Point2D<float>(0, 0);
 	lives = 0;
 	homesReached = 0;
 }
@@ -14,7 +20,7 @@ Frog::~Frog()
 	game = nullptr;
 }
 void 
-GameObject::update() {
+Frog::update() {
 	rect = getBoundingBox();
 	rectCollider.x = position.getX() + Game::COLLISION_OFFSET_FROG;
 	rectCollider.y = position.getY() + Game::COLLISION_OFFSET_FROG;
@@ -109,11 +115,11 @@ Frog::loadFrog(std::istream& entrada, Game* g)
 }
 
 int
-Frog::GetHomesReached() const { return homesReached; }
+Frog::getHomesReached() const { return homesReached; }
 
 int 
-Frog::GetLives() const { return lives; }
+Frog::getLives() const { return lives; }
 
 void
-Frog::HomeReached() { homesReached++; }
+Frog::homeReached() { homesReached++; }
 

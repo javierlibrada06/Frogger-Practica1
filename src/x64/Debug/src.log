@@ -1,70 +1,27 @@
-﻿  Frog.cpp
-  game.cpp
-  GameObject.cpp
+﻿  game.cpp
   HomeFrog.cpp
-  Log.cpp
-  main.cpp
-  SceneObject.cpp
-  texture.cpp
   Vehicle.cpp
-  Wasp.cpp
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\Frog.cpp(24,7): error C2509: 'render': member function not declared in 'Frog'
-      C:\Users\usuario_local\source\repos\Frogger-Practica1\src\Frog.h(6,7):
-      see declaration of 'Frog'
-  
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\Frog.cpp(33,7): error C2509: 'update': member function not declared in 'Frog'
-      C:\Users\usuario_local\source\repos\Frogger-Practica1\src\Frog.h(6,7):
-      see declaration of 'Frog'
-  
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\Frog.cpp(116,2): error C2065: 'lastPosition': undeclared identifier
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\Frog.cpp(122,34): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\Frog.cpp(123,33): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\Frog.cpp(125,2): error C2065: 'rectCollider': undeclared identifier
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\Frog.cpp(126,2): error C2065: 'rectCollider': undeclared identifier
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\Frog.cpp(127,2): error C2065: 'rectCollider': undeclared identifier
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\Frog.cpp(128,2): error C2065: 'rectCollider': undeclared identifier
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\Wasp.cpp(20,26): warning C4244: '=': conversion from 'Uint64' to 'int', possible loss of data
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\Wasp.cpp(39,33): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\Wasp.cpp(40,34): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\Wasp.cpp(51,33): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\Wasp.cpp(52,34): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\SceneObject.cpp(24,33): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\SceneObject.cpp(25,34): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\SceneObject.cpp(32,2): error C2662: 'SDL_FRect SceneObject::getBoundingBox(void)': cannot convert 'this' pointer from 'const SceneObject' to 'SceneObject &'
-      C:\Users\usuario_local\source\repos\Frogger-Practica1\src\SceneObject.cpp(32,2):
-      Conversion loses qualifiers
-      C:\Users\usuario_local\source\repos\Frogger-Practica1\src\SceneObject.cpp(20,14):
-      see declaration of 'SceneObject::getBoundingBox'
-      C:\Users\usuario_local\source\repos\Frogger-Practica1\src\SceneObject.cpp(32,2):
-      while trying to match the argument list '()'
-  
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\Log.cpp(38,33): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\Log.cpp(39,34): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\Log.cpp(50,33): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\Log.cpp(51,34): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\Log.cpp(79,33): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\Log.cpp(80,34): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\Vehicle.cpp(36,33): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\Vehicle.cpp(37,34): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\Vehicle.cpp(47,33): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\Vehicle.cpp(48,34): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\Vehicle.cpp(77,33): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\Vehicle.cpp(78,34): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\HomeFrog.cpp(24,34): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\HomeFrog.cpp(25,33): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\HomeFrog.cpp(41,35): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\HomeFrog.cpp(42,34): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\HomeFrog.cpp(59,33): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\HomeFrog.cpp(60,34): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\game.cpp(79,48): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\game.cpp(79,28): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\game.cpp(79,27): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\game.cpp(80,26): warning C4244: '=': conversion from 'Uint64' to 'Uint32', possible loss of data
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\game.cpp(139,27): warning C4244: '=': conversion from 'Uint64' to 'Uint32', possible loss of data
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\game.cpp(143,57): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\game.cpp(143,37): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\game.cpp(144,58): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\game.cpp(144,43): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\game.cpp(158,40): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\game.cpp(178,28): warning C4244: '=': conversion from 'Uint64' to 'Uint32', possible loss of data
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\game.cpp(193,30): warning C4244: '=': conversion from 'Uint64' to 'Uint32', possible loss of data
+C:\Users\usuario_local\source\repos\Frogger-Practica1\src\game.cpp(72,48): warning C4244: 'argumento': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\usuario_local\source\repos\Frogger-Practica1\src\game.cpp(72,28): warning C4244: 'argumento': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\usuario_local\source\repos\Frogger-Practica1\src\game.cpp(72,27): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\usuario_local\source\repos\Frogger-Practica1\src\game.cpp(73,26): warning C4244: '=': conversión de 'Uint64' a 'Uint32'; posible pérdida de datos
+C:\Users\usuario_local\source\repos\Frogger-Practica1\src\game.cpp(132,27): warning C4244: '=': conversión de 'Uint64' a 'Uint32'; posible pérdida de datos
+C:\Users\usuario_local\source\repos\Frogger-Practica1\src\game.cpp(136,57): warning C4244: 'argumento': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\usuario_local\source\repos\Frogger-Practica1\src\game.cpp(136,37): warning C4244: 'argumento': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\usuario_local\source\repos\Frogger-Practica1\src\game.cpp(137,58): warning C4244: 'argumento': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\usuario_local\source\repos\Frogger-Practica1\src\game.cpp(137,43): warning C4244: 'argumento': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\usuario_local\source\repos\Frogger-Practica1\src\game.cpp(151,40): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\usuario_local\source\repos\Frogger-Practica1\src\game.cpp(171,28): warning C4244: '=': conversión de 'Uint64' a 'Uint32'; posible pérdida de datos
+C:\Users\usuario_local\source\repos\Frogger-Practica1\src\game.cpp(186,30): warning C4244: '=': conversión de 'Uint64' a 'Uint32'; posible pérdida de datos
+C:\Users\usuario_local\source\repos\Frogger-Practica1\src\game.cpp(221,3): error C2679: '=' binario: no se encontró un operador que adopte un operando en la parte derecha de tipo 'bool' (o bien no existe una conversión aceptable)
+C:\Users\usuario_local\source\repos\Frogger-Practica1\src\game.cpp(231,3): error C2679: '=' binario: no se encontró un operador que adopte un operando en la parte derecha de tipo 'bool' (o bien no existe una conversión aceptable)
+C:\Users\usuario_local\source\repos\Frogger-Practica1\src\HomeFrog.cpp(24,34): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\usuario_local\source\repos\Frogger-Practica1\src\HomeFrog.cpp(25,33): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\usuario_local\source\repos\Frogger-Practica1\src\HomeFrog.cpp(41,35): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\usuario_local\source\repos\Frogger-Practica1\src\HomeFrog.cpp(42,34): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\usuario_local\source\repos\Frogger-Practica1\src\HomeFrog.cpp(52,27): error C2509: 'checkCollision': función miembro no declarada en 'HomeFrog'
+C:\Users\usuario_local\source\repos\Frogger-Practica1\src\Vehicle.cpp(36,33): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\usuario_local\source\repos\Frogger-Practica1\src\Vehicle.cpp(37,34): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\usuario_local\source\repos\Frogger-Practica1\src\Vehicle.cpp(40,26): error C2509: 'checkCollision': función miembro no declarada en 'Vehicle'
+C:\Users\usuario_local\source\repos\Frogger-Practica1\src\Vehicle.cpp(77,33): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\usuario_local\source\repos\Frogger-Practica1\src\Vehicle.cpp(78,34): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos

@@ -61,7 +61,7 @@ Game::Collision HomeFrog::checkCollision(const SDL_FRect& f)
 	if (SDL_HasRectIntersectionFloat(&f, &rect) && !active) {
 		collision.type = Game::HOME;
 		active = true;
-		frog->HomeReached();
+		frog->homeReached();
 	}
 	return collision;
 

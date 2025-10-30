@@ -1,21 +1,14 @@
 #include "game.h"
+#include "texture.h"
+#include "Vehicle.h"
+#include "Log.h"
+#include "HomeFrog.h"
+#include "Wasp.h"
+#include "Frog.h"
+#include "SceneObject.h"
 
 #include <string>
-
 #include <SDL3_image/SDL_image.h>
-
-#include "texture.h"
-
-#include "Vehicle.h"
-
-#include "Log.h"
-
-#include "HomeFrog.h"
-
-#include "Wasp.h"
-
-#include "Frog.h"
-
 #include <fstream>
 #include <vector>
 #include <random>
@@ -137,7 +130,7 @@ Game::update()
 	if (SDL_GetTicks() - waspSpawn >= nextWasp)
 	{
 		waspSpawn = SDL_GetTicks();
-		if (frog->GetHomesReached() != Game::NUMBER_HFROGS - 1)
+		if (frog->getHomesReached() != Game::NUMBER_HFROGS - 1)
 		{
 			// Genera nueva avispa
 			nextWasp = (float)getRandomRange(MIN_WASP_GENERATOR, MAX_WASP_GENERATOR);
@@ -176,12 +169,12 @@ Game::run()
 		// TODO: implementar bucle del juego
 
 		frameStart = SDL_GetTicks();
-		if (frog->GetHomesReached() == NUMBER_HFROGS)
+		if (frog->getHomesReached() == NUMBER_HFROGS)
 		{
 			cout << "Has alcanzado todos los nidos" << endl;
 			exit = true;
 		}
-		else if (frog->GetLives() == 0)
+		else if (frog->getLives() == 0)
 		{
 			cout << "Te has quedado sin vidas (0/3)" << endl;
 			exit = true;

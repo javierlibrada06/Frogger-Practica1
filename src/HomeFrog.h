@@ -2,14 +2,10 @@
 #include "game.h"
 #include "vector2D.h"
 #include "Frog.h"
-
-class HomeFrog
+#include "SceneObject.h"
+class HomeFrog : public SceneObject
 {
-	Game* game;
 	Frog* frog;
-	Texture* texture;
-	Point2D <float> position;
-	SDL_FRect rect;
 	bool active;
 
 public:
@@ -21,6 +17,5 @@ public:
 	void update(); 
 	bool IsActive() const;
 	Vector2D<float> GetPosition() const;
-	Game::Collision checkCollision(const SDL_FRect&);
 };
 
