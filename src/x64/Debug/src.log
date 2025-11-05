@@ -1,27 +1,55 @@
-﻿  game.cpp
+﻿  Crosser.cpp
+  Frog.cpp
+  GameObject.cpp
   HomeFrog.cpp
+  Log.cpp
+  Platform.cpp
+  SceneObject.cpp
+  TurtleGroup.cpp
+C:\Users\julia\source\repos\Frogger-Practica1\src\HomeFrog.cpp(24,34): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\julia\source\repos\Frogger-Practica1\src\HomeFrog.cpp(25,33): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\julia\source\repos\Frogger-Practica1\src\HomeFrog.cpp(41,35): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\julia\source\repos\Frogger-Practica1\src\HomeFrog.cpp(42,34): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\julia\source\repos\Frogger-Practica1\src\HomeFrog.cpp(59,33): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\julia\source\repos\Frogger-Practica1\src\HomeFrog.cpp(60,34): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\julia\source\repos\Frogger-Practica1\src\SceneObject.cpp(30,33): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\julia\source\repos\Frogger-Practica1\src\SceneObject.cpp(31,34): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\julia\source\repos\Frogger-Practica1\src\Log.cpp(38,33): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\julia\source\repos\Frogger-Practica1\src\Log.cpp(39,34): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\julia\source\repos\Frogger-Practica1\src\Log.cpp(50,33): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\julia\source\repos\Frogger-Practica1\src\Log.cpp(51,34): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\julia\source\repos\Frogger-Practica1\src\Log.cpp(79,33): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\julia\source\repos\Frogger-Practica1\src\Log.cpp(80,34): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\julia\source\repos\Frogger-Practica1\src\Frog.cpp(107,34): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\julia\source\repos\Frogger-Practica1\src\Frog.cpp(108,33): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
   Vehicle.cpp
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\game.cpp(72,48): warning C4244: 'argumento': conversión de 'const float' a 'int'; posible pérdida de datos
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\game.cpp(72,28): warning C4244: 'argumento': conversión de 'const float' a 'int'; posible pérdida de datos
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\game.cpp(72,27): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\game.cpp(73,26): warning C4244: '=': conversión de 'Uint64' a 'Uint32'; posible pérdida de datos
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\game.cpp(132,27): warning C4244: '=': conversión de 'Uint64' a 'Uint32'; posible pérdida de datos
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\game.cpp(136,57): warning C4244: 'argumento': conversión de 'const float' a 'int'; posible pérdida de datos
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\game.cpp(136,37): warning C4244: 'argumento': conversión de 'const float' a 'int'; posible pérdida de datos
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\game.cpp(137,58): warning C4244: 'argumento': conversión de 'const float' a 'int'; posible pérdida de datos
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\game.cpp(137,43): warning C4244: 'argumento': conversión de 'const float' a 'int'; posible pérdida de datos
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\game.cpp(151,40): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\game.cpp(171,28): warning C4244: '=': conversión de 'Uint64' a 'Uint32'; posible pérdida de datos
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\game.cpp(186,30): warning C4244: '=': conversión de 'Uint64' a 'Uint32'; posible pérdida de datos
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\game.cpp(221,3): error C2679: '=' binario: no se encontró un operador que adopte un operando en la parte derecha de tipo 'bool' (o bien no existe una conversión aceptable)
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\game.cpp(231,3): error C2679: '=' binario: no se encontró un operador que adopte un operando en la parte derecha de tipo 'bool' (o bien no existe una conversión aceptable)
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\HomeFrog.cpp(24,34): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\HomeFrog.cpp(25,33): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\HomeFrog.cpp(41,35): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\HomeFrog.cpp(42,34): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\HomeFrog.cpp(52,27): error C2509: 'checkCollision': función miembro no declarada en 'HomeFrog'
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\Vehicle.cpp(36,33): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\Vehicle.cpp(37,34): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\Vehicle.cpp(40,26): error C2509: 'checkCollision': función miembro no declarada en 'Vehicle'
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\Vehicle.cpp(77,33): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\usuario_local\source\repos\Frogger-Practica1\src\Vehicle.cpp(78,34): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+  Wasp.cpp
+  game.cpp
+C:\Users\julia\source\repos\Frogger-Practica1\src\Vehicle.cpp(43,33): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\julia\source\repos\Frogger-Practica1\src\Vehicle.cpp(44,34): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\julia\source\repos\Frogger-Practica1\src\Vehicle.cpp(53,33): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\julia\source\repos\Frogger-Practica1\src\Vehicle.cpp(54,34): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\julia\source\repos\Frogger-Practica1\src\Wasp.cpp(14,26): warning C4244: '=': conversión de 'Uint64' a 'int'; posible pérdida de datos
+C:\Users\julia\source\repos\Frogger-Practica1\src\Wasp.cpp(39,33): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\julia\source\repos\Frogger-Practica1\src\Wasp.cpp(40,34): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\julia\source\repos\Frogger-Practica1\src\game.cpp(72,48): warning C4244: 'argumento': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\julia\source\repos\Frogger-Practica1\src\game.cpp(72,28): warning C4244: 'argumento': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\julia\source\repos\Frogger-Practica1\src\game.cpp(72,27): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\julia\source\repos\Frogger-Practica1\src\game.cpp(73,26): warning C4244: '=': conversión de 'Uint64' a 'Uint32'; posible pérdida de datos
+C:\Users\julia\source\repos\Frogger-Practica1\src\game.cpp(132,27): warning C4244: '=': conversión de 'Uint64' a 'Uint32'; posible pérdida de datos
+C:\Users\julia\source\repos\Frogger-Practica1\src\game.cpp(136,57): warning C4244: 'argumento': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\julia\source\repos\Frogger-Practica1\src\game.cpp(136,37): warning C4244: 'argumento': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\julia\source\repos\Frogger-Practica1\src\game.cpp(137,58): warning C4244: 'argumento': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\julia\source\repos\Frogger-Practica1\src\game.cpp(137,43): warning C4244: 'argumento': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\julia\source\repos\Frogger-Practica1\src\game.cpp(151,40): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\julia\source\repos\Frogger-Practica1\src\game.cpp(171,28): warning C4244: '=': conversión de 'Uint64' a 'Uint32'; posible pérdida de datos
+C:\Users\julia\source\repos\Frogger-Practica1\src\game.cpp(186,30): warning C4244: '=': conversión de 'Uint64' a 'Uint32'; posible pérdida de datos
+Crosser.obj : error LNK2001: símbolo externo "public: virtual void __cdecl GameObject::render(void)" (?render@GameObject@@UEAAXXZ) sin resolver
+Frog.obj : error LNK2001: símbolo externo "public: virtual void __cdecl GameObject::render(void)" (?render@GameObject@@UEAAXXZ) sin resolver
+HomeFrog.obj : error LNK2001: símbolo externo "public: virtual void __cdecl GameObject::render(void)" (?render@GameObject@@UEAAXXZ) sin resolver
+Wasp.obj : error LNK2001: símbolo externo "public: virtual void __cdecl GameObject::render(void)" (?render@GameObject@@UEAAXXZ) sin resolver
+Crosser.obj : error LNK2001: símbolo externo "public: virtual void __cdecl GameObject::update(void)" (?update@GameObject@@UEAAXXZ) sin resolver
+Frog.obj : error LNK2001: símbolo externo "public: virtual void __cdecl GameObject::update(void)" (?update@GameObject@@UEAAXXZ) sin resolver
+HomeFrog.obj : error LNK2001: símbolo externo "public: virtual void __cdecl GameObject::update(void)" (?update@GameObject@@UEAAXXZ) sin resolver
+Wasp.obj : error LNK2001: símbolo externo "public: virtual void __cdecl GameObject::update(void)" (?update@GameObject@@UEAAXXZ) sin resolver
+C:\Users\julia\Source\Repos\Frogger-Practica1\bin\srcDebug.exe : fatal error LNK1120: 2 externos sin resolver

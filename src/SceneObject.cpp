@@ -1,26 +1,26 @@
 #include "SceneObject.h"
 #include "texture.h"
-SceneObject::SceneObject() {
-	game = nullptr;
-	position = Point2D<float>(0, 0);
-	texture = nullptr;
-	rect = { 0,0,0,0 };
-	state = 0;
-	angle = 0;
-}
+//SceneObject::SceneObject() {
+//	game = nullptr;
+//	position = Point2D<float>(0, 0);
+//	texture = nullptr;
+//	rect = { 0,0,0,0 };
+//	state = 0;
+//	angle = 0;
+//}
+//
+//SceneObject::SceneObject(Game* g, Point2D<float> pos, Texture* t) {
+//	game = g;
+//	position = pos;
+//	texture = t;
+//	rect = getBoundingBox();
+//	state = 0;
+//	angle = 0;
+//}
 
-SceneObject::SceneObject(Game* g, Point2D<float> pos, Texture* t) {
-	game = g;
-	position = pos;
-	texture = t;
-	rect = getBoundingBox();
-	state = 0;
-	angle = 0;
-}
-
-SceneObject::~SceneObject() {
-
-}
+//SceneObject::~SceneObject() {
+//
+//}
 
 SDL_FRect
 SceneObject::getBoundingBox() {
@@ -35,10 +35,4 @@ SceneObject::getBoundingBox() {
 void
 SceneObject::render() {
 	texture->renderFrame(getBoundingBox(), 0, state, angle);
-}
-
-bool 
-SceneObject::checkCollision(SDL_FRect obj) {
-	SDL_FRect rect = getBoundingBox();
-	return SDL_HasRectIntersectionFloat(&obj, &rect);
 }

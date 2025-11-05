@@ -5,10 +5,8 @@ class GameObject
 protected:
 	Game* game;
 public:
-	GameObject();
-	GameObject(Game*);
-	virtual ~GameObject();
-	virtual void render() const;
+	virtual ~GameObject() = default;
+	virtual void render();
 	virtual void update();
 };
 

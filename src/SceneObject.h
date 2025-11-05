@@ -10,12 +10,10 @@ protected:
 	int state, angle;
 
 public:
-	SceneObject();
-	SceneObject(Game*, Point2D<float>, Texture*);
-	~SceneObject();
-	
+	virtual ~SceneObject() = default;
 	void render();
-	bool checkCollision(SDL_FRect);
+	virtual Game::Collision checkCollision(const SDL_FRect& other) = 0;
+protected:
 	SDL_FRect getBoundingBox();
 };
 

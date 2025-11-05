@@ -19,40 +19,6 @@ Vehicle::~Vehicle()
 	game = nullptr;
 }
 void 
-Vehicle::update()
-{
-	position = position + (speed);
-	if (position.getX() <= Game::GAME_END_LEFT) position = Point2D<float>(Game::GAME_START_RIGHT, position.getY());
-	if (position.getX() >= Game::GAME_END_RIGHT) position = Point2D<float>(Game::GAME_START_LEFT - texture->getFrameWidth(), position.getY());
-	rect.x = position.getX();
-	rect.y = position.getY();
-}
-void 
-Vehicle::render() const
-{
-	SDL_FRect rect;
-	rect.x = position.getX();
-	rect.y = position.getY();
-	rect.w = texture->getFrameWidth();
-	rect.h = texture->getFrameHeight();
-	texture->render(rect);
-}
-Game::Collision Vehicle::checkCollision(const SDL_FRect& frog)
-{
-	Game::Collision collision;
-	collision.type = Game::NONE;
-	SDL_FRect rect;
-	rect.x = position.getX();
-	rect.y = position.getY();
-	rect.w = texture->getFrameWidth();
-	rect.h = texture->getFrameHeight();
-	if (SDL_HasRectIntersectionFloat(&frog, &rect)) {
-		collision.type = Game::ENEMY;
-		collision.speed = speed;
-	}
-	return collision;
-}
-void 
 Vehicle::loadVehicle(istream& entrada, Game* g)
 {
 	 float posX, posY, s;
@@ -76,4 +42,19 @@ Vehicle::loadVehicle(istream& entrada, Game* g)
 	rect.y = position.getY();
 	rect.w = texture->getFrameWidth();
 	rect.h = texture->getFrameHeight();
+}
+Game::Collision Vehicle::checkCollision(const SDL_FRect& frog) 
+{
+	Game::Collision collision;
+	collision.type = Game::NONE;
+	SDL_FRect rect;
+	rect.x = position.getX();
+	rect.y = position.getY();
+	rect.w = texture->getFrameWidth();
+	rect.h = texture->getFrameHeight();
+	if (SDL_HasRectIntersectionFloat(&frog, &rect)) {
+		collision.type = Game::ENEMY;
+		collision.speed = speed;
+	}
+	return collision;
 }

@@ -18,5 +18,6 @@ public:
 	int getLives() const;
 	int getHomesReached() const;
 	void homeReached();
+	Game::Collision checkCollision(const SDL_FRect& frog);
 };
 

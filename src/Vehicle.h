@@ -9,7 +9,6 @@ public:
 	Vehicle();
 	void loadVehicle(std::istream& entrada, Game* g);
 	~Vehicle();
-	void update();
-	void render() const;
+	Game::Collision checkCollision(const SDL_FRect& frog);
 };
 

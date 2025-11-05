@@ -123,3 +123,10 @@ Frog::getLives() const { return lives; }
 void
 Frog::homeReached() { homesReached++; }
 
+Game::Collision Frog::checkCollision(const SDL_FRect& frog)
+{
+	Game::Collision collision;
+	collision.type = Game::NONE;
+	return collision;
+}
+
