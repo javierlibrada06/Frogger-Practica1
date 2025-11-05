@@ -11,7 +11,6 @@ Vehicle::Vehicle()
 	texture = nullptr;
 	speed = Vector2D<float>(0, 0);
 	position = Point2D<float>(0, 0);
-	rect = { 0,0,0,0 };
 }
 Vehicle::~Vehicle()
 {
@@ -37,11 +36,6 @@ Vehicle::loadVehicle(istream& entrada, Game* g)
 	case 4: texture = game->getTexture(Game::CAR4); break;
 	case 5: texture = game->getTexture(Game::CAR5); break;
 	}
-
-	rect.x = position.getX();
-	rect.y = position.getY();
-	rect.w = texture->getFrameWidth();
-	rect.h = texture->getFrameHeight();
 }
 Game::Collision Vehicle::checkCollision(const SDL_FRect& frog) 
 {

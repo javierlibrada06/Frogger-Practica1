@@ -15,7 +15,7 @@ class Log;
 class Frog;
 class HomeFrog;
 class Wasp;
-
+class SceneObject;
 /**
  * Clase principal del juego.
  */
@@ -118,6 +118,7 @@ private:
 	// Elemento del juego
 	// TODO: añadir atributos para los objetos del juego
 
+	std::vector<SceneObject*> sceneObjects;
 	std::vector<Vehicle*> vehicles;
 	std::vector<Log*> logs;
 	std::vector<HomeFrog*> homeFrogs;

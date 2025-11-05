@@ -9,10 +9,12 @@ class Frog : public SceneObject
 	int homesReached;
 	Point2D<float> lastPosition;
 	SDL_FRect rectCollider;
+	int state, angle;
 public:
 	Frog();
 	~Frog();
 	void update();
+	void render() const override;
 	void handleEvent(const SDL_Event&);
 	void loadFrog(std::istream&, Game*);
 	int getLives() const;

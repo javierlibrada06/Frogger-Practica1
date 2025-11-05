@@ -9,6 +9,6 @@ protected:
 public:
 	Crosser();
 	~Crosser();
-	void update();
+	void update() override;
 };
 

@@ -106,10 +106,11 @@ Game::render() const
 	SDL_RenderClear(renderer);
 
 	textures[Game::BACKGROUND]->render();
-	for (int i = 0;i < vehicles.size();i++) vehicles[i]->render();
+	/*for (int i = 0;i < vehicles.size();i++) vehicles[i]->render();
 	for (int i = 0;i < logs.size();i++) logs[i]->render();
 	for (int i = 0; i < homeFrogs.size(); i++) homeFrogs[i]->render();
-	for (int i = 0; i < wasps.size(); i++) wasps[i]->render();
+	for (int i = 0; i < wasps.size(); i++) wasps[i]->render();*/
+	for (int i = 0; i < sceneObjects.size(); i++) sceneObjects[i]->render();
 	frog->render();
 	SDL_RenderPresent(renderer);
 }
@@ -118,43 +119,43 @@ void
 Game::update()
 {
 	// Aqui se eliminan todas las avispas muertas
-	for (int i = (int)wasps.size() - 1; i >= 0; i--)
-	{
-		if (!wasps[i]->isAlive())
-		{
-			delete wasps[i];
-			wasps[i] = wasps.back();
-			wasps.pop_back();
-		}
-	}
-	if (SDL_GetTicks() - waspSpawn >= nextWasp)
-	{
-		waspSpawn = SDL_GetTicks();
-		if (frog->getHomesReached() != Game::NUMBER_HFROGS - 1)
-		{
-			// Genera nueva avispa
-			nextWasp = (float)getRandomRange(MIN_WASP_GENERATOR, MAX_WASP_GENERATOR);
-			float lifeTime = (float)getRandomRange(MIN_WASP_LIFE, MAX_WASP_LIFE);
-			bool encontrado = false;
-			int hf = getRandomRange(0, Game::NUMBER_HFROGS - 1);
-			while (!encontrado)
-			{
-				if (!homeFrogs[hf]->IsActive()) encontrado = true;
-				else {
-					hf++;
-					if (hf > Game::NUMBER_HFROGS - 1) hf = 0;
-				}
-			}
-			Point2D<float> pos = homeFrogs[hf]->GetPosition();
-			pos = pos + Point2D<float>(Game::WASP_OFFSET_X, Game::WASP_OFFSET_Y);
-			Vector2D<float> speed(0, 0);
-			wasps.push_back(new Wasp(this, pos, lifeTime, speed));
-		}
-	}
-	for (int i = 0;i < vehicles.size();i++) vehicles[i]->update();
-	for (int i = 0;i < logs.size();i++) logs[i]->update();
-	for (int i = 0; i < homeFrogs.size(); i++) homeFrogs[i]->update();
-	for (int i = 0; i < wasps.size(); i++) wasps[i]->update();
+	//for (int i = (int)wasps.size() - 1; i >= 0; i--)
+	//{
+	//	if (!wasps[i]->isAlive())
+	//	{
+	//		delete wasps[i];
+	//		wasps[i] = wasps.back();
+	//		wasps.pop_back();
+	//	}
+	//}
+	//if (SDL_GetTicks() - waspSpawn >= nextWasp)
+	//{
+	//	waspSpawn = SDL_GetTicks();
+	//	if (frog->getHomesReached() != Game::NUMBER_HFROGS - 1)
+	//	{
+	//		// Genera nueva avispa
+	//		nextWasp = (float)getRandomRange(MIN_WASP_GENERATOR, MAX_WASP_GENERATOR);
+	//		float lifeTime = (float)getRandomRange(MIN_WASP_LIFE, MAX_WASP_LIFE);
+	//		bool encontrado = false;
+	//		int hf = getRandomRange(0, Game::NUMBER_HFROGS - 1);
+	//		while (!encontrado)
+	//		{
+	//			if (!homeFrogs[hf]->IsActive()) encontrado = true;
+	//			else {
+	//				hf++;
+	//				if (hf > Game::NUMBER_HFROGS - 1) hf = 0;
+	//			}
+	//		}
+	//		Point2D<float> pos = homeFrogs[hf]->GetPosition();
+	//		pos = pos + Point2D<float>(Game::WASP_OFFSET_X, Game::WASP_OFFSET_Y);
+	//		Vector2D<float> speed(0, 0);
+	//		wasps.push_back(new Wasp(this, pos, lifeTime, speed));
+	//	}
+	//}
+	//for (int i = 0;i < vehicles.size();i++) vehicles[i]->update();
+	//for (int i = 0;i < logs.size();i++) logs[i]->update();
+	//for (int i = 0; i < homeFrogs.size(); i++) homeFrogs[i]->update();
+	for (int i = 0; i < sceneObjects.size(); i++) sceneObjects[i]->update();
 	frog->update();
 }
 
@@ -249,11 +250,13 @@ Game::loadGame() {
 				 Vehicle* v = new Vehicle();
 				 v->loadVehicle(inputMap, this);
 				 vehicles.push_back(v);
+				 sceneObjects.push_back(v);
 			 }
 			 else if (c == 'L') {
 				 Log* l = new Log();
 				 l->loadLog(inputMap, this);
 				 logs.push_back(l);
+				 sceneObjects.push_back(l);
 			 }
 			 else if (c == 'F') {
 				 Frog* f = new Frog();
@@ -270,6 +273,7 @@ Game::loadGame() {
 	 {
 		 HomeFrog* homeFrog = new HomeFrog(this, homeFrogsPos[i], frog);
 		 homeFrogs.push_back(homeFrog);
+		 sceneObjects.push_back(homeFrog);
 	 }
 }
 

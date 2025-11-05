@@ -11,6 +11,6 @@ class Log : public Platform
 	void loadLog(std::istream& entrada, Game* g);
 	~Log();
 	void update();
-	void render() const;
+	//void render() const override;
 	Game::Collision checkCollision(const SDL_FRect&);
 };

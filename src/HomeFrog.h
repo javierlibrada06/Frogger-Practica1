@@ -13,7 +13,7 @@ public:
 	HomeFrog(Game*, Point2D<float>, Frog*);
 	~HomeFrog();
 
-	void render() const;
+	void render() const override;
 	void update(); 
 	bool IsActive() const;
 	Vector2D<float> GetPosition() const;

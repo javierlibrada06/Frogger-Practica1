@@ -12,7 +12,6 @@ Log::Log()
 	texture = nullptr;
 	speed = Vector2D<float>(0, 0);
 	position = Point2D<float>(0,0);
-	rect = { 0,0,0,0 };
 }
 
 Log::~Log()
@@ -26,19 +25,17 @@ Log::update()
 {
 	position = position + (speed);
 	if (position.getX() >= Game::GAME_END_RIGHT) position = Point2D<float>(Game::GAME_END_LEFT, position.getY());
-	rect.x = position.getX();
-	rect.y = position.getY();
 }
-void
-Log::render() const
-{
-	SDL_FRect rect;
-	rect.x = position.getX();
-	rect.y = position.getY();
-	rect.w = texture->getFrameWidth();
-	rect.h = texture->getFrameHeight();
-	texture->render(rect);
-}
+//void
+//Log::render() const
+//{
+//	SDL_FRect rect;
+//	rect.x = position.getX();
+//	rect.y = position.getY();
+//	rect.w = texture->getFrameWidth();
+//	rect.h = texture->getFrameHeight();
+//	texture->render(rect);
+//}
 
 Game::Collision Log::checkCollision(const SDL_FRect& frog)
 {
@@ -74,8 +71,4 @@ Log::loadLog(std::istream& entrada, Game* g)
 	case 1: texture = g->getTexture(Game::LOG2); break;
 	}
 
-	rect.x = position.getX();
-	rect.y = position.getY();
-	rect.w = texture->getFrameWidth();
-	rect.h = texture->getFrameHeight();
 }

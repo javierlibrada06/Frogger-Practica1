@@ -9,7 +9,6 @@ HomeFrog::HomeFrog()
 	game = nullptr;
 	position = Point2D<float>(0,0);
 	texture = nullptr;
-	rect = { 0,0,0,0 };
 	active = false;
 }
 
@@ -19,10 +18,6 @@ HomeFrog::HomeFrog(Game* g, Point2D<float> pos, Frog* f)
 	game = g;
 	position = pos;
 	texture = g->getTexture(Game::FROG);
-	rect.x = position.getX();
-	rect.y = position.getY();
-	rect.h = texture->getFrameHeight();
-	rect.w = texture->getFrameWidth();
 	active = false;
 }
 
@@ -35,12 +30,7 @@ void
 HomeFrog::render() const 
 {
 	if (active) {
-		SDL_FRect rect;
-		rect.x = position.getX();
-		rect.y = position.getY();
-		rect.h = texture->getFrameHeight();
-		rect.w = texture->getFrameWidth();
-		texture->renderFrame(rect, 0, 0);
+		texture->renderFrame(getBoundingBox(), 0, 0);
 	}
 }
 
