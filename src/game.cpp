@@ -4,6 +4,7 @@
 #include "Log.h"
 #include "HomeFrog.h"
 #include "Wasp.h"
+#include "TurtleGroup.h"
 #include "Frog.h"
 #include "SceneObject.h"
 
@@ -41,6 +42,7 @@ constexpr array<TextureSpec, Game::NUM_TEXTURES> textureList{
 	{"log1.png"},
 	{"log2.png"},
 	{"wasp.png"},
+	TextureSpec{"turtle.png", 1, 7},
 
 };
 
@@ -78,21 +80,11 @@ Game::Game()
 
 Game::~Game()
 {
-	for (Vehicle* v : vehicles) {
-		delete v;     
+	for (SceneObject* s : sceneObjects) {
+		delete s;     
 	}
-	vehicles.clear();
-	for (Log* l : logs) {
-		delete l;
-	}
-	logs.clear();
-	for (HomeFrog* h : homeFrogs) {
-		delete h;
-	}
-	homeFrogs.clear();
-	for (Wasp* w : wasps) {
-		delete w;
-	}
+	sceneObjects.clear();
+	
 	wasps.clear();
 	delete frog;
 	for (auto t : textures) {
@@ -213,25 +205,10 @@ Game::checkCollision(const SDL_FRect& rect) const
 	Collision collision;
 	collision.type = NONE;
 	int i = 0;
-	while (i < wasps.size() && collision.type == NONE) {
-		collision = wasps[i]->checkCollision(rect);
+	while (i < sceneObjects.size() && collision.type == NONE) {
+		collision = sceneObjects[i]->checkCollision(rect);
 		i++;
-	}
-	i = 0;
-	while (i < vehicles.size() && collision.type == NONE) {
-		collision = vehicles[i]->checkCollision(rect);
-		i++;
-	}
-	i = 0;
-	while (i < logs.size() && collision.type == NONE) {
-		collision = logs[i]->checkCollision(rect);
-		i++;
-	}
-	i = 0;
-	while (i < homeFrogs.size() && collision.type == NONE) {
-		collision = homeFrogs[i]->checkCollision(rect);
-		i++;
-	}
+	}	
 	return collision;
 
 }
@@ -257,6 +234,11 @@ Game::loadGame() {
 				 l->loadLog(inputMap, this);
 				 logs.push_back(l);
 				 sceneObjects.push_back(l);
+			 }
+			 else if (c == 'T') {
+				 TurtleGroup* t = new TurtleGroup();
+				 t->loadTurtle(inputMap, this);
+				 sceneObjects.push_back(t);
 			 }
 			 else if (c == 'F') {
 				 Frog* f = new Frog();

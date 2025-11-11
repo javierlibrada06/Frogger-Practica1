@@ -23,9 +23,8 @@ Vehicle::loadVehicle(istream& entrada, Game* g)
 	 float posX, posY, s;
 	 int type;
 	entrada >> posX >> posY >> s >> type;
-	s = s / Game::FRAME_RATE;
+	speed = Vector2D<float>(s / Game::FRAME_RATE, 0);
 	game = g;
-	speed = Vector2D<float>(s, 0);
 	position = Point2D<float>(posX,posY);
 
 	switch (type)
@@ -41,11 +40,8 @@ Game::Collision Vehicle::checkCollision(const SDL_FRect& frog)
 {
 	Game::Collision collision;
 	collision.type = Game::NONE;
-	SDL_FRect rect;
-	rect.x = position.getX();
-	rect.y = position.getY();
-	rect.w = texture->getFrameWidth();
-	rect.h = texture->getFrameHeight();
+	SDL_FRect rect = getBoundingBox();
+
 	if (SDL_HasRectIntersectionFloat(&frog, &rect)) {
 		collision.type = Game::ENEMY;
 		collision.speed = speed;

@@ -1,28 +1,7 @@
-﻿  Crosser.cpp
-  Frog.cpp
-  HomeFrog.cpp
-  Log.cpp
-  Platform.cpp
-  SceneObject.cpp
-  TurtleGroup.cpp
-  Vehicle.cpp
-C:\Users\julia\source\repos\Frogger-Practica1\src\Vehicle.cpp(47,33): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\julia\source\repos\Frogger-Practica1\src\Vehicle.cpp(48,34): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\julia\source\repos\Frogger-Practica1\src\SceneObject.cpp(9,33): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\julia\source\repos\Frogger-Practica1\src\SceneObject.cpp(10,34): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\julia\source\repos\Frogger-Practica1\src\Log.cpp(47,33): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\julia\source\repos\Frogger-Practica1\src\Log.cpp(48,34): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\julia\source\repos\Frogger-Practica1\src\HomeFrog.cpp(49,33): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\julia\source\repos\Frogger-Practica1\src\HomeFrog.cpp(50,34): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-  Wasp.cpp
-  game.cpp
-C:\Users\julia\source\repos\Frogger-Practica1\src\Wasp.cpp(14,26): warning C4244: '=': conversión de 'Uint64' a 'int'; posible pérdida de datos
-C:\Users\julia\source\repos\Frogger-Practica1\src\Wasp.cpp(39,33): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\julia\source\repos\Frogger-Practica1\src\Wasp.cpp(40,34): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\julia\source\repos\Frogger-Practica1\src\game.cpp(72,48): warning C4244: 'argumento': conversión de 'const float' a 'int'; posible pérdida de datos
-C:\Users\julia\source\repos\Frogger-Practica1\src\game.cpp(72,28): warning C4244: 'argumento': conversión de 'const float' a 'int'; posible pérdida de datos
-C:\Users\julia\source\repos\Frogger-Practica1\src\game.cpp(72,27): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\julia\source\repos\Frogger-Practica1\src\game.cpp(73,26): warning C4244: '=': conversión de 'Uint64' a 'Uint32'; posible pérdida de datos
-C:\Users\julia\source\repos\Frogger-Practica1\src\game.cpp(172,28): warning C4244: '=': conversión de 'Uint64' a 'Uint32'; posible pérdida de datos
-C:\Users\julia\source\repos\Frogger-Practica1\src\game.cpp(187,30): warning C4244: '=': conversión de 'Uint64' a 'Uint32'; posible pérdida de datos
-  src.vcxproj -> C:\Users\julia\Source\Repos\Frogger-Practica1\bin\srcDebug.exe
+﻿  TurtleGroup.cpp
+C:\Users\usuario_local\Downloads\Frogger-Practica1-main\Frogger-Practica1-main\src\TurtleGroup.cpp(67,28): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\usuario_local\Downloads\Frogger-Practica1-main\Frogger-Practica1-main\src\TurtleGroup.cpp(67,28): warning C4244:         with
+C:\Users\usuario_local\Downloads\Frogger-Practica1-main\Frogger-Practica1-main\src\TurtleGroup.cpp(67,28): warning C4244:         [
+C:\Users\usuario_local\Downloads\Frogger-Practica1-main\Frogger-Practica1-main\src\TurtleGroup.cpp(67,28): warning C4244:             T=float
+C:\Users\usuario_local\Downloads\Frogger-Practica1-main\Frogger-Practica1-main\src\TurtleGroup.cpp(67,28): warning C4244:         ]
+  src.vcxproj -> C:\Users\usuario_local\Downloads\Frogger-Practica1-main\Frogger-Practica1-main\bin\srcDebug.exe

@@ -20,12 +20,6 @@ Log::~Log()
 	texture = nullptr;
 	game = nullptr;
 }
-void
-Log::update()
-{
-	position = position + (speed);
-	if (position.getX() >= Game::GAME_END_RIGHT) position = Point2D<float>(Game::GAME_END_LEFT, position.getY());
-}
 //void
 //Log::render() const
 //{
@@ -60,9 +54,8 @@ Log::loadLog(std::istream& entrada, Game* g)
 	float posX, posY, s;
 	int type;
 	entrada >> posX >> posY >> s >> type;
-	s = s / Game::FRAME_RATE;
+	speed = Vector2D<float>(s / Game::FRAME_RATE, 0);
 	game = g;
-	speed = Vector2D<float>(s, 0);
 	position = Point2D<float>(posX, posY);
 
 	switch (type)

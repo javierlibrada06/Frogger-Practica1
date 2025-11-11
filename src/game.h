@@ -88,6 +88,7 @@ public:
 		LOG1,
 		LOG2,
 		WASP,
+		TURTLE,
 		NUM_TEXTURES
 	};
 	enum Type
