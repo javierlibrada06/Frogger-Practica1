@@ -91,6 +91,9 @@ Frog::handleEvent(const SDL_Event& event) {
 			position = position + Point2D<float>(Game::FROG_STEP, 0);
 			if (position.getX() > Game::GAME_SCREENEND_X) position = Point2D<float>(Game::GAME_SCREENEND_X, position.getY());
 			break;
+		case SDLK_0:
+			game->reset();
+			break;
 		}
 	}
 	else state = 0;
@@ -105,7 +108,7 @@ Frog::loadFrog(std::istream& entrada, Game* g)
 	game = g;
 	position = Point2D<float>(posX, posY);
 	lastPosition = Point2D<float>(posX, posY);
-	texture = texture = g->getTexture(Game::FROG);
+	texture = g->getTexture(Game::FROG);
 	homesReached = 0;
 	lives = l;
 

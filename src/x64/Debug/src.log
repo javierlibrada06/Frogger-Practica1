@@ -1,7 +1,8 @@
-﻿  TurtleGroup.cpp
-C:\Users\usuario_local\Downloads\Frogger-Practica1-main\Frogger-Practica1-main\src\TurtleGroup.cpp(67,28): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-C:\Users\usuario_local\Downloads\Frogger-Practica1-main\Frogger-Practica1-main\src\TurtleGroup.cpp(67,28): warning C4244:         with
-C:\Users\usuario_local\Downloads\Frogger-Practica1-main\Frogger-Practica1-main\src\TurtleGroup.cpp(67,28): warning C4244:         [
-C:\Users\usuario_local\Downloads\Frogger-Practica1-main\Frogger-Practica1-main\src\TurtleGroup.cpp(67,28): warning C4244:             T=float
-C:\Users\usuario_local\Downloads\Frogger-Practica1-main\Frogger-Practica1-main\src\TurtleGroup.cpp(67,28): warning C4244:         ]
-  src.vcxproj -> C:\Users\usuario_local\Downloads\Frogger-Practica1-main\Frogger-Practica1-main\bin\srcDebug.exe
+﻿  game.cpp
+C:\Users\usuario_local\Downloads\Frogger-Practica1-main\src\game.cpp(75,48): warning C4244: 'argumento': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\usuario_local\Downloads\Frogger-Practica1-main\src\game.cpp(75,28): warning C4244: 'argumento': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\usuario_local\Downloads\Frogger-Practica1-main\src\game.cpp(75,27): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\usuario_local\Downloads\Frogger-Practica1-main\src\game.cpp(76,26): warning C4244: '=': conversión de 'Uint64' a 'Uint32'; posible pérdida de datos
+C:\Users\usuario_local\Downloads\Frogger-Practica1-main\src\game.cpp(165,28): warning C4244: '=': conversión de 'Uint64' a 'Uint32'; posible pérdida de datos
+C:\Users\usuario_local\Downloads\Frogger-Practica1-main\src\game.cpp(180,30): warning C4244: '=': conversión de 'Uint64' a 'Uint32'; posible pérdida de datos
+C:\Users\usuario_local\Downloads\Frogger-Practica1-main\src\game.cpp(1,1): error C1085: No se puede escribir en el archivo generado por el compilador: 'C:\Users\usuario_local\Downloads\Frogger-Practica1-main\src\x64\Debug\game.obj': No space left on device

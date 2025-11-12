@@ -99,6 +99,7 @@
     <ClCompile Include="game.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="HomeFrog.cpp" />
+    <ClCompile Include="InfoBar.cpp" />
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Platform.cpp" />
@@ -114,6 +115,7 @@
     <ClInclude Include="game.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="HomeFrog.h" />
+    <ClInclude Include="InfoBar.h" />
     <ClInclude Include="Log.h" />
     <ClInclude Include="Platform.h" />
     <ClInclude Include="SceneObject.h" />

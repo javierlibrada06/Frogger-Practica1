@@ -16,6 +16,7 @@ class Frog;
 class HomeFrog;
 class Wasp;
 class SceneObject;
+class InfoBar;
 /**
  * Clase principal del juego.
  */
@@ -131,6 +132,8 @@ private:
 												Point2D<float>(POS_X_HOMEFROG + SEPARATION_HOMEFROG * 3,POS_Y_HOMEFROG),
 												Point2D<float>(POS_X_HOMEFROG + SEPARATION_HOMEFROG * 4,POS_Y_HOMEFROG), };
 	Frog* frog;
+	InfoBar* infoBar;
+	Wasp* wasp;
 
 public:
 	Game();
@@ -143,7 +146,7 @@ public:
 
 	// Comprueba si hay algún objeto colocado en ese rectángulo
 	Collision checkCollision(const SDL_FRect& rect) const;
-
+	void reset();
 	void AuxVehicles();
 	void loadGame();
 	int getRandomRange(int, int);

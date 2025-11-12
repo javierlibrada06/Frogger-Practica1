@@ -41,11 +41,11 @@ Game::Collision
 TurtleGroup::checkCollision(const SDL_FRect& frog) {
 	Game::Collision c;
 	c.type = Game::NONE;
+	SDL_FRect rect = getBoundingBox();
 	int i = 0;
 	if ((state == 5)) return c;
 	else
-		while (c.type == Game::NONE && i < numTurtles) {
-			SDL_FRect rect = getBoundingBox();
+		while (c.type != Game::PLATFORM && i < numTurtles) {
 			if (SDL_HasRectIntersectionFloat(&frog, &rect)) {
 				c.type = Game::PLATFORM;
 				c.speed = speed;

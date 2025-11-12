@@ -7,6 +7,7 @@
 #include "TurtleGroup.h"
 #include "Frog.h"
 #include "SceneObject.h"
+#include "infoBar.h"
 
 #include <string>
 #include <SDL3_image/SDL_image.h>
@@ -87,6 +88,7 @@ Game::~Game()
 	
 	wasps.clear();
 	delete frog;
+	delete infoBar;
 	for (auto t : textures) {
 		delete t;
 	}
@@ -104,6 +106,7 @@ Game::render() const
 	for (int i = 0; i < wasps.size(); i++) wasps[i]->render();*/
 	for (int i = 0; i < sceneObjects.size(); i++) sceneObjects[i]->render();
 	frog->render();
+	infoBar->render();
 	SDL_RenderPresent(renderer);
 }
 
@@ -144,11 +147,9 @@ Game::update()
 	//		wasps.push_back(new Wasp(this, pos, lifeTime, speed));
 	//	}
 	//}
-	//for (int i = 0;i < vehicles.size();i++) vehicles[i]->update();
-	//for (int i = 0;i < logs.size();i++) logs[i]->update();
-	//for (int i = 0; i < homeFrogs.size(); i++) homeFrogs[i]->update();
 	for (int i = 0; i < sceneObjects.size(); i++) sceneObjects[i]->update();
 	frog->update();
+	infoBar->update();
 }
 
 void
@@ -241,9 +242,8 @@ Game::loadGame() {
 				 sceneObjects.push_back(t);
 			 }
 			 else if (c == 'F') {
-				 Frog* f = new Frog();
-				 f->loadFrog(inputMap, this);
-				 frog = f;
+				 frog = new Frog();
+				 frog->loadFrog(inputMap, this);
 			 }
 			 else inputMap.ignore('#', '\n');
 		 }
@@ -251,12 +251,16 @@ Game::loadGame() {
 		 inputMap.close();
 	 }
 
+	 infoBar = new InfoBar();
+	 infoBar->loadInfoBar(this, frog);
+
 	 for (int i = 0; i < NUMBER_HFROGS; i++)
 	 {
 		 HomeFrog* homeFrog = new HomeFrog(this, homeFrogsPos[i], frog);
 		 homeFrogs.push_back(homeFrog);
 		 sceneObjects.push_back(homeFrog);
 	 }
+	 
 }
 
 int 
@@ -267,3 +271,12 @@ Game::getRandomRange(int min, int max) {
 	return dist(randomGenerator);
 }
 
+void 
+Game::reset() {
+	for (SceneObject* s : sceneObjects) {
+		delete s;
+	}
+	sceneObjects.clear();
+	delete frog;
+	loadGame();
+}
