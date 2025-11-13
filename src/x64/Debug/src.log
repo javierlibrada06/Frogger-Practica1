@@ -1,9 +1,35 @@
-﻿  Frog.cpp
+﻿  Crosser.cpp
+  Frog.cpp
+  GameObject.cpp
   HomeFrog.cpp
   InfoBar.cpp
-C:\Users\usuario_local\Downloads\Frogger-Practica1-main\src\InfoBar.cpp(31,18): warning C4244: 'inicializando': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\usuario_local\Downloads\Frogger-Practica1-main\src\Frog.cpp(1,1): error C1085: No se puede escribir en el archivo generado por el compilador: 'C:\Users\usuario_local\Downloads\Frogger-Practica1-main\src\x64\Debug\Frog.obj': No space left on device
-FileTracker : error FTK1006: no se pudo escribir la entrada en el archivo de registro de seguimiento de archivos: C:\Users\usuario_local\Downloads\Frogger-Practica1-main\src\x64\Debug\src.tlog\CL.3300.read.1.tlog. Espacio en disco insuficiente.
-FileTracker : error FTK1005: no se pudo escribir el marcador de archivo de raíz en el archivo de registro de seguimiento de archivos: C:\Users\usuario_local\Downloads\Frogger-Practica1-main\src\x64\Debug\src.tlog\CL.3300.write.1.tlog. Espacio en disco insuficiente.
-cl : línea de comandos  error D8040: error al crear o comunicar con proceso secundario
-FileTracker : error FTK1006: no se pudo escribir la entrada en el archivo de registro de seguimiento de archivos: C:\Users\usuario_local\Downloads\Frogger-Practica1-main\src\x64\Debug\src.tlog\CL.read.1.tlog. Espacio en disco insuficiente.
+  Log.cpp
+  Platform.cpp
+  SceneObject.cpp
+C:\Users\julia\source\repos\Frogger-Practica1\src\InfoBar.cpp(31,18): warning C4244: 'inicializando': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\julia\source\repos\Frogger-Practica1\src\SceneObject.cpp(9,33): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\julia\source\repos\Frogger-Practica1\src\SceneObject.cpp(10,34): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+  TurtleGroup.cpp
+  Vehicle.cpp
+  Wasp.cpp
+  game.cpp
+  main.cpp
+C:\Users\julia\source\repos\Frogger-Practica1\src\TurtleGroup.cpp(67,28): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+C:\Users\julia\source\repos\Frogger-Practica1\src\TurtleGroup.cpp(67,28): warning C4244:         with
+C:\Users\julia\source\repos\Frogger-Practica1\src\TurtleGroup.cpp(67,28): warning C4244:         [
+C:\Users\julia\source\repos\Frogger-Practica1\src\TurtleGroup.cpp(67,28): warning C4244:             T=float
+C:\Users\julia\source\repos\Frogger-Practica1\src\TurtleGroup.cpp(67,28): warning C4244:         ]
+C:\Users\julia\source\repos\Frogger-Practica1\src\Wasp.cpp(17,26): warning C4244: '=': conversión de 'Uint64' a 'int'; posible pérdida de datos
+C:\Users\julia\source\repos\Frogger-Practica1\src\game.cpp(75,48): warning C4244: 'argumento': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\julia\source\repos\Frogger-Practica1\src\game.cpp(75,28): warning C4244: 'argumento': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\julia\source\repos\Frogger-Practica1\src\game.cpp(75,27): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\julia\source\repos\Frogger-Practica1\src\game.cpp(76,26): warning C4244: '=': conversión de 'Uint64' a 'Uint32'; posible pérdida de datos
+C:\Users\julia\source\repos\Frogger-Practica1\src\game.cpp(130,28): warning C4244: '=': conversión de 'Uint64' a 'Uint32'; posible pérdida de datos
+C:\Users\julia\source\repos\Frogger-Practica1\src\game.cpp(145,30): warning C4244: '=': conversión de 'Uint64' a 'Uint32'; posible pérdida de datos
+C:\Users\julia\source\repos\Frogger-Practica1\src\game.cpp(251,27): warning C4244: '=': conversión de 'Uint64' a 'Uint32'; posible pérdida de datos
+C:\Users\julia\source\repos\Frogger-Practica1\src\game.cpp(255,57): warning C4244: 'argumento': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\julia\source\repos\Frogger-Practica1\src\game.cpp(255,37): warning C4244: 'argumento': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\julia\source\repos\Frogger-Practica1\src\game.cpp(256,58): warning C4244: 'argumento': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\julia\source\repos\Frogger-Practica1\src\game.cpp(256,43): warning C4244: 'argumento': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\julia\source\repos\Frogger-Practica1\src\game.cpp(273,30): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+  src.vcxproj -> C:\Users\julia\Source\Repos\Frogger-Practica1\bin\srcDebug.exe

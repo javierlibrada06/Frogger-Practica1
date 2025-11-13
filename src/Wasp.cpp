@@ -9,10 +9,14 @@ Wasp::Wasp() {
 	speed = Vector2D<float>(0, 0);
 }
 
-Wasp::Wasp(Game* g, Point2D<float> pos, int l, Vector2D<float> s) {
+Wasp::Wasp(Game* g, Point2D<float> pos, int l, Vector2D<float> s, Game::It it) {
+	game = g;
+	texture = g->getTexture(Game::WASP);
+	position = pos;
 	liveSpawn = l;
 	timeAlive = SDL_GetTicks();
 	speed = s;
+	waspIterator = it;
 }
 
 Wasp::~Wasp() {
@@ -21,7 +25,9 @@ Wasp::~Wasp() {
 
 void 
 Wasp::update() {
-	return GameObject::update();
+	if (!isAlive()) {
+		game->deleteAfter(waspIterator);  // avisa al juego para borrarse
+	}
 }
 
 bool 

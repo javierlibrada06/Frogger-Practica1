@@ -5,6 +5,7 @@
 #include <array>
 #include <istream>
 #include <vector>
+#include <list>
 #include <random>
 #include "vector2D.h"
 
@@ -20,6 +21,7 @@ class InfoBar;
 /**
  * Clase principal del juego.
  */
+
 class Game
 {
 public:
@@ -102,6 +104,12 @@ public:
 		Type type;
 		Vector2D<float> speed;
 	};
+
+
+	std::list<SceneObject*> sceneObjects;
+	using It = std::list<SceneObject*>::iterator;
+	std::list<It> waspToDelete;
+	void deleteAfter(It);
 	
 
 private:
@@ -112,6 +120,8 @@ private:
 	void render() const;
 	void update();
 	void handleEvents();
+	void waspUpdate();
+
 
 	bool exit;
 	float nextWasp;
@@ -120,11 +130,10 @@ private:
 	// Elemento del juego
 	// TODO: añadir atributos para los objetos del juego
 
-	std::vector<SceneObject*> sceneObjects;
-	std::vector<Vehicle*> vehicles;
-	std::vector<Log*> logs;
+	//std::vector<Vehicle*> vehicles;
+	//std::vector<Log*> logs;
 	std::vector<HomeFrog*> homeFrogs;
-	std::vector<Wasp*> wasps;
+	//std::vector<Wasp*> wasps;
 
 	std::vector<Point2D<float>> homeFrogsPos = {Point2D<float>(POS_X_HOMEFROG,POS_Y_HOMEFROG),
 												Point2D<float>(POS_X_HOMEFROG+SEPARATION_HOMEFROG * 1,POS_Y_HOMEFROG),
@@ -151,6 +160,7 @@ public:
 	void AuxVehicles();
 	void loadGame();
 	int getRandomRange(int, int);
+	void waspDelete();
 
 };
 

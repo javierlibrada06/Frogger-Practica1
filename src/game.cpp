@@ -85,10 +85,6 @@ Game::~Game()
 		delete s;     
 	}
 	sceneObjects.clear();
-	for (Wasp* w : wasps) {
-		delete w;
-	}
-	wasps.clear();
 	delete frog;
 	delete infoBar;
 	for (auto t : textures) {
@@ -102,11 +98,8 @@ Game::render() const
 	SDL_RenderClear(renderer);
 
 	textures[Game::BACKGROUND]->render();
-	/*for (int i = 0;i < vehicles.size();i++) vehicles[i]->render();
-	for (int i = 0;i < logs.size();i++) logs[i]->render();
-	for (int i = 0; i < homeFrogs.size(); i++) homeFrogs[i]->render();
-	for (int i = 0; i < wasps.size(); i++) wasps[i]->render();*/
-	for (int i = 0; i < sceneObjects.size(); i++) sceneObjects[i]->render();
+
+	for(auto it = sceneObjects.begin(); it != sceneObjects.end(); ++it) (*it)->render();
 	frog->render();
 	infoBar->render();
 	SDL_RenderPresent(renderer);
@@ -115,43 +108,13 @@ Game::render() const
 void
 Game::update()
 {
-	// Aqui se eliminan todas las avispas muertas
-	for (int i = (int)wasps.size() - 1; i >= 0; i--)
-	{
-		if (!wasps[i]->isAlive())
-		{
-			delete wasps[i];
-			wasps[i] = wasps.back();
-			wasps.pop_back();
-		}
-	}
-	if (SDL_GetTicks() - waspSpawn >= nextWasp)
-	{
-		waspSpawn = SDL_GetTicks();
-		if (frog->getHomesReached() != Game::NUMBER_HFROGS - 1)
-		{
-			// Genera nueva avispa
-			nextWasp = (float)getRandomRange(MIN_WASP_GENERATOR, MAX_WASP_GENERATOR);
-			float lifeTime = (float)getRandomRange(MIN_WASP_LIFE, MAX_WASP_LIFE);
-			bool encontrado = false;
-			int hf = getRandomRange(0, Game::NUMBER_HFROGS - 1);
-			while (!encontrado)
-			{
-				if (!homeFrogs[hf]->IsActive()) encontrado = true;
-				else {
-					hf++;
-					if (hf > Game::NUMBER_HFROGS - 1) hf = 0;
-				}
-			}
-			Point2D<float> pos = homeFrogs[hf]->GetPosition();
-			pos = pos + Point2D<float>(Game::WASP_OFFSET_X, Game::WASP_OFFSET_Y);
-			Vector2D<float> speed(0, 0);
-			wasps.push_back(new Wasp(this, pos, lifeTime, speed));
-		}
-	}
-	for (int i = 0; i < sceneObjects.size(); i++) sceneObjects[i]->update();
+	waspUpdate();
+	for (auto it = sceneObjects.begin(); it != sceneObjects.end(); ++it) (*it)->update();
 	frog->update();
 	infoBar->update();
+
+	// Aqui se eliminan todas las avispas muertas
+	waspDelete();
 }
 
 void
@@ -207,10 +170,10 @@ Game::checkCollision(const SDL_FRect& rect) const
 {
 	Collision collision;
 	collision.type = NONE;
-	int i = 0;
-	while (i < sceneObjects.size() && collision.type == NONE) {
-		collision = sceneObjects[i]->checkCollision(rect);
-		i++;
+	auto it = sceneObjects.begin();
+	while (it != sceneObjects.end() && collision.type == NONE) {
+		collision = (*it)->checkCollision(rect);
+		it++;
 	}	
 	return collision;
 
@@ -229,13 +192,11 @@ Game::loadGame() {
 			 if (c == 'V') {
 				 Vehicle* v = new Vehicle();
 				 v->loadVehicle(inputMap, this);
-				 vehicles.push_back(v);
 				 sceneObjects.push_back(v);
 			 }
 			 else if (c == 'L') {
 				 Log* l = new Log();
 				 l->loadLog(inputMap, this);
-				 logs.push_back(l);
 				 sceneObjects.push_back(l);
 			 }
 			 else if (c == 'T') {
@@ -281,4 +242,52 @@ Game::reset() {
 	sceneObjects.clear();
 	delete frog;
 	loadGame();
+}
+
+void
+Game::waspUpdate() {
+	if (SDL_GetTicks() - waspSpawn >= nextWasp)
+	{
+		waspSpawn = SDL_GetTicks();
+		if (frog->getHomesReached() != Game::NUMBER_HFROGS - 1)
+		{
+			// Genera nueva avispa
+			nextWasp = (float)getRandomRange(MIN_WASP_GENERATOR, MAX_WASP_GENERATOR);
+			float lifeTime = (float)getRandomRange(MIN_WASP_LIFE, MAX_WASP_LIFE);
+			bool encontrado = false;
+			int hf = getRandomRange(0, Game::NUMBER_HFROGS - 1);
+			while (!encontrado)
+			{
+				if (!homeFrogs[hf]->IsActive()) encontrado = true;
+				else {
+					hf++;
+					if (hf > Game::NUMBER_HFROGS - 1) hf = 0;
+				}
+			}
+			Point2D<float> pos = homeFrogs[hf]->GetPosition();
+			pos = pos + Point2D<float>(Game::WASP_OFFSET_X, Game::WASP_OFFSET_Y);
+			Vector2D<float> speed(0, 0);
+			
+			sceneObjects.push_back(nullptr);  // reserva un hueco
+			It it = --sceneObjects.end();
+			*it = new Wasp(this, pos, lifeTime, speed, it);
+			//sceneObjects.push_back(new Wasp(this, pos, lifeTime, speed));
+		}
+	}
+}
+
+void 
+Game::deleteAfter(It it) {
+
+	waspToDelete.push_back(it);
+}
+
+void
+Game::waspDelete()
+{
+	for (auto it : waspToDelete) {
+		delete* it;             // primero liberar memoria
+		sceneObjects.erase(it); // luego borrar de la lista
+	}
+	waspToDelete.clear();       // vaciar vector
 }
