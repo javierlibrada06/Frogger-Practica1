@@ -144,7 +144,8 @@ public:
 	// Ejecuta el bucle principal del juego
 	void run();
 
-	// Comprueba si hay algún objeto colocado en ese rectángulo
+	// Comprueba si hay algún objeto colocado en ese 
+	// ángulo
 	Collision checkCollision(const SDL_FRect& rect) const;
 	void reset();
 	void AuxVehicles();

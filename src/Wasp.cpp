@@ -33,11 +33,7 @@ Game::Collision
 Wasp::checkCollision(const SDL_FRect& frog) {
 	Game::Collision collision;
 	collision.type = Game::NONE;
-	SDL_FRect rect;
-	rect.x = position.getX();
-	rect.y = position.getY();
-	rect.w = texture->getFrameWidth();
-	rect.h = texture->getFrameHeight();
+	SDL_FRect rect = getBoundingBox();
 	if (SDL_HasRectIntersectionFloat(&frog, &rect)) {
 		collision.type = Game::ENEMY;
 	}

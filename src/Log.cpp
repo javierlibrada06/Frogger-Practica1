@@ -20,16 +20,6 @@ Log::~Log()
 	texture = nullptr;
 	game = nullptr;
 }
-//void
-//Log::render() const
-//{
-//	SDL_FRect rect;
-//	rect.x = position.getX();
-//	rect.y = position.getY();
-//	rect.w = texture->getFrameWidth();
-//	rect.h = texture->getFrameHeight();
-//	texture->render(rect);
-//}
 
 Game::Collision Log::checkCollision(const SDL_FRect& frog)
 {

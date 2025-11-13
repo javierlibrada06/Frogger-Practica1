@@ -1,8 +1,9 @@
-﻿  game.cpp
-C:\Users\usuario_local\Downloads\Frogger-Practica1-main\src\game.cpp(75,48): warning C4244: 'argumento': conversión de 'const float' a 'int'; posible pérdida de datos
-C:\Users\usuario_local\Downloads\Frogger-Practica1-main\src\game.cpp(75,28): warning C4244: 'argumento': conversión de 'const float' a 'int'; posible pérdida de datos
-C:\Users\usuario_local\Downloads\Frogger-Practica1-main\src\game.cpp(75,27): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\usuario_local\Downloads\Frogger-Practica1-main\src\game.cpp(76,26): warning C4244: '=': conversión de 'Uint64' a 'Uint32'; posible pérdida de datos
-C:\Users\usuario_local\Downloads\Frogger-Practica1-main\src\game.cpp(165,28): warning C4244: '=': conversión de 'Uint64' a 'Uint32'; posible pérdida de datos
-C:\Users\usuario_local\Downloads\Frogger-Practica1-main\src\game.cpp(180,30): warning C4244: '=': conversión de 'Uint64' a 'Uint32'; posible pérdida de datos
-C:\Users\usuario_local\Downloads\Frogger-Practica1-main\src\game.cpp(1,1): error C1085: No se puede escribir en el archivo generado por el compilador: 'C:\Users\usuario_local\Downloads\Frogger-Practica1-main\src\x64\Debug\game.obj': No space left on device
+﻿  Frog.cpp
+  HomeFrog.cpp
+  InfoBar.cpp
+C:\Users\usuario_local\Downloads\Frogger-Practica1-main\src\InfoBar.cpp(31,18): warning C4244: 'inicializando': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\usuario_local\Downloads\Frogger-Practica1-main\src\Frog.cpp(1,1): error C1085: No se puede escribir en el archivo generado por el compilador: 'C:\Users\usuario_local\Downloads\Frogger-Practica1-main\src\x64\Debug\Frog.obj': No space left on device
+FileTracker : error FTK1006: no se pudo escribir la entrada en el archivo de registro de seguimiento de archivos: C:\Users\usuario_local\Downloads\Frogger-Practica1-main\src\x64\Debug\src.tlog\CL.3300.read.1.tlog. Espacio en disco insuficiente.
+FileTracker : error FTK1005: no se pudo escribir el marcador de archivo de raíz en el archivo de registro de seguimiento de archivos: C:\Users\usuario_local\Downloads\Frogger-Practica1-main\src\x64\Debug\src.tlog\CL.3300.write.1.tlog. Espacio en disco insuficiente.
+cl : línea de comandos  error D8040: error al crear o comunicar con proceso secundario
+FileTracker : error FTK1006: no se pudo escribir la entrada en el archivo de registro de seguimiento de archivos: C:\Users\usuario_local\Downloads\Frogger-Practica1-main\src\x64\Debug\src.tlog\CL.read.1.tlog. Espacio en disco insuficiente.

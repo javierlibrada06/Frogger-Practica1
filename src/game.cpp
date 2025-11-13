@@ -85,7 +85,9 @@ Game::~Game()
 		delete s;     
 	}
 	sceneObjects.clear();
-	
+	for (Wasp* w : wasps) {
+		delete w;
+	}
 	wasps.clear();
 	delete frog;
 	delete infoBar;
@@ -114,39 +116,39 @@ void
 Game::update()
 {
 	// Aqui se eliminan todas las avispas muertas
-	//for (int i = (int)wasps.size() - 1; i >= 0; i--)
-	//{
-	//	if (!wasps[i]->isAlive())
-	//	{
-	//		delete wasps[i];
-	//		wasps[i] = wasps.back();
-	//		wasps.pop_back();
-	//	}
-	//}
-	//if (SDL_GetTicks() - waspSpawn >= nextWasp)
-	//{
-	//	waspSpawn = SDL_GetTicks();
-	//	if (frog->getHomesReached() != Game::NUMBER_HFROGS - 1)
-	//	{
-	//		// Genera nueva avispa
-	//		nextWasp = (float)getRandomRange(MIN_WASP_GENERATOR, MAX_WASP_GENERATOR);
-	//		float lifeTime = (float)getRandomRange(MIN_WASP_LIFE, MAX_WASP_LIFE);
-	//		bool encontrado = false;
-	//		int hf = getRandomRange(0, Game::NUMBER_HFROGS - 1);
-	//		while (!encontrado)
-	//		{
-	//			if (!homeFrogs[hf]->IsActive()) encontrado = true;
-	//			else {
-	//				hf++;
-	//				if (hf > Game::NUMBER_HFROGS - 1) hf = 0;
-	//			}
-	//		}
-	//		Point2D<float> pos = homeFrogs[hf]->GetPosition();
-	//		pos = pos + Point2D<float>(Game::WASP_OFFSET_X, Game::WASP_OFFSET_Y);
-	//		Vector2D<float> speed(0, 0);
-	//		wasps.push_back(new Wasp(this, pos, lifeTime, speed));
-	//	}
-	//}
+	for (int i = (int)wasps.size() - 1; i >= 0; i--)
+	{
+		if (!wasps[i]->isAlive())
+		{
+			delete wasps[i];
+			wasps[i] = wasps.back();
+			wasps.pop_back();
+		}
+	}
+	if (SDL_GetTicks() - waspSpawn >= nextWasp)
+	{
+		waspSpawn = SDL_GetTicks();
+		if (frog->getHomesReached() != Game::NUMBER_HFROGS - 1)
+		{
+			// Genera nueva avispa
+			nextWasp = (float)getRandomRange(MIN_WASP_GENERATOR, MAX_WASP_GENERATOR);
+			float lifeTime = (float)getRandomRange(MIN_WASP_LIFE, MAX_WASP_LIFE);
+			bool encontrado = false;
+			int hf = getRandomRange(0, Game::NUMBER_HFROGS - 1);
+			while (!encontrado)
+			{
+				if (!homeFrogs[hf]->IsActive()) encontrado = true;
+				else {
+					hf++;
+					if (hf > Game::NUMBER_HFROGS - 1) hf = 0;
+				}
+			}
+			Point2D<float> pos = homeFrogs[hf]->GetPosition();
+			pos = pos + Point2D<float>(Game::WASP_OFFSET_X, Game::WASP_OFFSET_Y);
+			Vector2D<float> speed(0, 0);
+			wasps.push_back(new Wasp(this, pos, lifeTime, speed));
+		}
+	}
 	for (int i = 0; i < sceneObjects.size(); i++) sceneObjects[i]->update();
 	frog->update();
 	infoBar->update();

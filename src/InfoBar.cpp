@@ -6,6 +6,7 @@ InfoBar::loadInfoBar(Game* g, Frog* f) {
 	frog = f;
 	game = g;
 	texture = g->getTexture(Game::FROG);
+	
 	rect = { 10, Game::WINDOW_HEIGHT - 40, 32, 32 };
 	livesRemaining = 0;
 	livesSpent = 0;
