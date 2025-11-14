@@ -156,11 +156,12 @@ public:
 	// Comprueba si hay algún objeto colocado en ese 
 	// ángulo
 	Collision checkCollision(const SDL_FRect& rect) const;
-	void reset();
 	void AuxVehicles();
 	void loadGame();
 	int getRandomRange(int, int);
 	void waspDelete();
+	void confirmReset();
+	void reset();
 
 };
 

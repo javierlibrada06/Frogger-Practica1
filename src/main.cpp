@@ -16,6 +16,5 @@ int main(int argc, char* argv[])
 	game.loadGame();
 	game.run();
 	// TODO: manejar excepciones
-
 	return 0;
 }

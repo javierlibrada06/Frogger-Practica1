@@ -85,11 +85,23 @@ Game::~Game()
 		delete s;     
 	}
 	sceneObjects.clear();
+	homeFrogs.clear();
 	delete frog;
 	delete infoBar;
 	for (auto t : textures) {
 		delete t;
 	}
+
+	if (renderer) {
+		SDL_DestroyRenderer(renderer);
+		renderer = nullptr;
+	}
+	if (window) {
+		SDL_DestroyWindow(window);
+		window = nullptr;
+	}
+
+	SDL_Quit();
 }
 
 void
@@ -159,6 +171,7 @@ Game::handleEvents()
 		if (event.type == SDL_EVENT_QUIT) {
 			exit = true;
 		}
+		/*else if (event.type == SDL_EVENT_KEY_DOWN && event.key.key == SDLK_0) confirmReset();*/
 		frog->handleEvent(event);
 
 		// TODO
@@ -234,16 +247,6 @@ Game::getRandomRange(int min, int max) {
 	return dist(randomGenerator);
 }
 
-void 
-Game::reset() {
-	for (SceneObject* s : sceneObjects) {
-		delete s;
-	}
-	sceneObjects.clear();
-	delete frog;
-	loadGame();
-}
-
 void
 Game::waspUpdate() {
 	if (SDL_GetTicks() - waspSpawn >= nextWasp)
@@ -276,6 +279,7 @@ Game::waspUpdate() {
 	}
 }
 
+// Método para guardar los it de avispas a eliminar, para eliminar al terminar el update
 void 
 Game::deleteAfter(It it) {
 
@@ -290,4 +294,42 @@ Game::waspDelete()
 		sceneObjects.erase(it); // luego borrar de la lista
 	}
 	waspToDelete.clear();       // vaciar vector
+}
+
+void
+Game::reset() {
+	for (SceneObject* s : sceneObjects) {
+		delete s;
+	}
+	sceneObjects.clear();
+	delete frog;
+	delete infoBar;
+	loadGame();
+}
+
+void
+Game::confirmReset() {
+
+	SDL_MessageBoxButtonData buttons[] = {
+		{ SDL_MESSAGEBOX_BUTTON_RETURNKEY_DEFAULT, 1, "Aceptar" },
+		{ SDL_MESSAGEBOX_BUTTON_ESCAPEKEY_DEFAULT, 0, "Cancelar" }
+	};
+
+	const SDL_MessageBoxData messageboxdata = {
+		SDL_MESSAGEBOX_INFORMATION, 
+		NULL,                        
+		"Quieres reiniciar la partida?",        
+		"Pulsa Aceptar para reiniciar la partida.",
+		SDL_arraysize(buttons),       
+		buttons,                      
+		NULL                          // Esquema de colores 
+	};
+
+	int buttonid = -1;
+
+	// Mostrar la caja de mensaje
+	SDL_ShowMessageBox(&messageboxdata, &buttonid);
+	if (buttonid == 1) {
+		reset();
+	}
 }
