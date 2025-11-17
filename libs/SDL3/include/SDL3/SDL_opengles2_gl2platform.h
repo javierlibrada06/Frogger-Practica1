@@ -1,4 +1,4 @@
-#ifndef __gl2platform_h_
+﻿#ifndef __gl2platform_h_
 #define __gl2platform_h_
 
 /*

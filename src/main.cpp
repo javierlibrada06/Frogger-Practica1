@@ -1,6 +1,6 @@
 //
-// Tecnología de la Programación de Videojuegos 1
-// Facultad de Informática UCM
+// TecnologÃ­a de la ProgramaciÃ³n de Videojuegos 1
+// Facultad de InformÃ¡tica UCM
 //
 // Plantilla de proyecto con SDL
 //
@@ -41,10 +41,5 @@ int main(int argc, char* argv[])
 		showError("Error", e.what());
 		return 1;
 	}
-	catch (const std::exception& e) {
-		showError("Error", e.what());
-		return 1;
-	}
-
 	return 0;
 }

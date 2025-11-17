@@ -18,6 +18,11 @@ SceneObject::SceneObject(std::istream& entrada, Game* g, std::string name)
 	position = Point2D<float>(posX, posY);
 }
 
+void
+SceneObject::render() const {
+	texture->render(getBoundingBox());
+}
+
 SDL_FRect
 SceneObject::getBoundingBox() const {
 	SDL_FRect rect;
@@ -26,9 +31,4 @@ SceneObject::getBoundingBox() const {
 	rect.w = texture->getFrameWidth();
 	rect.h = texture->getFrameHeight();
 	return rect;
-}
-
-void
-SceneObject::render() const {
-	texture->render(getBoundingBox());
 }

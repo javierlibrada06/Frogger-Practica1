@@ -1,0 +1,3 @@
+Javier Librada Jerez
+Julia Vera Ruiz
+Al pulsar 0 aparece un cuadro de dialogo de confirmación usando SDL_ShowMessageBox.

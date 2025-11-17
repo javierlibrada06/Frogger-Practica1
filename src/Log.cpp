@@ -5,7 +5,6 @@
 #include "texture.h"
 #include "FileFormatError.h"
 #include <iostream>
-// L - 100  60 72.6 1
 
 Log::Log()
 	: Platform()

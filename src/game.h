@@ -27,10 +27,10 @@ class Game
 public:
 	// Se actualiza el juego cada tantos milisegundos
 	static constexpr int FRAME_RATE = 30;
-	// Tamaño real de la ventana
+	// TamaÃ±o real de la ventana
 	static constexpr int WINDOW_WIDTH = 448;
 	static constexpr int WINDOW_HEIGHT = 484;
-	// Extremo inferior del río
+	// Extremo inferior del rÃ­o
 	static constexpr int RIVER_LOW = 210;
 	// Numero de HomeFrogs
 	static constexpr int NUMBER_HFROGS = 5;
@@ -117,14 +117,6 @@ private:
 	SDL_Renderer* renderer;
 	std::array<Texture*, NUM_TEXTURES> textures;
 
-	void render() const;
-	void update();
-	void handleEvents();
-	void waspUpdate();
-
-
-	// Elemento del juego
-	// TODO: añadir atributos para los objetos del juego
 
 	bool exit;
 	float nextWasp;
@@ -145,7 +137,20 @@ private:
 		std::pair(Point2D<float>(POS_X_HOMEFROG + SEPARATION_HOMEFROG * 2,POS_Y_HOMEFROG), false),
 		std::pair(Point2D<float>(POS_X_HOMEFROG + SEPARATION_HOMEFROG * 3,POS_Y_HOMEFROG), false),
 		std::pair(Point2D<float>(POS_X_HOMEFROG + SEPARATION_HOMEFROG * 4,POS_Y_HOMEFROG), false),
-												 };
+	};
+
+	// Elemento del juego
+	// TODO: anadir atributos para los objetos del juego	
+
+	void render() const;
+	void update();
+	void handleEvents();
+	void waspUpdate();
+	int getRandomRange(int, int);
+	void homeReached(Point2D<float>);
+	void waspDelete();
+	void reset();
+								
 
 public:
 	Game();
@@ -156,18 +161,13 @@ public:
 	// Ejecuta el bucle principal del juego
 	void run();
 
-	// Comprueba si hay algún objeto colocado en ese 
-	// ángulo
+	// Comprueba si hay algun objeto colocado en ese 
 	Collision checkCollision(const SDL_FRect& rect) const;
 	
 	void loadGame();
-	int getRandomRange(int, int);
-	void waspDelete();
-	void confirmReset();
-	int getArchiveLine();
+	int getArchiveLine() const;
 	void deleteAfter(It);
-	void homeReached(Point2D<float>);
-	void reset();
+	void confirmReset();
 
 };
 

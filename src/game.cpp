@@ -7,7 +7,7 @@
 #include "TurtleGroup.h"
 #include "Frog.h"
 #include "SceneObject.h"
-#include "infoBar.h"
+#include "InfoBar.h"
 #include "FileNotFoundError.h"
 #include "FileFormatError.h"
 #include "SDLError.h"
@@ -25,13 +25,13 @@ using namespace std;
 // Constantes
 constexpr const char* const WINDOW_TITLE = "Frogger 1.0";
 constexpr const char* const MAP_FILE = "../assets/maps/";
-constexpr array<const char*, 2> mapList = 
-{	"default.txt" ,
+constexpr array<const char*, 1> mapList = 
+{	//"default.txt" ,
 	"turtles.txt"
 };
 
 // Estructura para especificar las texturas que hay que
-// cargar y el tamaño de su matriz de frames
+// cargar y el tamaÃ±o de su matriz de frames
 struct TextureSpec
 {
 	const char* name;
@@ -53,7 +53,6 @@ constexpr array<TextureSpec, Game::NUM_TEXTURES> textureList{
 	{"log2.png"},
 	{"wasp.png"},
 	TextureSpec{"turtle.png", 1, 7},
-
 };
 
 Game::Game()
@@ -97,45 +96,20 @@ Game::~Game()
 
 	if (renderer) SDL_DestroyRenderer(renderer);
 	if (window) SDL_DestroyWindow(window);
-
 	SDL_Quit();
-}
-
-void
-Game::render() const
-{
-	SDL_RenderClear(renderer);
-
-	textures[Game::BACKGROUND]->render();
-
-	for(auto it = sceneObjects.begin(); it != sceneObjects.end(); ++it) (*it)->render();
-	frog->render();
-	infoBar->render();
-	SDL_RenderPresent(renderer);
-}
-
-void
-Game::update()
-{
-	waspUpdate();
-	for (auto it = sceneObjects.begin(); it != sceneObjects.end(); ++it) (*it)->update();
-	frog->update();
-	infoBar->update();
-
-	// Aqui se eliminan todas las avispas muertas
-	waspDelete();
 }
 
 void
 Game::run()
 {
+	//Delay
 	const Uint32 frameDelay = TICK / FRAME_RATE;
 	Uint32 frameStart;
 	Uint32 frameTime;
 
 	while (!exit) {
-		// TODO: implementar bucle del juego
 
+		// TODO: implementar bucle del juego
 		frameStart = SDL_GetTicks();
 		if (frog->getHomesReached() == NUMBER_HFROGS)
 		{
@@ -147,10 +121,11 @@ Game::run()
 			cout << "Te has quedado sin vidas (0/3)" << endl;
 			exit = true;
 		}
-		handleEvents();
+		handleEvents(); //Entrada
 		update();
 		render();
 
+		//Delay
 		frameTime = SDL_GetTicks() - frameStart;
 		if (frameDelay > frameTime) {
 			SDL_Delay(frameDelay - frameTime);
@@ -169,8 +144,31 @@ Game::handleEvents()
 			exit = true;
 		}
 		frog->handleEvent(event);
-
 	}
+}
+
+void
+Game::update()
+{
+
+	for (auto it = sceneObjects.begin(); it != sceneObjects.end(); ++it) (*it)->update(); //Update de todos los sceneObjects
+	frog->update();
+	infoBar->update();
+	waspUpdate(); // Se actualizan las avispas (creación)
+	waspDelete(); // Aqui se eliminan todas las avispas muertas
+}
+
+void
+Game::render() const
+{
+	SDL_RenderClear(renderer);
+
+	textures[Game::BACKGROUND]->render();
+
+	for (auto it = sceneObjects.begin(); it != sceneObjects.end(); ++it) (*it)->render();
+	frog->render();
+	infoBar->render();
+	SDL_RenderPresent(renderer);
 }
 
 Game::Collision 
@@ -227,13 +225,39 @@ Game::loadGame() {
 	 }
 }
 
+// Antes de hacer el reset se confirma (confirmReset)
+void
+Game::reset() {
+	for (SceneObject* s : sceneObjects) {
+		delete s;
+	}
+	sceneObjects.clear();
+	delete frog;
+	delete infoBar;
+	loadGame();
+}
 
+// Auxiliares ---
+
+// Random (wasps)
 int 
 Game::getRandomRange(int min, int max) {
 	static std::random_device rd;
 	static std::mt19937 randomGenerator(rd());
 	std::uniform_int_distribution<int> dist(min, max);
 	return dist(randomGenerator);
+}
+
+// Condicion de victoria
+void
+Game::homeReached(Point2D<float> position) {
+	homeFrogsPos[position.getX() / POS_X_HOMEFROG].second = true;
+}
+
+// Excepciones (linea de archivo)
+int
+Game::getArchiveLine() const {
+	return ArchiveLine;
 }
 
 void
@@ -269,13 +293,14 @@ Game::waspUpdate() {
 	}
 }
 
-// Método para guardar los it de avispas a eliminar, para eliminar al terminar el update
+// Metodo para guardar los it de avispas a eliminar, para eliminar al terminar el update
 void 
 Game::deleteAfter(It it) {
 
 	waspToDelete.push_back(it);
 }
 
+// Eliminar todas las avispas para evitar confilictos despues del update
 void
 Game::waspDelete()
 {
@@ -286,17 +311,7 @@ Game::waspDelete()
 	waspToDelete.clear();       // vaciar vector
 }
 
-void
-Game::reset() {
-	for (SceneObject* s : sceneObjects) {
-		delete s;
-	}
-	sceneObjects.clear();
-	delete frog;
-	delete infoBar;
-	loadGame();
-}
-
+// Antes de resetear confirmar con el usuario
 void
 Game::confirmReset() {
 
@@ -322,14 +337,4 @@ Game::confirmReset() {
 	if (buttonid == 1) {
 		reset();
 	}
-}
-
-void
-Game::homeReached(Point2D<float> position) {
-	homeFrogsPos[position.getX() / POS_X_HOMEFROG].second = true;
-}
-
-int 
-Game::getArchiveLine() {
-	return ArchiveLine;
 }

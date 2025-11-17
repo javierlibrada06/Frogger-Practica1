@@ -1,4 +1,4 @@
-#ifndef __gles2_gl2ext_h_
+﻿#ifndef __gles2_gl2ext_h_
 #define __gles2_gl2ext_h_ 1
 
 #ifdef __cplusplus

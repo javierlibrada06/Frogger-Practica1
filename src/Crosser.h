@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "vector2D.h"
 #include "SceneObject.h"
 class Crosser : public SceneObject

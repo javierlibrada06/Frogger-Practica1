@@ -4,6 +4,7 @@
 #include "game.h"
 #include "texture.h"
 #include <iostream>
+
 Wasp::Wasp() {
 	liveSpawn = 0;
 	speed = Vector2D<float>(0, 0);
@@ -23,16 +24,11 @@ Wasp::~Wasp() {
 
 }
 
-void 
+void
 Wasp::update() {
 	if (!isAlive()) {
 		game->deleteAfter(waspIterator);  // avisa al juego para borrarse
 	}
-}
-
-bool 
-Wasp::isAlive() const {
-	return (SDL_GetTicks() - timeAlive < liveSpawn);
 }
 
 Game::Collision
@@ -44,4 +40,11 @@ Wasp::checkCollision(const SDL_FRect& frog) {
 		collision.type = Game::ENEMY;
 	}
 	return collision;
+}
+
+// Auxiliares ---
+
+bool 
+Wasp::isAlive() const {
+	return (SDL_GetTicks() - timeAlive < liveSpawn);
 }

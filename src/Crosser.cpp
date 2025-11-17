@@ -10,6 +10,7 @@ Crosser::Crosser()
 	speed = Vector2D<float>(0, 0);
 	backJump = 0;
 }
+
 Crosser::Crosser(std::istream& entrada, Game* g, std::string name)
 	: SceneObject(entrada, g, name)
 {
@@ -21,6 +22,7 @@ Crosser::Crosser(std::istream& entrada, Game* g, std::string name)
 Crosser::~Crosser() {
 
 }
+
 void 
 Crosser::update() {
 	position = position + (speed);

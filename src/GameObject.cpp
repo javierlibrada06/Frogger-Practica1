@@ -10,11 +10,11 @@ GameObject::GameObject(Game* g) {
 }
 
 void
-GameObject::render() const{
+GameObject::update() {
 
 }
 
 void
-GameObject::update() {
+GameObject::render() const{
 
 }

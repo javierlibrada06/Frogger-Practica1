@@ -1,4 +1,5 @@
 #include "texture.h"
+#include "SDLError.h"
 
 #include <SDL3_image/SDL_image.h>
 #include <string>
@@ -10,7 +11,7 @@ SDL_Texture* tryLoadTexture(SDL_Renderer* renderer, const char* filename)
 	SDL_Texture* texture = IMG_LoadTexture(renderer, filename);
 
 	if (texture == nullptr)
-		throw "load image texture: "s + filename;
+		throw SDLError("load image texture: "s + filename);
 
 	SDL_SetTextureScaleMode(texture, SDL_SCALEMODE_NEAREST);
 
@@ -130,7 +131,7 @@ Texture::renderFrame(const SDL_FRect& rect,
 void
 Texture::render(const SDL_FRect& rect, SDL_Color color) const
 {
-	// Guarda el color original para reestablecerlo después
+	// Guarda el color original para reestablecerlo despuÃ©s
 	SDL_Color original;
 	SDL_GetTextureColorMod(texture, &original.r, &original.g, &original.b);
 

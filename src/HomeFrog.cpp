@@ -3,6 +3,7 @@
 #include "vector2D.h"
 #include "game.h"
 #include "texture.h"
+
 HomeFrog::HomeFrog()
 {
 	frog = nullptr;
@@ -34,11 +35,6 @@ HomeFrog::render() const
 	}
 }
 
-void
-HomeFrog::update() {
-
-}
-
 Game::Collision HomeFrog::checkCollision(const SDL_FRect& f)
 {
 	Game::Collision collision;
@@ -52,6 +48,9 @@ Game::Collision HomeFrog::checkCollision(const SDL_FRect& f)
 	return collision;
 
 }
+
+// Auxiliares ---
+
 Vector2D<float>
 HomeFrog::GetPosition() const { return position; }
 

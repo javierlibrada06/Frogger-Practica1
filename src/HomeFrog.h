@@ -13,9 +13,8 @@ public:
 	HomeFrog(Game*, Point2D<float>, Frog*);
 	~HomeFrog();
 	void render() const override;
-	void update(); 
 	bool IsActive() const;
 	Vector2D<float> GetPosition() const;
-	Game::Collision checkCollision(const SDL_FRect& f);
+	Game::Collision checkCollision(const SDL_FRect& f) override;
 };
 

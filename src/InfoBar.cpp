@@ -1,6 +1,7 @@
 #include "InfoBar.h"
-#include "frog.h"
+#include "Frog.h"
 #include "game.h"
+
 InfoBar::InfoBar() {
 	frog = nullptr;
 	rect = {0,0,0,0};
@@ -15,7 +16,8 @@ InfoBar::InfoBar(Game* g, Frog* f) {
 	game = g;
 	texture = g->getTexture(Game::FROG);
 
-	rect = { 10, Game::WINDOW_HEIGHT - 40, 32, 32 };
+	rect = { INFOBAR_WIDTH, INFOBAR_HEIGHT, INFOBAR_X, INFOBAR_X };
+
 	livesRemaining = 0;
 	livesSpent = 0;
 }

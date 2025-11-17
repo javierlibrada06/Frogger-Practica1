@@ -14,6 +14,7 @@ Vehicle::Vehicle()
 	speed = Vector2D<float>(0, 0);
 	position = Point2D<float>(0, 0);
 }
+
 Vehicle::Vehicle(istream& entrada, Game* g, std::string name)
 	: Crosser(entrada, g, name)
 {
@@ -31,11 +32,13 @@ Vehicle::Vehicle(istream& entrada, Game* g, std::string name)
 
 	backJump = 0;
 }
+
 Vehicle::~Vehicle()
 {
 	texture = nullptr;
 	game = nullptr;
 }
+
 Game::Collision Vehicle::checkCollision(const SDL_FRect& frog) 
 {
 	Game::Collision collision;

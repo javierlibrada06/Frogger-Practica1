@@ -1,16 +1,23 @@
 #pragma once
 #include "GameObject.h"
-#include "frog.h"
+#include "Frog.h"
 #include "game.h"
 #include "texture.h"
 class InfoBar : public GameObject
 {
+	static constexpr int INFOBAR_HEIGHT = 448;
+	static constexpr int INFOBAR_WIDTH = 10;
+	static constexpr int INFOBAR_X = 32;
+	static constexpr int INFOBAR_Y = 32;
+
+
 	int livesRemaining;
 	int livesSpent;
 	SDL_FRect rect;
 	Frog* frog;
 	Game* game;
 	Texture* texture;
+
 public:
 	InfoBar();
 	InfoBar(Game*, Frog*);

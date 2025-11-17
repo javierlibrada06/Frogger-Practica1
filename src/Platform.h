@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "Crosser.h"
 #include "game.h"
 class Platform : public Crosser

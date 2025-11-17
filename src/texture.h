@@ -1,4 +1,4 @@
-#ifndef TEXTURE_H
+﻿#ifndef TEXTURE_H
 #define TEXTURE_H
 
 #include <SDL3/SDL.h>

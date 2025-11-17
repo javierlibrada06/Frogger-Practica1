@@ -4,7 +4,7 @@
 #include <iostream>
 
 /**
- * Vector bidimensional genérico.
+ * Vector bidimensional genÃ©rico.
  */
 template<typename T = float>
 class Vector2D
@@ -19,8 +19,6 @@ public:
 	// Coordenadas del vector
 	const T& getX() const { return x; }
 	const T& getY() const { return y; }
-
-	
 
 	// Operadores
 	Vector2D operator+(const Vector2D& otro) const {

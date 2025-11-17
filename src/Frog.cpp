@@ -1,8 +1,9 @@
-﻿#include "Frog.h"
+#include "Frog.h"
 #include "vector2D.h"
 #include "game.h"
 #include "texture.h"
 #include "FileFormatError.h"
+
 Frog::Frog()
 	: SceneObject()
 {
@@ -24,6 +25,8 @@ Frog::Frog(std::istream& entrada, Game* g, std::string name)
 	texture = g->getTexture(Game::FROG);
 	homesReached = 0;
 	lives = l;
+	state = 0;
+	angle = 0;
 
 	SDL_FRect rect = getBoundingBox();
 	rectCollider.x = rect.x + Game::COLLISION_OFFSET_FROG;
@@ -38,6 +41,7 @@ Frog::~Frog()
 	texture = nullptr;
 	game = nullptr;
 }
+
 void 
 Frog::update() {
 	rectCollider.x = position.getX() + Game::COLLISION_OFFSET_FROG;
@@ -80,6 +84,7 @@ Frog::render() const {
 	texture->renderFrame(getBoundingBox(), 0, state, angle);
 
 }
+
 void 
 Frog::handleEvent(const SDL_Event& event) {
 
@@ -87,7 +92,7 @@ Frog::handleEvent(const SDL_Event& event) {
 		switch (event.key.key) {
 		case SDLK_DOWN:
 			state = 1;
-			angle = 180;
+			angle = ANGLE_UPSIDEDOWN;
 			position = position + Point2D<float>(0, Game::FROG_STEP);
 			if (position.getY() > Game::GAME_SCREENEND_Y) position = Point2D<float>(position.getX(), Game::GAME_SCREENEND_Y);
 			break;
@@ -99,13 +104,13 @@ Frog::handleEvent(const SDL_Event& event) {
 			break;
 		case SDLK_LEFT:
 			state = 1;
-			angle = -90;
+			angle = ANGLE_LEFT;
 			position = position + Point2D<float>(-Game::FROG_STEP, 0);
 			if (position.getX() < 0) position = Point2D<float>(0, position.getY());
 			break;
 		case SDLK_RIGHT:
 			state = 1;
-			angle = 90;
+			angle = ANGLE_RIGHT;
 			position = position + Point2D<float>(Game::FROG_STEP, 0);
 			if (position.getX() > Game::GAME_SCREENEND_X) position = Point2D<float>(Game::GAME_SCREENEND_X, position.getY());
 			break;
@@ -117,6 +122,13 @@ Frog::handleEvent(const SDL_Event& event) {
 	else state = 0;
 }
 
+Game::Collision Frog::checkCollision(const SDL_FRect& frog)
+{
+	Game::Collision collision;
+	collision.type = Game::NONE;
+	return collision;
+}
+
 int
 Frog::getHomesReached() const { return homesReached; }
 
@@ -125,11 +137,4 @@ Frog::getLives() const { return lives; }
 
 void
 Frog::homeReached() { homesReached++; }
-
-Game::Collision Frog::checkCollision(const SDL_FRect& frog)
-{
-	Game::Collision collision;
-	collision.type = Game::NONE;
-	return collision;
-}
 
