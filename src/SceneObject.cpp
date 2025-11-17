@@ -1,6 +1,7 @@
 #include "SceneObject.h"
 #include "GameObject.h"
 #include "texture.h"
+#include "FileFormatError.h"
 
 SceneObject::SceneObject()
 	: GameObject()
@@ -12,7 +13,7 @@ SceneObject::SceneObject(std::istream& entrada, Game* g)
 	: GameObject(g)
 {
 	int posX, posY;
-	entrada >> posX >> posY;
+	if (!(entrada >> posX >> posY)) throw FileFormatError("map.txt", g->getArchiveLine(), "Error de lectura sobre la posicion");
 
 	position = Point2D<float>(posX, posY);
 }

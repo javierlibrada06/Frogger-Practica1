@@ -1,6 +1,7 @@
 #include "SceneObject.h"
 #include "GameObject.h"
 #include "Crosser.h"
+#include "FileFormatError.h"
 
 
 Crosser::Crosser() 
@@ -13,7 +14,7 @@ Crosser::Crosser(std::istream& entrada, Game* g)
 	: SceneObject(entrada, g)
 {
 	float s;
-	entrada >> s;
+	if (!(entrada >> s)) throw FileFormatError("map.txt", g->getArchiveLine(), "Error de lectura sobre la velocidad");
 	speed = Vector2D<float>(s / Game::FRAME_RATE, 0);
 }
 Crosser::~Crosser() {

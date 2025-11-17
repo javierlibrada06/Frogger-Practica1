@@ -2,6 +2,7 @@
 #include "vector2D.h"
 #include "game.h"
 #include "texture.h"
+#include "FileFormatError.h"
 Frog::Frog()
 	: SceneObject()
 {
@@ -17,8 +18,8 @@ Frog::Frog(std::istream& entrada, Game* g)
 	: SceneObject(entrada, g)
 {
 	int l;
-	entrada >> l;
-	game = g;
+	if (!(entrada >> l)) throw FileFormatError("map.txt", g->getArchiveLine(), "Error de lectura sobre las vidas de la tortuga");
+
 	lastPosition = position;
 	texture = g->getTexture(Game::FROG);
 	homesReached = 0;

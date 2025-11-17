@@ -6,15 +6,45 @@
 //
 
 #include "game.h"
+#include "GameError.h"
 #include <fstream>
 #include <iostream>
 using namespace std;
 
+
+void showError(const char* title, const char* msg) {
+	SDL_MessageBoxButtonData buttons[] = {
+		{ SDL_MESSAGEBOX_BUTTON_RETURNKEY_DEFAULT, 0, "OK" }
+	};
+	SDL_MessageBoxData data{
+		SDL_MESSAGEBOX_ERROR,
+		nullptr,
+		title,
+		msg,
+		SDL_arraysize(buttons),
+		buttons,
+		nullptr
+	};
+	SDL_ShowMessageBox(&data, nullptr);
+}
+
 int main(int argc, char* argv[])
 {
-	Game game = Game();
-	game.loadGame();
-	game.run();
+;
 	// TODO: manejar excepciones
+	try {
+		Game game = Game();
+		game.loadGame();
+		game.run();
+	}
+	catch (const GameError& e) {
+		showError("Error", e.what());
+		return 1;
+	}
+	catch (const std::exception& e) {
+		showError("Error", e.what());
+		return 1;
+	}
+
 	return 0;
 }

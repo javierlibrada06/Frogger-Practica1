@@ -1,5 +1,6 @@
 #include "TurtleGroup.h"
 #include "texture.h"
+#include "FileFormatError.h"
 TurtleGroup::TurtleGroup()
 	: Platform()
 {
@@ -13,7 +14,8 @@ TurtleGroup::TurtleGroup(std::istream& entrada, Game* g)
 {
 
 	int n, w;
-	entrada >> n >> w;
+	if (!(entrada >> n)) throw FileFormatError("map.txt", g->getArchiveLine(), "Error de lectura sobre el numero de tortugas del grupo");
+	if (!(entrada >> w)) throw FileFormatError("map.txt", g->getArchiveLine(), "Error de lectura sobre el tipo de grupo tortugas");
 	texture = g->getTexture(Game::TURTLE);
 	numTurtles = n;
 	submersible = w ? 1 : 0;

@@ -137,6 +137,8 @@ private:
 	Wasp* wasp;
 	std::list<It> waspToDelete;
 
+	int ArchiveLine;
+
 	std::vector<std::pair<Point2D<float>, bool> > homeFrogsPos = {
 		std::pair(Point2D<float>(POS_X_HOMEFROG,POS_Y_HOMEFROG), false),
 		std::pair(Point2D<float>(POS_X_HOMEFROG + SEPARATION_HOMEFROG * 1,POS_Y_HOMEFROG), false),
@@ -162,7 +164,9 @@ public:
 	int getRandomRange(int, int);
 	void waspDelete();
 	void confirmReset();
+	int getArchiveLine();
 	void deleteAfter(It);
+	void homeReached(Point2D<float>);
 	void reset();
 
 };
@@ -172,5 +176,6 @@ Game::getTexture(TextureName name) const
 {
 	return textures[name];
 }
+
 
 #endif // GAME_H

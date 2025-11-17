@@ -14,7 +14,6 @@ class InfoBar : public GameObject
 public:
 	InfoBar();
 	InfoBar(Game*, Frog*);
-	//void loadInfoBar(Game*, Frog*);
 	~InfoBar();
 	void update() override;
 	void render() const override;

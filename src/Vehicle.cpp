@@ -2,6 +2,7 @@
 #include "vector2D.h"
 #include "game.h"
 #include "texture.h"
+#include "FileFormatError.h"
 #include <iostream>
 using namespace std;
 
@@ -17,7 +18,7 @@ Vehicle::Vehicle(istream& entrada, Game* g)
 	: Crosser(entrada, g)
 {
 	int type;
-	entrada >> type;
+	if (!(entrada >> type)) throw FileFormatError("map.txt", g->getArchiveLine(), "Error de lectura sobre el tipo de coche");
 
 	switch (type)
 	{

@@ -3,6 +3,7 @@
 #include "vector2D.h"
 #include "game.h"
 #include "texture.h"
+#include "FileFormatError.h"
 #include <iostream>
 // L - 100  60 72.6 1
 
@@ -19,7 +20,8 @@ Log::Log(std::istream& entrada, Game* g)
 	:Platform(entrada, g)
 {
 	int type;
-	entrada >> type;
+	if (!(entrada >> type)) throw FileFormatError("map.txt", g->getArchiveLine(), "Error de lectura sobre el tipo de tronco");
+
 
 	switch (type)
 	{

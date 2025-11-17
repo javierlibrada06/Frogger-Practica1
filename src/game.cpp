@@ -8,18 +8,27 @@
 #include "Frog.h"
 #include "SceneObject.h"
 #include "infoBar.h"
+#include "FileNotFoundError.h"
+#include "FileFormatError.h"
+#include "SDLError.h"
+#include "GameError.h"
 
 #include <string>
 #include <SDL3_image/SDL_image.h>
 #include <fstream>
 #include <vector>
 #include <random>
+#include <sstream>
 
 using namespace std;
 
 // Constantes
 constexpr const char* const WINDOW_TITLE = "Frogger 1.0";
-constexpr const char* const MAP_FILE = "../assets/maps/default.txt";
+constexpr const char* const MAP_FILE = "../assets/maps/";
+constexpr array<const char*, 2> mapList = 
+{	"default.txt" ,
+	"turtles.txt"
+};
 
 // Estructura para especificar las texturas que hay que
 // cargar y el tamaño de su matriz de frames
@@ -58,13 +67,11 @@ Game::Game()
 	                          WINDOW_HEIGHT,
 	                          0);
 
-	if (window == nullptr)
-		throw "window: "s + SDL_GetError();
+	if (window == nullptr) throw SDLError("No se pudo crear la ventana");
 
 	renderer = SDL_CreateRenderer(window, nullptr);
 
-	if (renderer == nullptr)
-		throw "renderer: "s + SDL_GetError();
+	if (renderer == nullptr)  throw SDLError("No se pudo crear el renderer");
 
 	// Carga las texturas al inicio
 	for (size_t i = 0; i < textures.size(); i++) {
@@ -75,8 +82,6 @@ Game::Game()
 	nextWasp = getRandomRange(MIN_WASP_GENERATOR, MAX_WASP_GENERATOR);
 	waspSpawn = SDL_GetTicks();
 
-	// Configura que se pueden utilizar capas translúcidas
-	// SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
 }
 
 Game::~Game()
@@ -163,10 +168,8 @@ Game::handleEvents()
 		if (event.type == SDL_EVENT_QUIT) {
 			exit = true;
 		}
-		/*else if (event.type == SDL_EVENT_KEY_DOWN && event.key.key == SDLK_0) confirmReset();*/
 		frog->handleEvent(event);
 
-		// TODO
 	}
 }
 
@@ -186,44 +189,43 @@ Game::checkCollision(const SDL_FRect& rect) const
 
 void 
 Game::loadGame() {
-	 ifstream inputMap;
-	 inputMap.open(MAP_FILE);
-	 if (!inputMap.is_open()) cout << "No se encuentra el fichero" << endl;
-	 else
-	 {
-		 char c;
-		 while (inputMap >> c) {
+	for (auto name : mapList) {
+		ifstream inputMap;
+		inputMap.open(std::string(MAP_FILE) + name);
+		if (!inputMap.is_open()) throw FileNotFoundError(name);
+		else
+		{
+			std::string l;
+			while (std::getline(inputMap, l)) {
+				ArchiveLine++;
+				std::istringstream inputString(l);
+				char c;
+				if (!(inputString >> c)) throw FileFormatError(name, ArchiveLine, "Error de lectura sobre el tipo de elemento");
+				else
+				{
+					if (c == 'V') sceneObjects.push_back(new Vehicle(inputString, this));
+					else if (c == 'L') sceneObjects.push_back(new Log(inputString, this));
+					else if (c == 'T') sceneObjects.push_back(new TurtleGroup(inputString, this));
+					else if (c == 'F') frog = new Frog(inputString, this);
+					else if (c == '#');
+					else throw FileFormatError(name, ArchiveLine, "Error de lectura sobre el tipo de elemento");
+				}
+			}
+		}
+		inputMap.close();
+	}
 
-			 if (c == 'V') {
-				 Vehicle* v = new Vehicle(inputMap, this);
-				 sceneObjects.push_back(v);
-			 }
-			 else if (c == 'L') {
-				 Log* l = new Log(inputMap, this);
-				 sceneObjects.push_back(l);
-			 }
-			 else if (c == 'T') {
-				 TurtleGroup* t = new TurtleGroup(inputMap, this);
-				 sceneObjects.push_back(t);
-			 }
-			 else if (c == 'F') {
-				 frog = new Frog(inputMap, this);
-			 }
-			 else inputMap.ignore('#', '\n');
-		 }
-		 
-		 inputMap.close();
-	 }
-
+	 // Load InfoBar
 	 infoBar = new InfoBar(this, frog);
 
+	 //Load HomeFrogs
 	 for (int i = 0; i < NUMBER_HFROGS; i++)
 	 {
 		 HomeFrog* homeFrog = new HomeFrog(this, homeFrogsPos[i].first, frog);
 		 sceneObjects.push_back(homeFrog);
 	 }
-	 
 }
+
 
 int 
 Game::getRandomRange(int min, int max) {
@@ -319,4 +321,14 @@ Game::confirmReset() {
 	if (buttonid == 1) {
 		reset();
 	}
+}
+
+void
+Game::homeReached(Point2D<float> position) {
+	homeFrogsPos[position.getX() / POS_X_HOMEFROG].second = true;
+}
+
+int 
+Game::getArchiveLine() {
+	return ArchiveLine;
 }
