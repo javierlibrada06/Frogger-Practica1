@@ -42,18 +42,21 @@ public:
 	static constexpr float SEPARATION_HOMEFROG = 96;
 	// Fin juego fuera pantalla izquierda
 	static constexpr float GAME_END_LEFT = -150.0f;
-	// Fin juego fuera pantalla derecha
+	//// Fin juego fuera pantalla derecha
 	static constexpr float GAME_END_RIGHT = 598.0f;
 
-	// Inicio juego fuera pantalla derecha
+	//// Inicio juego fuera pantalla derecha
 	static constexpr float GAME_START_LEFT = 0.0f;
-	// Inicio juego fuera pantalla derecha
+	//// Inicio juego fuera pantalla derecha
 	static constexpr float GAME_START_RIGHT = 448.0f;
 
 	// Fin pantalla x
 	static constexpr float GAME_SCREENEND_X = 420.0f;
 	// Fin pantalla x
 	static constexpr float GAME_SCREENEND_Y = 402.0f;
+	
+
+
 	// Pos Rana Inicio
 	static constexpr float FROG_INICIO = 205.0f;
 	// Pasos Rana
@@ -106,10 +109,7 @@ public:
 	};
 
 
-	std::list<SceneObject*> sceneObjects;
 	using It = std::list<SceneObject*>::iterator;
-	std::list<It> waspToDelete;
-	void deleteAfter(It);
 	
 
 private:
@@ -123,26 +123,27 @@ private:
 	void waspUpdate();
 
 
+	// Elemento del juego
+	// TODO: añadir atributos para los objetos del juego
+
 	bool exit;
 	float nextWasp;
 	Uint32 waspSpawn;
 
-	// Elemento del juego
-	// TODO: añadir atributos para los objetos del juego
+	std::list<SceneObject*> sceneObjects;
 
-	//std::vector<Vehicle*> vehicles;
-	//std::vector<Log*> logs;
-	std::vector<HomeFrog*> homeFrogs;
-	//std::vector<Wasp*> wasps;
-
-	std::vector<Point2D<float>> homeFrogsPos = {Point2D<float>(POS_X_HOMEFROG,POS_Y_HOMEFROG),
-												Point2D<float>(POS_X_HOMEFROG+SEPARATION_HOMEFROG * 1,POS_Y_HOMEFROG),
-												Point2D<float>(POS_X_HOMEFROG + SEPARATION_HOMEFROG * 2,POS_Y_HOMEFROG),
-												Point2D<float>(POS_X_HOMEFROG + SEPARATION_HOMEFROG * 3,POS_Y_HOMEFROG),
-												Point2D<float>(POS_X_HOMEFROG + SEPARATION_HOMEFROG * 4,POS_Y_HOMEFROG), };
 	Frog* frog;
 	InfoBar* infoBar;
 	Wasp* wasp;
+	std::list<It> waspToDelete;
+
+	std::vector<std::pair<Point2D<float>, bool> > homeFrogsPos = {
+		std::pair(Point2D<float>(POS_X_HOMEFROG,POS_Y_HOMEFROG), false),
+		std::pair(Point2D<float>(POS_X_HOMEFROG + SEPARATION_HOMEFROG * 1,POS_Y_HOMEFROG), false),
+		std::pair(Point2D<float>(POS_X_HOMEFROG + SEPARATION_HOMEFROG * 2,POS_Y_HOMEFROG), false),
+		std::pair(Point2D<float>(POS_X_HOMEFROG + SEPARATION_HOMEFROG * 3,POS_Y_HOMEFROG), false),
+		std::pair(Point2D<float>(POS_X_HOMEFROG + SEPARATION_HOMEFROG * 4,POS_Y_HOMEFROG), false),
+												 };
 
 public:
 	Game();
@@ -156,11 +157,12 @@ public:
 	// Comprueba si hay algún objeto colocado en ese 
 	// ángulo
 	Collision checkCollision(const SDL_FRect& rect) const;
-	void AuxVehicles();
+	
 	void loadGame();
 	int getRandomRange(int, int);
 	void waspDelete();
 	void confirmReset();
+	void deleteAfter(It);
 	void reset();
 
 };

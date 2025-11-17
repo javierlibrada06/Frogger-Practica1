@@ -84,22 +84,14 @@ Game::~Game()
 	for (SceneObject* s : sceneObjects) {
 		delete s;     
 	}
-	sceneObjects.clear();
-	homeFrogs.clear();
 	delete frog;
 	delete infoBar;
 	for (auto t : textures) {
 		delete t;
 	}
 
-	if (renderer) {
-		SDL_DestroyRenderer(renderer);
-		renderer = nullptr;
-	}
-	if (window) {
-		SDL_DestroyWindow(window);
-		window = nullptr;
-	}
+	if (renderer) SDL_DestroyRenderer(renderer);
+	if (window) SDL_DestroyWindow(window);
 
 	SDL_Quit();
 }
@@ -203,23 +195,19 @@ Game::loadGame() {
 		 while (inputMap >> c) {
 
 			 if (c == 'V') {
-				 Vehicle* v = new Vehicle();
-				 v->loadVehicle(inputMap, this);
+				 Vehicle* v = new Vehicle(inputMap, this);
 				 sceneObjects.push_back(v);
 			 }
 			 else if (c == 'L') {
-				 Log* l = new Log();
-				 l->loadLog(inputMap, this);
+				 Log* l = new Log(inputMap, this);
 				 sceneObjects.push_back(l);
 			 }
 			 else if (c == 'T') {
-				 TurtleGroup* t = new TurtleGroup();
-				 t->loadTurtle(inputMap, this);
+				 TurtleGroup* t = new TurtleGroup(inputMap, this);
 				 sceneObjects.push_back(t);
 			 }
 			 else if (c == 'F') {
-				 frog = new Frog();
-				 frog->loadFrog(inputMap, this);
+				 frog = new Frog(inputMap, this);
 			 }
 			 else inputMap.ignore('#', '\n');
 		 }
@@ -227,13 +215,11 @@ Game::loadGame() {
 		 inputMap.close();
 	 }
 
-	 infoBar = new InfoBar();
-	 infoBar->loadInfoBar(this, frog);
+	 infoBar = new InfoBar(this, frog);
 
 	 for (int i = 0; i < NUMBER_HFROGS; i++)
 	 {
-		 HomeFrog* homeFrog = new HomeFrog(this, homeFrogsPos[i], frog);
-		 homeFrogs.push_back(homeFrog);
+		 HomeFrog* homeFrog = new HomeFrog(this, homeFrogsPos[i].first, frog);
 		 sceneObjects.push_back(homeFrog);
 	 }
 	 
@@ -259,22 +245,23 @@ Game::waspUpdate() {
 			float lifeTime = (float)getRandomRange(MIN_WASP_LIFE, MAX_WASP_LIFE);
 			bool encontrado = false;
 			int hf = getRandomRange(0, Game::NUMBER_HFROGS - 1);
+			
 			while (!encontrado)
 			{
-				if (!homeFrogs[hf]->IsActive()) encontrado = true;
+				if (!homeFrogsPos[hf].second) encontrado = true;
 				else {
 					hf++;
 					if (hf > Game::NUMBER_HFROGS - 1) hf = 0;
 				}
 			}
-			Point2D<float> pos = homeFrogs[hf]->GetPosition();
+			Point2D<float> pos = homeFrogsPos[hf].first;
+			
 			pos = pos + Point2D<float>(Game::WASP_OFFSET_X, Game::WASP_OFFSET_Y);
 			Vector2D<float> speed(0, 0);
 			
 			sceneObjects.push_back(nullptr);  // reserva un hueco
 			It it = --sceneObjects.end();
 			*it = new Wasp(this, pos, lifeTime, speed, it);
-			//sceneObjects.push_back(new Wasp(this, pos, lifeTime, speed));
 		}
 	}
 }

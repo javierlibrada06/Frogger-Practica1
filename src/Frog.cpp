@@ -3,16 +3,33 @@
 #include "game.h"
 #include "texture.h"
 Frog::Frog()
+	: SceneObject()
 {
-	game = nullptr;
-	texture = nullptr;
 	rectCollider = { 0,0,0,0 };
-	position = Point2D<float>(0, 0);
 	lastPosition = Point2D<float>(0, 0);
 	lives = 0;
 	homesReached = 0;
 	state = 0;
 	angle = 0;
+}
+
+Frog::Frog(std::istream& entrada, Game* g)
+	: SceneObject(entrada, g)
+{
+	int l;
+	entrada >> l;
+	game = g;
+	lastPosition = position;
+	texture = g->getTexture(Game::FROG);
+	homesReached = 0;
+	lives = l;
+
+	SDL_FRect rect = getBoundingBox();
+	rectCollider.x = rect.x + Game::COLLISION_OFFSET_FROG;
+	rectCollider.y = rect.y + Game::COLLISION_OFFSET_FROG;
+	rectCollider.h = rect.h - Game::COLLISION_OFFSET_SCREEN;
+	rectCollider.w = rect.w - Game::COLLISION_OFFSET_SCREEN;
+
 }
 
 Frog::~Frog()
@@ -97,27 +114,6 @@ Frog::handleEvent(const SDL_Event& event) {
 		}
 	}
 	else state = 0;
-}
-
-void
-Frog::loadFrog(std::istream& entrada, Game* g)
-{
-	float posX, posY;
-	int l;
-	entrada >> posX >> posY >> l;
-	game = g;
-	position = Point2D<float>(posX, posY);
-	lastPosition = Point2D<float>(posX, posY);
-	texture = g->getTexture(Game::FROG);
-	homesReached = 0;
-	lives = l;
-
-	SDL_FRect rect = getBoundingBox();
-	rectCollider.x = rect.x + Game::COLLISION_OFFSET_FROG;
-	rectCollider.y = rect.y + Game::COLLISION_OFFSET_FROG;
-	rectCollider.h = rect.h - Game::COLLISION_OFFSET_SCREEN;
-	rectCollider.w = rect.w - Game::COLLISION_OFFSET_SCREEN;
-
 }
 
 int

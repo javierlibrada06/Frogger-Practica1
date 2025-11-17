@@ -1,13 +1,27 @@
 #include "TurtleGroup.h"
 #include "texture.h"
-TurtleGroup::TurtleGroup() {
-	game = nullptr;
-	texture = nullptr;
-	position = Point2D<float>(0, 0);
+TurtleGroup::TurtleGroup()
+	: Platform()
+{
 	state = 0;
-	speed = Vector2D<float>(0, 0);
 	submersible = false;
 	frameCounter = 0;
+	numTurtles = 0;
+}
+TurtleGroup::TurtleGroup(std::istream& entrada, Game* g) 
+	: Platform(entrada, g)
+{
+
+	int n, w;
+	entrada >> n >> w;
+	texture = g->getTexture(Game::TURTLE);
+	numTurtles = n;
+	submersible = w ? 1 : 0;
+
+	state = 0;
+	frameCounter = 0;
+
+	backJump = 150;
 }
 TurtleGroup::~TurtleGroup() {
 	texture = nullptr;
@@ -54,18 +68,4 @@ TurtleGroup::checkCollision(const SDL_FRect& frog) {
 			i++;
 		}
 	return c;
-}
-
-void 
-TurtleGroup::loadTurtle(std::istream& entrada, Game* g) {
-	float posX, posY;
-	int s, n, waterloggeable;
-	entrada >> posX >> posY >> s >> n >> waterloggeable;
-	game = g;
-	position = Point2D<float>(posX, posY);
-	texture = g->getTexture(Game::TURTLE);
-	speed = Vector2D<float>(s / Game::FRAME_RATE, 0);
-	numTurtles = n;
-
-	submersible = waterloggeable ? 1 : 0;
 }

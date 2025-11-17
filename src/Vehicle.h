@@ -7,7 +7,7 @@ class Vehicle : public Crosser
 {
 public:
 	Vehicle();
-	void loadVehicle(std::istream& entrada, Game* g);
+	Vehicle(std::istream& entrada, Game* g);
 	~Vehicle();
 	Game::Collision checkCollision(const SDL_FRect& frog);
 };

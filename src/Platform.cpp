@@ -1,6 +1,12 @@
 #include "Platform.h"
 #include "game.h"
 
+Platform::Platform()
+	: Crosser(){ }
+
+Platform::Platform(std::istream& entrada, Game* g)
+	: Crosser(entrada, g){ }
+
 Game::Collision Platform::checkCollision(const SDL_FRect& frog)
 {
 	Game::Collision collision;

@@ -6,26 +6,18 @@
 using namespace std;
 
 Vehicle::Vehicle()
+	:Crosser()
 {
 	game = nullptr;
 	texture = nullptr;
 	speed = Vector2D<float>(0, 0);
 	position = Point2D<float>(0, 0);
 }
-Vehicle::~Vehicle()
+Vehicle::Vehicle(istream& entrada, Game* g)
+	: Crosser(entrada, g)
 {
-	texture = nullptr;
-	game = nullptr;
-}
-void 
-Vehicle::loadVehicle(istream& entrada, Game* g)
-{
-	 float posX, posY, s;
-	 int type;
-	entrada >> posX >> posY >> s >> type;
-	speed = Vector2D<float>(s / Game::FRAME_RATE, 0);
-	game = g;
-	position = Point2D<float>(posX,posY);
+	int type;
+	entrada >> type;
 
 	switch (type)
 	{
@@ -35,6 +27,13 @@ Vehicle::loadVehicle(istream& entrada, Game* g)
 	case 4: texture = game->getTexture(Game::CAR4); break;
 	case 5: texture = game->getTexture(Game::CAR5); break;
 	}
+
+	backJump = 0;
+}
+Vehicle::~Vehicle()
+{
+	texture = nullptr;
+	game = nullptr;
 }
 Game::Collision Vehicle::checkCollision(const SDL_FRect& frog) 
 {

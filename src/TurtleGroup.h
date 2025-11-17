@@ -9,10 +9,10 @@ class TurtleGroup : public Platform
 
 public:
 	TurtleGroup();
+	TurtleGroup(std::istream&, Game*);
 	~TurtleGroup();
 	void update();
 	void render() const override;
 	Game::Collision checkCollision(const SDL_FRect&) override;
-	void loadTurtle(std::istream&, Game*);
 };
 

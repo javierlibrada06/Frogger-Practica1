@@ -7,7 +7,9 @@ protected:
 	Point2D<float> position;
 	Texture* texture;
 
-public:
+public:	
+	SceneObject();
+	SceneObject(std::istream&, Game*);
 	virtual ~SceneObject() = default;
 	void render() const override;
 	virtual Game::Collision checkCollision(const SDL_FRect& other) = 0;

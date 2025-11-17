@@ -12,11 +12,11 @@ class Frog : public SceneObject
 	int state, angle;
 public:
 	Frog();
+	Frog(std::istream&, Game*);
 	~Frog();
 	void update();
 	void render() const override;
 	void handleEvent(const SDL_Event&);
-	void loadFrog(std::istream&, Game*);
 	int getLives() const;
 	int getHomesReached() const;
 	void homeReached();

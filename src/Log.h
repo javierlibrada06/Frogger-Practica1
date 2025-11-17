@@ -7,7 +7,7 @@ class Log : public Platform
 {
 	public:
 	Log();
-	void loadLog(std::istream& entrada, Game* g);
+	Log(std::istream& entrada, Game* g);
 	~Log();
 	Game::Collision checkCollision(const SDL_FRect&);
 };

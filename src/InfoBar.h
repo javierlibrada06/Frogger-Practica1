@@ -13,7 +13,8 @@ class InfoBar : public GameObject
 	Texture* texture;
 public:
 	InfoBar();
-	void loadInfoBar(Game*, Frog*);
+	InfoBar(Game*, Frog*);
+	//void loadInfoBar(Game*, Frog*);
 	~InfoBar();
 	void update() override;
 	void render() const override;
