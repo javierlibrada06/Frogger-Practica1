@@ -6,4 +6,3 @@ class SDLError : public GameError {
 public:
     SDLError(const std::string& msg);
 };
-

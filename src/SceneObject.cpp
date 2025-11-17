@@ -9,11 +9,11 @@ SceneObject::SceneObject()
 		position = Point2D<float>(0, 0);
 		texture = nullptr;
 }
-SceneObject::SceneObject(std::istream& entrada, Game* g) 
+SceneObject::SceneObject(std::istream& entrada, Game* g, std::string name) 
 	: GameObject(g)
 {
 	int posX, posY;
-	if (!(entrada >> posX >> posY)) throw FileFormatError("map.txt", g->getArchiveLine(), "Error de lectura sobre la posicion");
+	if (!(entrada >> posX >> posY)) throw FileFormatError(name, g->getArchiveLine(), "Error de lectura sobre la posicion");
 
 	position = Point2D<float>(posX, posY);
 }

@@ -12,7 +12,7 @@ class Frog : public SceneObject
 	int state, angle;
 public:
 	Frog();
-	Frog(std::istream&, Game*);
+	Frog(std::istream&, Game*, std::string);
 	~Frog();
 	void update();
 	void render() const override;

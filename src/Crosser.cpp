@@ -10,12 +10,13 @@ Crosser::Crosser()
 	speed = Vector2D<float>(0, 0);
 	backJump = 0;
 }
-Crosser::Crosser(std::istream& entrada, Game* g)
-	: SceneObject(entrada, g)
+Crosser::Crosser(std::istream& entrada, Game* g, std::string name)
+	: SceneObject(entrada, g, name)
 {
 	float s;
-	if (!(entrada >> s)) throw FileFormatError("map.txt", g->getArchiveLine(), "Error de lectura sobre la velocidad");
+	if (!(entrada >> s)) throw FileFormatError(name, g->getArchiveLine(), "Error de lectura sobre la velocidad");
 	speed = Vector2D<float>(s / Game::FRAME_RATE, 0);
+	backJump = 0;
 }
 Crosser::~Crosser() {
 

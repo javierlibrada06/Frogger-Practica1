@@ -9,13 +9,13 @@ TurtleGroup::TurtleGroup()
 	frameCounter = 0;
 	numTurtles = 0;
 }
-TurtleGroup::TurtleGroup(std::istream& entrada, Game* g) 
-	: Platform(entrada, g)
+TurtleGroup::TurtleGroup(std::istream& entrada, Game* g, std::string name)
+	: Platform(entrada, g, name)
 {
 
 	int n, w;
-	if (!(entrada >> n)) throw FileFormatError("map.txt", g->getArchiveLine(), "Error de lectura sobre el numero de tortugas del grupo");
-	if (!(entrada >> w)) throw FileFormatError("map.txt", g->getArchiveLine(), "Error de lectura sobre el tipo de grupo tortugas");
+	if (!(entrada >> n)) throw FileFormatError(name, g->getArchiveLine(), "Error de lectura sobre el numero de tortugas del grupo");
+	if (!(entrada >> w)) throw FileFormatError(name, g->getArchiveLine(), "Error de lectura sobre el tipo de grupo tortugas");
 	texture = g->getTexture(Game::TURTLE);
 	numTurtles = n;
 	submersible = w ? 1 : 0;

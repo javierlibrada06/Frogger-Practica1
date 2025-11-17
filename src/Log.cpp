@@ -16,8 +16,8 @@ Log::Log()
 	position = Point2D<float>(0,0);
 }
 
-Log::Log(std::istream& entrada, Game* g)
-	:Platform(entrada, g)
+Log::Log(std::istream& entrada, Game* g, std::string name)
+	:Platform(entrada, g, name)
 {
 	int type;
 	if (!(entrada >> type)) throw FileFormatError("map.txt", g->getArchiveLine(), "Error de lectura sobre el tipo de tronco");

@@ -14,11 +14,11 @@ Frog::Frog()
 	angle = 0;
 }
 
-Frog::Frog(std::istream& entrada, Game* g)
-	: SceneObject(entrada, g)
+Frog::Frog(std::istream& entrada, Game* g, std::string name)
+	: SceneObject(entrada, g, name)
 {
 	int l;
-	if (!(entrada >> l)) throw FileFormatError("map.txt", g->getArchiveLine(), "Error de lectura sobre las vidas de la tortuga");
+	if (!(entrada >> l)) throw FileFormatError(name, g->getArchiveLine(), "Error de lectura sobre las vidas de la tortuga");
 
 	lastPosition = position;
 	texture = g->getTexture(Game::FROG);

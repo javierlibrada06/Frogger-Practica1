@@ -8,7 +8,7 @@ protected:
 	int backJump;
 public:
 	Crosser();
-	Crosser(std::istream&, Game*);
+	Crosser(std::istream&, Game*, std::string);
 	~Crosser();
 	void update() override;
 };

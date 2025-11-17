@@ -9,7 +9,7 @@ class TurtleGroup : public Platform
 
 public:
 	TurtleGroup();
-	TurtleGroup(std::istream&, Game*);
+	TurtleGroup(std::istream&, Game*, std::string);
 	~TurtleGroup();
 	void update();
 	void render() const override;

@@ -4,8 +4,8 @@
 Platform::Platform()
 	: Crosser(){ }
 
-Platform::Platform(std::istream& entrada, Game* g)
-	: Crosser(entrada, g){ }
+Platform::Platform(std::istream& entrada, Game* g, std::string name)
+	: Crosser(entrada, g, name){ }
 
 Game::Collision Platform::checkCollision(const SDL_FRect& frog)
 {

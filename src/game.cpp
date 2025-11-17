@@ -197,19 +197,20 @@ Game::loadGame() {
 		{
 			std::string l;
 			while (std::getline(inputMap, l)) {
-				ArchiveLine++;
+				ArchiveLine = 1;
 				std::istringstream inputString(l);
 				char c;
 				if (!(inputString >> c)) throw FileFormatError(name, ArchiveLine, "Error de lectura sobre el tipo de elemento");
 				else
 				{
-					if (c == 'V') sceneObjects.push_back(new Vehicle(inputString, this));
-					else if (c == 'L') sceneObjects.push_back(new Log(inputString, this));
-					else if (c == 'T') sceneObjects.push_back(new TurtleGroup(inputString, this));
-					else if (c == 'F') frog = new Frog(inputString, this);
+					if (c == 'V') sceneObjects.push_back(new Vehicle(inputString, this, name));
+					else if (c == 'L') sceneObjects.push_back(new Log(inputString, this, name));
+					else if (c == 'T') sceneObjects.push_back(new TurtleGroup(inputString, this, name));
+					else if (c == 'F') frog = new Frog(inputString, this, name);
 					else if (c == '#');
 					else throw FileFormatError(name, ArchiveLine, "Error de lectura sobre el tipo de elemento");
 				}
+				ArchiveLine++;
 			}
 		}
 		inputMap.close();

@@ -14,11 +14,11 @@ Vehicle::Vehicle()
 	speed = Vector2D<float>(0, 0);
 	position = Point2D<float>(0, 0);
 }
-Vehicle::Vehicle(istream& entrada, Game* g)
-	: Crosser(entrada, g)
+Vehicle::Vehicle(istream& entrada, Game* g, std::string name)
+	: Crosser(entrada, g, name)
 {
 	int type;
-	if (!(entrada >> type)) throw FileFormatError("map.txt", g->getArchiveLine(), "Error de lectura sobre el tipo de coche");
+	if (!(entrada >> type)) throw FileFormatError(name, g->getArchiveLine(), "Error de lectura sobre el tipo de coche");
 
 	switch (type)
 	{

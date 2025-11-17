@@ -9,7 +9,7 @@ protected:
 
 public:	
 	SceneObject();
-	SceneObject(std::istream&, Game*);
+	SceneObject(std::istream&, Game*, std::string);
 	virtual ~SceneObject() = default;
 	void render() const override;
 	virtual Game::Collision checkCollision(const SDL_FRect& other) = 0;
