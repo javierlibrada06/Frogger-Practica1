@@ -150,11 +150,10 @@ Game::handleEvents()
 void
 Game::update()
 {
-
+	waspUpdate(); // Se actualizan las avispas (creación)
 	for (auto it = sceneObjects.begin(); it != sceneObjects.end(); ++it) (*it)->update(); //Update de todos los sceneObjects
 	frog->update();
 	infoBar->update();
-	waspUpdate(); // Se actualizan las avispas (creación)
 	waspDelete(); // Aqui se eliminan todas las avispas muertas
 }
 
@@ -193,9 +192,9 @@ Game::loadGame() {
 		if (!inputMap.is_open()) throw FileNotFoundError(name);
 		else
 		{
+			ArchiveLine = 1;
 			std::string l;
 			while (std::getline(inputMap, l)) {
-				ArchiveLine = 1;
 				std::istringstream inputString(l);
 				char c;
 				if (!(inputString >> c)) throw FileFormatError(name, ArchiveLine, "Error de lectura sobre el tipo de elemento");
@@ -251,7 +250,8 @@ Game::getRandomRange(int min, int max) {
 // Condicion de victoria
 void
 Game::homeReached(Point2D<float> position) {
-	homeFrogsPos[position.getX() / POS_X_HOMEFROG].second = true;
+	int hf = position.getX() / SEPARATION_HOMEFROG;
+	homeFrogsPos[hf].second = true;
 }
 
 // Excepciones (linea de archivo)

@@ -147,7 +147,6 @@ private:
 	void handleEvents();
 	void waspUpdate();
 	int getRandomRange(int, int);
-	void homeReached(Point2D<float>);
 	void waspDelete();
 	void reset();
 								
@@ -166,6 +165,7 @@ public:
 	
 	void loadGame();
 	int getArchiveLine() const;
+	void homeReached(Point2D<float>);
 	void deleteAfter(It);
 	void confirmReset();
 

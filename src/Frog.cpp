@@ -73,6 +73,7 @@ Frog::update() {
 	}
 	else if (collision.type == Game::HOME) 
 	{
+		game->homeReached(position);
 		position = Point2D<float>(Game::FROG_INICIO, Game::GAME_SCREENEND_Y);
 		lastPosition = Point2D<float>(Game::FROG_INICIO, Game::GAME_SCREENEND_Y);
 		angle = 0;
@@ -136,5 +137,5 @@ int
 Frog::getLives() const { return lives; }
 
 void
-Frog::homeReached() { homesReached++; }
+Frog::homeReached() { homesReached++;}
 
