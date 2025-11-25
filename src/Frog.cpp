@@ -4,17 +4,6 @@
 #include "texture.h"
 #include "FileFormatError.h"
 
-Frog::Frog()
-	: SceneObject()
-{
-	rectCollider = { 0,0,0,0 };
-	lastPosition = Point2D<float>(0, 0);
-	lives = 0;
-	homesReached = 0;
-	state = 0;
-	angle = 0;
-}
-
 Frog::Frog(std::istream& entrada, Game* g, std::string name)
 	: SceneObject(entrada, g, name)
 {

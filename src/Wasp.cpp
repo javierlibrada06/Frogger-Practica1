@@ -5,11 +5,6 @@
 #include "texture.h"
 #include <iostream>
 
-Wasp::Wasp() {
-	liveSpawn = 0;
-	speed = Vector2D<float>(0, 0);
-}
-
 Wasp::Wasp(Game* g, Point2D<float> pos, int l, Vector2D<float> s, Game::It it) {
 	game = g;
 	texture = g->getTexture(Game::WASP);

@@ -16,7 +16,6 @@ class Frog : public SceneObject
 	SDL_FRect rectCollider;
 	int state, angle;
 public:
-	Frog();
 	Frog(std::istream&, Game*, std::string);
 	~Frog();
 	void update() override;

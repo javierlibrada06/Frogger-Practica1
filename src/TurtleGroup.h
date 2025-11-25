@@ -11,7 +11,6 @@ class TurtleGroup : public Platform
 	float frameCounter;
 
 public:
-	TurtleGroup();
 	TurtleGroup(std::istream&, Game*, std::string);
 	~TurtleGroup();
 	void update() override;

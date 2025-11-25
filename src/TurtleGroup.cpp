@@ -2,15 +2,6 @@
 #include "texture.h"
 #include "FileFormatError.h"
 
-TurtleGroup::TurtleGroup()
-	: Platform()
-{
-	state = 0;
-	submersible = false;
-	frameCounter = 0;
-	numTurtles = 0;
-}
-
 TurtleGroup::TurtleGroup(std::istream& entrada, Game* g, std::string name)
 	: Platform(entrada, g, name)
 {

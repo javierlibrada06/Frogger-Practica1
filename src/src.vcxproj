@@ -95,12 +95,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Crosser.cpp" />
+    <ClCompile Include="EventHandler.cpp" />
     <ClCompile Include="FileFormatError.cpp" />
     <ClCompile Include="FileNotFoundError.cpp" />
     <ClCompile Include="Frog.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="GameError.cpp" />
-    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GameState.cpp" />
     <ClCompile Include="HomeFrog.cpp" />
     <ClCompile Include="InfoBar.cpp" />
     <ClCompile Include="Log.cpp" />
@@ -115,12 +116,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Crosser.h" />
+    <ClInclude Include="EventHandler.h" />
     <ClInclude Include="FileFormatError.h" />
     <ClInclude Include="FileNotFoundError.h" />
     <ClInclude Include="Frog.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="GameError.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GameState.h" />
     <ClInclude Include="HomeFrog.h" />
     <ClInclude Include="InfoBar.h" />
     <ClInclude Include="Log.h" />

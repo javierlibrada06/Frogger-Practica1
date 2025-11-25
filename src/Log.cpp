@@ -6,15 +6,6 @@
 #include "FileFormatError.h"
 #include <iostream>
 
-Log::Log()
-	: Platform()
-{
-	game = nullptr;
-	texture = nullptr;
-	speed = Vector2D<float>(0, 0);
-	position = Point2D<float>(0,0);
-}
-
 Log::Log(std::istream& entrada, Game* g, std::string name)
 	:Platform(entrada, g, name)
 {

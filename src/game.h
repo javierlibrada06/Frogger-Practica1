@@ -124,7 +124,7 @@ private:
 
 	std::list<SceneObject*> sceneObjects;
 
-	Frog* frog;
+	It frog;
 	InfoBar* infoBar;
 	Wasp* wasp;
 	std::list<It> waspToDelete;

@@ -6,15 +6,6 @@
 #include <iostream>
 using namespace std;
 
-Vehicle::Vehicle()
-	:Crosser()
-{
-	game = nullptr;
-	texture = nullptr;
-	speed = Vector2D<float>(0, 0);
-	position = Point2D<float>(0, 0);
-}
-
 Vehicle::Vehicle(istream& entrada, Game* g, std::string name)
 	: Crosser(entrada, g, name)
 {

@@ -2,15 +2,6 @@
 #include "Frog.h"
 #include "game.h"
 
-InfoBar::InfoBar() {
-	frog = nullptr;
-	rect = {0,0,0,0};
-	texture = nullptr;
-	livesRemaining = 0;
-	livesSpent = 0;
-	game = nullptr;
-}
-
 InfoBar::InfoBar(Game* g, Frog* f) {
 	frog = f;
 	game = g;

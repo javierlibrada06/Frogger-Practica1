@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include "GameObject.h"
 #include "vector2D.h"
 class SceneObject : public GameObject

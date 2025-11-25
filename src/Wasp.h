@@ -12,7 +12,6 @@ class Wasp : public SceneObject
 	Game::It waspIterator;
 
 public:
-	Wasp();
 	Wasp(Game*, Point2D<float>, int, Vector2D<float>, Game::It);
 	~Wasp();
 	void update();

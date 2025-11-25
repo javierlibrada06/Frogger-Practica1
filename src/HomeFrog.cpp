@@ -4,15 +4,6 @@
 #include "game.h"
 #include "texture.h"
 
-HomeFrog::HomeFrog()
-{
-	frog = nullptr;
-	game = nullptr;
-	position = Point2D<float>(0,0);
-	texture = nullptr;
-	active = false;
-}
-
 HomeFrog::HomeFrog(Game* g, Point2D<float> pos, Frog* f)
 {
 	frog = f;
@@ -24,7 +15,7 @@ HomeFrog::HomeFrog(Game* g, Point2D<float> pos, Frog* f)
 
 HomeFrog::~HomeFrog() {
 	texture = nullptr;
-	game = nullptr;
+	game = nullptr;    
 }
 
 void 

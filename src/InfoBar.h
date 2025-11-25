@@ -19,7 +19,6 @@ class InfoBar : public GameObject
 	Texture* texture;
 
 public:
-	InfoBar();
 	InfoBar(Game*, Frog*);
 	~InfoBar();
 	void update() override;

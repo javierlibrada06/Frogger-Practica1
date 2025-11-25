@@ -1,8 +1,5 @@
-﻿#include "Platform.h"
+#include "Platform.h"
 #include "game.h"
-
-Platform::Platform()
-	: Crosser(){ }
 
 Platform::Platform(std::istream& entrada, Game* g, std::string name)
 	: Crosser(entrada, g, name){ }

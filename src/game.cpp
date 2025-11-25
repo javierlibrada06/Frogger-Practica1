@@ -88,12 +88,10 @@ Game::~Game()
 	for (SceneObject* s : sceneObjects) {
 		delete s;     
 	}
-	delete frog;
-	delete infoBar;
 	for (auto t : textures) {
 		delete t;
 	}
-
+	delete infoBar;
 	if (renderer) SDL_DestroyRenderer(renderer);
 	if (window) SDL_DestroyWindow(window);
 	SDL_Quit();
@@ -111,12 +109,12 @@ Game::run()
 
 		// TODO: implementar bucle del juego
 		frameStart = SDL_GetTicks();
-		if (frog->getHomesReached() == NUMBER_HFROGS)
+		if ((static_cast<Frog*>(*frog))->getHomesReached() == NUMBER_HFROGS)
 		{
 			cout << "Has alcanzado todos los nidos" << endl;
 			exit = true;
 		}
-		else if (frog->getLives() == 0)
+		else if ((static_cast<Frog*>(*frog))->getLives() == 0)
 		{
 			cout << "Te has quedado sin vidas (0/3)" << endl;
 			exit = true;
@@ -143,7 +141,7 @@ Game::handleEvents()
 		if (event.type == SDL_EVENT_QUIT) {
 			exit = true;
 		}
-		frog->handleEvent(event);
+		(static_cast<Frog*>(*frog))->handleEvent(event);
 	}
 }
 
@@ -152,7 +150,6 @@ Game::update()
 {
 	waspUpdate(); // Se actualizan las avispas (creación)
 	for (auto it = sceneObjects.begin(); it != sceneObjects.end(); ++it) (*it)->update(); //Update de todos los sceneObjects
-	frog->update();
 	infoBar->update();
 	waspDelete(); // Aqui se eliminan todas las avispas muertas
 }
@@ -165,7 +162,6 @@ Game::render() const
 	textures[Game::BACKGROUND]->render();
 
 	for (auto it = sceneObjects.begin(); it != sceneObjects.end(); ++it) (*it)->render();
-	frog->render();
 	infoBar->render();
 	SDL_RenderPresent(renderer);
 }
@@ -203,7 +199,9 @@ Game::loadGame() {
 					if (c == 'V') sceneObjects.push_back(new Vehicle(inputString, this, name));
 					else if (c == 'L') sceneObjects.push_back(new Log(inputString, this, name));
 					else if (c == 'T') sceneObjects.push_back(new TurtleGroup(inputString, this, name));
-					else if (c == 'F') frog = new Frog(inputString, this, name);
+					else if (c == 'F') {  sceneObjects.push_back(new Frog(inputString, this, name));
+					frog = --sceneObjects.end();
+					}
 					else if (c == '#');
 					else throw FileFormatError(name, ArchiveLine, "Error de lectura sobre el tipo de elemento");
 				}
@@ -214,12 +212,12 @@ Game::loadGame() {
 	}
 
 	 // Load InfoBar
-	 infoBar = new InfoBar(this, frog);
+	infoBar = new InfoBar(this, ((static_cast<Frog*>(*frog))));
 
 	 //Load HomeFrogs
 	 for (int i = 0; i < NUMBER_HFROGS; i++)
 	 {
-		 HomeFrog* homeFrog = new HomeFrog(this, homeFrogsPos[i].first, frog);
+		 HomeFrog* homeFrog = new HomeFrog(this, homeFrogsPos[i].first, (static_cast<Frog*>(*frog)));
 		 sceneObjects.push_back(homeFrog);
 	 }
 }
@@ -230,9 +228,8 @@ Game::reset() {
 	for (SceneObject* s : sceneObjects) {
 		delete s;
 	}
-	sceneObjects.clear();
-	delete frog;
 	delete infoBar;
+	sceneObjects.clear();
 	loadGame();
 }
 
@@ -265,7 +262,7 @@ Game::waspUpdate() {
 	if (SDL_GetTicks() - waspSpawn >= nextWasp)
 	{
 		waspSpawn = SDL_GetTicks();
-		if (frog->getHomesReached() != Game::NUMBER_HFROGS - 1)
+		if ((static_cast<Frog*>(*frog))->getHomesReached() != Game::NUMBER_HFROGS - 1)
 		{
 			// Genera nueva avispa
 			nextWasp = (float)getRandomRange(MIN_WASP_GENERATOR, MAX_WASP_GENERATOR);
