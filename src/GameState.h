@@ -13,6 +13,7 @@ class GameState
 
 public:
 	GameState();
+	GameState(Game* g) : game(g) {};
 	~GameState() = default;
 
 	void update();
@@ -20,6 +21,7 @@ public:
 	void handleEvent();
 	void addEventListener();
 	void addObject();
+	Game getGame() const;
 
 };
 

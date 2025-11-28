@@ -95,6 +95,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Crosser.cpp" />
+    <ClCompile Include="EndState.cpp" />
     <ClCompile Include="EventHandler.cpp" />
     <ClCompile Include="FileFormatError.cpp" />
     <ClCompile Include="FileNotFoundError.cpp" />
@@ -104,9 +105,13 @@
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="HomeFrog.cpp" />
     <ClCompile Include="InfoBar.cpp" />
+    <ClCompile Include="Label.cpp" />
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MainMenuState.cpp" />
+    <ClCompile Include="PauseState.cpp" />
     <ClCompile Include="Platform.cpp" />
+    <ClCompile Include="PlayState.cpp" />
     <ClCompile Include="SceneObject.cpp" />
     <ClCompile Include="SDLError.cpp" />
     <ClCompile Include="texture.cpp" />
@@ -116,6 +121,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Crosser.h" />
+    <ClInclude Include="EndState.h" />
     <ClInclude Include="EventHandler.h" />
     <ClInclude Include="FileFormatError.h" />
     <ClInclude Include="FileNotFoundError.h" />
@@ -126,8 +132,12 @@
     <ClInclude Include="GameState.h" />
     <ClInclude Include="HomeFrog.h" />
     <ClInclude Include="InfoBar.h" />
+    <ClInclude Include="Label.h" />
     <ClInclude Include="Log.h" />
+    <ClInclude Include="MainMenuState.h" />
+    <ClInclude Include="PauseState.h" />
     <ClInclude Include="Platform.h" />
+    <ClInclude Include="PlayState.h" />
     <ClInclude Include="SceneObject.h" />
     <ClInclude Include="SDLError.h" />
     <ClInclude Include="texture.h" />

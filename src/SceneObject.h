@@ -11,7 +11,7 @@ public:
 	SceneObject();
 	SceneObject(std::istream&, Game*, std::string);
 	virtual ~SceneObject() = default;
-	void render() const override;
+	void render() const;
 	virtual Game::Collision checkCollision(const SDL_FRect& other) = 0;
 protected:
 	SDL_FRect getBoundingBox() const;
