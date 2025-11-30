@@ -5,7 +5,7 @@ class GameObject
 protected:
 	Game* game;
 public:
-	GameObject() {};
+	GameObject() : game(nullptr) {};
 	GameObject(Game* g) : game(g) {};
 	virtual ~GameObject() = default;
 	virtual void render() const = 0;

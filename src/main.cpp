@@ -7,6 +7,8 @@
 
 #include "game.h"
 #include "GameError.h"
+#include "SDLApplication.h"
+#include "PlayState.h"
 #include <fstream>
 #include <iostream>
 using namespace std;
@@ -33,8 +35,13 @@ int main(int argc, char* argv[])
 ;
 	// TODO: manejar excepciones
 	try {
-		Game game = Game();
+		/*Game game = Game();
 		game.loadGame();
+		game.run();*/
+
+		SDLApplication game = SDLApplication();
+		auto playState = std::make_shared<PlayState>(&game, "default.txt");
+		game.pushState(playState);
 		game.run();
 	}
 	catch (const GameError& e) {

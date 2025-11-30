@@ -1,27 +1,24 @@
-#include <list>
-#include "GameObject.h"
-#include "EventHandler.h"
-#include "Game.h"
 #pragma once
+#include <SDL3/SDL.h>
 
-class GameState
-{
-	Game* game;
-	std::list<GameObject*> gameObjects;
-	std::list<EventHandler*> eventHandlers;
-	//std::list<DelayedCallBack> delayedCallBacks;
+class SDLApplication; 
+
+class GameState {
+protected:
+	SDLApplication* game;
 
 public:
-	GameState();
-	GameState(Game* g) : game(g) {};
-	~GameState() = default;
+	GameState(SDLApplication* g) : game(g) {}
+	virtual ~GameState() = default;
 
-	void update();
-	void render() const;
-	void handleEvent();
-	void addEventListener();
-	void addObject();
-	Game getGame() const;
+	virtual void handleEvent(SDL_Event& event) = 0;
+	virtual void update() = 0;
+	virtual void render() const = 0;
 
+	virtual void onEnter() {}
+	virtual void onExit() {}
+
+	SDLApplication* getGame() const { return game; }
 };
+
 

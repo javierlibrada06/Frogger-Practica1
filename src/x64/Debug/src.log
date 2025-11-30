@@ -1,2 +1,7 @@
-﻿  gameStateMachine.cpp
+﻿  PlayState.cpp
+  SDLApplication.cpp
+  gameStateMachine.cpp
+  main.cpp
+C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\src\SDLApplication.cpp(75,28): warning C4244: '=': conversión de 'Uint64' a 'Uint32'; posible pérdida de datos
+C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\src\SDLApplication.cpp(81,30): warning C4244: '=': conversión de 'Uint64' a 'Uint32'; posible pérdida de datos
   src.vcxproj -> C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\bin\srcDebug.exe
