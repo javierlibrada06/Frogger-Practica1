@@ -103,6 +103,7 @@
     <ClCompile Include="game.cpp" />
     <ClCompile Include="GameError.cpp" />
     <ClCompile Include="GameState.cpp" />
+    <ClCompile Include="gameStateMachine.cpp" />
     <ClCompile Include="HomeFrog.cpp" />
     <ClCompile Include="InfoBar.cpp" />
     <ClCompile Include="Label.cpp" />
@@ -130,6 +131,7 @@
     <ClInclude Include="GameError.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameState.h" />
+    <ClInclude Include="gameStateMachine.h" />
     <ClInclude Include="HomeFrog.h" />
     <ClInclude Include="InfoBar.h" />
     <ClInclude Include="Label.h" />

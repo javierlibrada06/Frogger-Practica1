@@ -1,4 +1,2 @@
-﻿  Label.cpp
-C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\src\Label.cpp(20,33): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\src\Label.cpp(21,34): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+﻿  gameStateMachine.cpp
   src.vcxproj -> C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\bin\srcDebug.exe
