@@ -15,11 +15,11 @@ class InfoBar : public GameObject
 	int livesSpent;
 	SDL_FRect rect;
 	Frog* frog;
-	Game* game;
+	GameState* game;
 	Texture* texture;
 
 public:
-	InfoBar(Game*, Frog*);
+	InfoBar(GameState*, Frog*);
 	~InfoBar();
 	void update() override;
 	void render() const override;

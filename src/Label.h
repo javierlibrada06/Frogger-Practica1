@@ -8,7 +8,7 @@ class Label : public GameObject
 	
 public:
 	Label();
-	Label(Game*);
+	Label(GameState*);
 	~Label();
 	void render() const;
 	SDL_FRect getBoundingBox() const;

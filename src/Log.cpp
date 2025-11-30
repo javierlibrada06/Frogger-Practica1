@@ -1,12 +1,13 @@
 #include "Log.h"
 #include "Vehicle.h"
 #include "vector2D.h"
-#include "game.h"
+#include "PlayState.h"
 #include "texture.h"
+#include "Crosser.h"
 #include "FileFormatError.h"
 #include <iostream>
 
-Log::Log(std::istream& entrada, Game* g, std::string name)
+Log::Log(std::istream& entrada, PlayState* g, std::string name)
 	:Platform(entrada, g, name)
 {
 	int type;
@@ -15,8 +16,8 @@ Log::Log(std::istream& entrada, Game* g, std::string name)
 
 	switch (type)
 	{
-	case 0: texture = g->getTexture(Game::LOG1); break;
-	case 1: texture = g->getTexture(Game::LOG2); break;
+	case 0: texture = game->getGame()->getTexture(SDLApplication::LOG1); break;
+	case 1: texture = game->getGame()->getTexture(SDLApplication::LOG2); break;
 	}
 
 	backJump = 0;
@@ -29,13 +30,14 @@ Log::~Log()
 	game = nullptr;
 }
 
-Game::Collision Log::checkCollision(const SDL_FRect& frog)
+PlayState::Collision 
+Log::checkCollision(const SDL_FRect& frog)
 {
-	Game::Collision collision;
-	collision.type = Game::NONE;
+	PlayState::Collision collision;
+	collision.type = PlayState::NONE;
 	SDL_FRect rect = getBoundingBox();
 	if (SDL_HasRectIntersectionFloat(&frog, &rect)){
-		collision.type = Game::PLATFORM;
+		collision.type = PlayState::PLATFORM;
 		collision.speed = speed;
 	}
 	return collision;

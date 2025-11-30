@@ -1,5 +1,5 @@
 #include "SceneObject.h"
-#include "GameObject.h"
+#include "PlayState.h"
 #include "texture.h"
 #include "FileFormatError.h"
 
@@ -9,13 +9,14 @@ SceneObject::SceneObject()
 		position = Point2D<float>(0, 0);
 		texture = nullptr;
 }
-SceneObject::SceneObject(std::istream& entrada, Game* g, std::string name) 
+SceneObject::SceneObject(std::istream& entrada, PlayState* g, std::string name)
 	: GameObject(g)
 {
 	int posX, posY;
 	if (!(entrada >> posX >> posY)) throw FileFormatError(name, g->getArchiveLine(), "Error de lectura sobre la posicion");
 
 	position = Point2D<float>(posX, posY);
+	play = g;
 }
 
 void

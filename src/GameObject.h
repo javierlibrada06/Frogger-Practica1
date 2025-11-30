@@ -1,12 +1,12 @@
 #pragma once
-#include "game.h"
+#include "SDLApplication.h"
 class GameObject
 {
 protected:
-	Game* game;
+	GameState* game;
 public:
 	GameObject() : game(nullptr) {};
-	GameObject(Game* g) : game(g) {};
+	GameObject(GameState* g) : game(g) {};
 	virtual ~GameObject() = default;
 	virtual void render() const = 0;
 	virtual void update() = 0;

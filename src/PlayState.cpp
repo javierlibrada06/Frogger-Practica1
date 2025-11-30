@@ -105,18 +105,18 @@ PlayState::loadMap() {
                 std::istringstream inputString(l);
                 char c;
                 if (!(inputString >> c)) throw FileFormatError(mapFile, ArchiveLine, "Error de lectura sobre el tipo de elemento");
-                //else
-                //{
-                //    if (c == 'V') //sceneObjects.push_back(new Vehicle(inputString, this, mapFile));
-                //    else if (c == 'L') sceneObjects.push_back(new Log(inputString, this, mapFile));
-                //    else if (c == 'T') sceneObjects.push_back(new TurtleGroup(inputString, this, mapFile));
-                //    else if (c == 'F') {
-                //        sceneObjects.push_back(new Frog(inputString, this, mapFile));
-                //        frog = --sceneObjects.end();
-                //    }
-                //    else if (c == '#');
-                //    else throw FileFormatError(mapFile, ArchiveLine, "Error de lectura sobre el tipo de elemento");
-                //}
+                else
+                {
+                    if (c == 'V') sceneObjects.push_back(new Vehicle(inputString, this, mapFile));
+                    else if (c == 'L') sceneObjects.push_back(new Log(inputString, this, mapFile));
+                    else if (c == 'T') sceneObjects.push_back(new TurtleGroup(inputString, this, mapFile));
+                    else if (c == 'F') {
+                        sceneObjects.push_back(new Frog(inputString, this, mapFile));
+                        frog = --sceneObjects.end();
+                    }
+                    else if (c == '#');
+                    else throw FileFormatError(mapFile, ArchiveLine, "Error de lectura sobre el tipo de elemento");
+                }
                 ArchiveLine++;
             }
         }
@@ -134,7 +134,30 @@ PlayState::loadMap() {
         frog = sceneObjects.end();
 }
 
+PlayState::Collision
+PlayState::checkCollision(const SDL_FRect& rect) const
+{
+    Collision collision;
+    collision.type = NONE;
+    auto it = sceneObjects.begin();
+    while (it != sceneObjects.end() && collision.type == NONE) {
+        collision = (*it)->checkCollision(rect);
+        it++;
+    }
+    return collision;
+
+}
+
+
 void 
 PlayState::handleEvent(SDL_Event& event) {
    if (frog !=sceneObjects.end() ) (static_cast<Frog*>(*frog))->handleEvent(event);
 }
+
+// Condicion de victoria
+void
+PlayState::homeReached(Point2D<float> position) {
+    int hf = position.getX() / Game::SEPARATION_HOMEFROG;
+    homeFrogsPos[hf].second = true;
+}
+

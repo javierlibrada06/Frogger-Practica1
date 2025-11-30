@@ -1,15 +1,15 @@
 #include "HomeFrog.h"
 #include "Frog.h"
 #include "vector2D.h"
-#include "game.h"
+#include "PlayState.h"
 #include "texture.h"
 
-HomeFrog::HomeFrog(Game* g, Point2D<float> pos, Frog* f)
+HomeFrog::HomeFrog(PlayState* g, Point2D<float> pos, Frog* f)
 {
 	frog = f;
 	game = g;
 	position = pos;
-	texture = g->getTexture(Game::FROG);
+	texture = game->getGame()->getTexture(SDLApplication::FROG);
 	active = false;
 }
 
@@ -26,13 +26,14 @@ HomeFrog::render() const
 	}
 }
 
-Game::Collision HomeFrog::checkCollision(const SDL_FRect& f)
+PlayState::Collision 
+HomeFrog::checkCollision(const SDL_FRect& f)
 {
-	Game::Collision collision;
-	collision.type = Game::NONE;
+	PlayState::Collision collision;
+	collision.type = PlayState::NONE;
 	SDL_FRect rect = getBoundingBox();
 	if (SDL_HasRectIntersectionFloat(&f, &rect) && !active) {
-		collision.type = Game::HOME;
+		collision.type = PlayState::HOME;
 		active = true;
 		frog->homeReached();
 	}

@@ -4,7 +4,7 @@
 class Platform : public Crosser
 {
 public :
-	Platform(std::istream&, Game*, std::string);
-	Game::Collision checkCollision(const SDL_FRect&);
+	Platform(std::istream&, PlayState*, std::string);
+	PlayState::Collision checkCollision(const SDL_FRect&);
 };
 

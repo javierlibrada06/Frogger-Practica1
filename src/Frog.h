@@ -16,7 +16,7 @@ class Frog : public SceneObject
 	SDL_FRect rectCollider;
 	int state, angle;
 public:
-	Frog(std::istream&, Game*, std::string);
+	Frog(std::istream&, PlayState*, std::string);
 	~Frog();
 	void update() override;
 	void render() const override;
@@ -24,6 +24,6 @@ public:
 	int getLives() const;
 	int getHomesReached() const;
 	void homeReached();
-	Game::Collision checkCollision(const SDL_FRect& frog) override;
+	PlayState::Collision checkCollision(const SDL_FRect& frog) override;
 };
 

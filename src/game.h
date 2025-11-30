@@ -142,40 +142,40 @@ private:
 	// Elemento del juego
 	// TODO: anadir atributos para los objetos del juego	
 
-	void render() const;
+/*	void render() const;
 	void update();
 	void handleEvents();
 	void waspUpdate();
 	int getRandomRange(int, int);
 	void waspDelete();
 	void reset();
-								
+					*/			
 
 public:
-	Game();
-	~Game();
-	// Obtiene una textura por su nombre
-	Texture* getTexture(TextureName name) const;
+	//Game();
+	//~Game();
+	//// Obtiene una textura por su nombre
+	//Texture* getTexture(TextureName name) const;
 
-	// Ejecuta el bucle principal del juego
-	void run();
+	//// Ejecuta el bucle principal del juego
+	//void run();
 
-	// Comprueba si hay algun objeto colocado en ese 
-	Collision checkCollision(const SDL_FRect& rect) const;
-	
-	void loadGame();
-	int getArchiveLine() const;
-	void homeReached(Point2D<float>);
-	void deleteAfter(It);
-	void confirmReset();
+	//// Comprueba si hay algun objeto colocado en ese 
+	//Collision checkCollision(const SDL_FRect& rect) const;
+	//
+	//void loadGame();
+	//int getArchiveLine() const;
+	//void homeReached(Point2D<float>);
+	//void deleteAfter(It);
+	//void confirmReset();
 
 };
 
-inline Texture*
-Game::getTexture(TextureName name) const
-{
-	return textures[name];
-}
+//inline Texture*
+//Game::getTexture(TextureName name) const
+//{
+//	return textures[name];
+//}
 
 
 #endif // GAME_H

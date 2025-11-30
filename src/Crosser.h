@@ -7,7 +7,7 @@ protected:
 	Vector2D<float> speed;
 	int backJump;
 public:
-	Crosser(std::istream&, Game*, std::string);
+	Crosser(std::istream&, PlayState*, std::string);
 	~Crosser();
 	void update() override;
 };

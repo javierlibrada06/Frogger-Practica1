@@ -1,13 +1,13 @@
 #include "Wasp.h"
 #include "Vehicle.h"
 #include "vector2D.h"
-#include "game.h"
+#include "PlayState.h"
 #include "texture.h"
 #include <iostream>
 
-Wasp::Wasp(Game* g, Point2D<float> pos, int l, Vector2D<float> s, Game::It it) {
+Wasp::Wasp(PlayState* g, Point2D<float> pos, int l, Vector2D<float> s, Game::It it) {
 	game = g;
-	texture = g->getTexture(Game::WASP);
+	texture = game->getGame()->getTexture(SDLApplication::WASP);
 	position = pos;
 	liveSpawn = l;
 	timeAlive = SDL_GetTicks();
@@ -22,17 +22,17 @@ Wasp::~Wasp() {
 void
 Wasp::update() {
 	if (!isAlive()) {
-		game->deleteAfter(waspIterator);  // avisa al juego para borrarse
+		//play->deleteAfter(waspIterator);  // avisa al juego para borrarse
 	}
 }
 
-Game::Collision
+PlayState::Collision
 Wasp::checkCollision(const SDL_FRect& frog) {
-	Game::Collision collision;
-	collision.type = Game::NONE;
+	PlayState::Collision collision;
+	collision.type = PlayState::NONE;
 	SDL_FRect rect = getBoundingBox();
 	if (SDL_HasRectIntersectionFloat(&frog, &rect)) {
-		collision.type = Game::ENEMY;
+		collision.type = PlayState::ENEMY;
 	}
 	return collision;
 }

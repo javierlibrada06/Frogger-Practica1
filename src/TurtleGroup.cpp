@@ -1,14 +1,16 @@
 #include "TurtleGroup.h"
 #include "texture.h"
+#include "PlayState.h"
+#include "Crosser.h"
 #include "FileFormatError.h"
 
-TurtleGroup::TurtleGroup(std::istream& entrada, Game* g, std::string name)
+TurtleGroup::TurtleGroup(std::istream& entrada, PlayState* g, std::string name)
 	: Platform(entrada, g, name)
 {
 	int n, w;
 	if (!(entrada >> n)) throw FileFormatError(name, g->getArchiveLine(), "Error de lectura sobre el numero de tortugas del grupo");
 	if (!(entrada >> w)) throw FileFormatError(name, g->getArchiveLine(), "Error de lectura sobre el tipo de grupo tortugas");
-	texture = g->getTexture(Game::TURTLE);
+	texture = game->getGame()->getTexture(SDLApplication::TURTLE);
 	numTurtles = n;
 	submersible = w ? 1 : 0;
 
@@ -48,17 +50,17 @@ TurtleGroup::render() const {
 	}
 }
 
-Game::Collision
+PlayState::Collision
 TurtleGroup::checkCollision(const SDL_FRect& frog) {
-	Game::Collision c;
-	c.type = Game::NONE;
+	PlayState::Collision c;
+	c.type = PlayState::NONE;
 	SDL_FRect rect = getBoundingBox();
 	int i = 0;
 	if (state == STATE_NO_SUBMERGIBLE) return c;
 	else
-		while (c.type != Game::PLATFORM && i < numTurtles) {
+		while (c.type != PlayState::PLATFORM && i < numTurtles) {
 			if (SDL_HasRectIntersectionFloat(&frog, &rect)) {
-				c.type = Game::PLATFORM;
+				c.type = PlayState::PLATFORM;
 				c.speed = speed;
 			}
 			rect.x += rect.w;

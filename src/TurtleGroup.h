@@ -11,10 +11,10 @@ class TurtleGroup : public Platform
 	float frameCounter;
 
 public:
-	TurtleGroup(std::istream&, Game*, std::string);
+	TurtleGroup(std::istream&, PlayState*, std::string);
 	~TurtleGroup();
 	void update() override;
 	void render() const override;
-	Game::Collision checkCollision(const SDL_FRect&) override;
+	PlayState::Collision checkCollision(const SDL_FRect&) override;
 };
 

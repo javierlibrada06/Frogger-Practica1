@@ -1,5 +1,5 @@
 #pragma once
-#include "game.h"
+#include "PlayState.h"
 #include "SceneObject.h"
 #include "vector2D.h"
 #include "texture.h"
@@ -12,10 +12,10 @@ class Wasp : public SceneObject
 	Game::It waspIterator;
 
 public:
-	Wasp(Game*, Point2D<float>, int, Vector2D<float>, Game::It);
+	Wasp(PlayState*, Point2D<float>, int, Vector2D<float>, PlayState::It);
 	~Wasp();
 	void update();
-	Game::Collision checkCollision(const SDL_FRect&);
+	PlayState::Collision checkCollision(const SDL_FRect&);
 	bool isAlive() const;
 };
 

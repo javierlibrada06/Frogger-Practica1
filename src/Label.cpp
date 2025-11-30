@@ -6,7 +6,7 @@ void
 Label::render() const{
 	texture->render(getBoundingBox());
 }
-Label::Label(Game* g) 
+Label::Label(GameState* g) 
 	: GameObject(g)
 {
 	//texture = g->getTexture();
