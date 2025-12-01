@@ -10,9 +10,10 @@ const std::filesystem::path TEXTS_ROOT = "texts/";
 
 MainMenuState::MainMenuState(SDLApplication* g) 
     : GameState(g) {
+    LoadMaps();
 }
 MainMenuState::~MainMenuState() {
-
+    for (GameObject* g : gameObjects) delete(g);
 }
 
 std::string path2string(const std::filesystem::path& p) {
@@ -24,6 +25,8 @@ void MainMenuState::LoadMaps()
     leftArrow = new Button(this, Point2D<float>(100, 300), game->getMapTexture("texts/left.png"), [this]() { selectPreviousButton(); });
     rightArrow = new Button(this, Point2D<float>(350, 300), game->getMapTexture("texts/right.png"), [this]() { selectNextButton(); });
 
+    gameObjects.push_back(leftArrow);
+    gameObjects.push_back(rightArrow);
 
     for (auto& entry : filesystem::directory_iterator("../assets/maps/"))
     {
@@ -31,11 +34,12 @@ void MainMenuState::LoadMaps()
         std::string name = entry.path().filename().string();
         auto textPath = TEXTS_ROOT / entry.path().filename().replace_extension(".png");
         std::string textPathString = path2string(textPath);
-
-        Button::Callback cb = [this, name]() {
-            game->replaceState(std::make_shared<PlayState>(game, name));
+        std::list<SceneObject*> list;
+        Button::Callback cb = [this, name, list]() {
+            game->replaceState(std::make_shared<PlayState>(game, name, list));
         };
         Button* b = new Button(this, Point2D<float>(225, 300), game->getMapTexture(textPathString), cb);
+        gameObjects.push_back(b);
 
         maps.push_back({ b, name });
     }
@@ -46,11 +50,8 @@ void MainMenuState::LoadMaps()
                 selectedButton = maps[i].first;
                 selectedIndex = i;
             }
-<<<<<<< Updated upstream
-=======
+
             else maps[i].first->setSelected();
-            cout << maps[i].second << endl;
->>>>>>> Stashed changes
         }
     }
 
@@ -63,18 +64,6 @@ void MainMenuState::LoadMaps()
     addEventListener(rightArrow);
 }
 
-
-//void
-//MainMenuState::handleEvent(SDL_Event& event)
-//{
-//    // Pasar el evento a los botones de mapas
-//    for (auto& pair : maps)
-//        pair.first->handleEvent(event);
-//
-//    // Pasar el evento a las flechas
-//    if (leftArrow) leftArrow->handleEvent(event);
-//    if (rightArrow) rightArrow->handleEvent(event);
-//}
 void
 MainMenuState::update()
 {
@@ -84,14 +73,10 @@ void
 MainMenuState::render() const
 {
     game->textures[SDLApplication::MENU_BACKGROUND]->render();
-   
-    // render botones de mapas
-    for (auto& pair : maps) {
-        pair.first->render();
-    }
     // render flechas
-    if (leftArrow) leftArrow->render();
-    if (rightArrow) rightArrow->render();
+    for (auto g : gameObjects) {
+        g->render();
+    }
 }
 
 void 

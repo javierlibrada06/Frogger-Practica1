@@ -32,7 +32,9 @@ constexpr std::array<TextureSpec, SDLApplication::NUM_TEXTURES> textureList{
 	{"texts/HAS GANADO.png"},
 	{"texts/GAME OVER.png"},
 	{"texts/CONTINUAR.png"},
+	{"texts/VOLVER AL MENÚ.png"},
 	{"texts/SALIR.png"},
+	{"texts/REINICIAR.png"},
 	{"texts/Original.png"},
 	{"texts/Práctica 1.png"},
 	{"texts/Trivial.png"},
@@ -114,10 +116,10 @@ SDLApplication::handleEvents() {
 
 	// Only quit is handled directly, everything else is delegated
 	while (SDL_PollEvent(&event)) {
-		/*if (event.type == SDL_EVENT_QUIT) {
+		if (event.type == SDL_EVENT_QUIT) {
 			exit = true;
 		}
-		else*/ handleEvent(event);
+		else handleEvent(event);
 	}
 }
 
@@ -128,6 +130,7 @@ SDLApplication::addState(GameState* state) {
 
 void SDLApplication::exitGame() {
 	~SDLApplication();
+	exit = true;
 }
 
 SDLApplication::TextureName
@@ -141,3 +144,5 @@ SDLApplication::getMapTexture(std::string name) const {
 	else if (name == textureList[RIGHT_BUTTON].name) return RIGHT_BUTTON;
 	return NUM_TEXTURES;
 }
+
+

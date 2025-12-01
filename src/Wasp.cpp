@@ -3,26 +3,53 @@
 #include "vector2D.h"
 #include "PlayState.h"
 #include "texture.h"
+
+#include "FileFormatError.h"
 #include <iostream>
 
-Wasp::Wasp(PlayState* g, Point2D<float> pos, int l, Vector2D<float> s, Game::It it) {
-	game = g;
+Wasp::Wasp(std::istream& entrada, PlayState* p, PlayState::It it, std::string name)
+	: SceneObject(entrada, p, name)
+{
+	float sX, sY;
+	if (!(entrada >> sX >> sY)) throw FileFormatError(name, play->getArchiveLine(), "Error de lectura sobre la velocidad");
+	speed = Vector2D<float>(sX, sY);
+	int l;
+	if (!(entrada >> l)) throw FileFormatError("map.txt", play->getArchiveLine(), "Error de lectura sobre el tiempo de vida de la avipa");
 	texture = game->getGame()->getTexture(SDLApplication::WASP);
-	position = pos;
 	liveSpawn = l;
 	timeAlive = SDL_GetTicks();
-	speed = s;
 	waspIterator = it;
+	if (sX == 0 && sY == 0) angle = 0;
+	else if (sX > 0) angle = 90;
+	else if (sX < 0) angle = -90;
+	else angle = 180;
 }
 
 Wasp::~Wasp() {
 
 }
 
+void 
+Wasp::render() const{
+	texture->render(getBoundingBox(), angle);
+}
+
+
 void
 Wasp::update() {
-	if (!isAlive()) {
-		//play->deleteAfter(waspIterator);  // avisa al juego para borrarse
+	if (alive) alive = isAlive();
+	if (!alive) {
+		GameState::DelayedCallBack d;
+		d = [this]() { play->waspDelete(waspIterator); };
+		game->addDelayedCallBacks(d);
+		return;
+	}
+	else {
+		position = position + (speed);
+		if (position.getX() <= Game::GAME_END_LEFT || position.getX() >= Game::GAME_END_RIGHT || position.getY() <= 0 || position.getY() >= Game::WINDOW_HEIGHT)
+		{
+			alive = false;
+		}
 	}
 }
 
@@ -41,5 +68,6 @@ Wasp::checkCollision(const SDL_FRect& frog) {
 
 bool 
 Wasp::isAlive() const {
-	return (SDL_GetTicks() - timeAlive < liveSpawn);
+	Uint32 ticks = SDL_GetTicks();
+	return (ticks - timeAlive < liveSpawn);
 }

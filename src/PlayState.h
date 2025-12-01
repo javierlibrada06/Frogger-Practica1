@@ -25,6 +25,19 @@ public:
     static constexpr float NUM_HOMEFROGS = 5;
     // Fin juego fuera pantalla izquierda
     static constexpr float GAME_END_LEFT = -150.0f;
+    // WASP -- (tiempo en milisegundos)
+// Avispas tiempo de vida max 
+    static constexpr float MAX_WASP_LIFE = 7000.0f;
+    // Avispas tiempo de vida max
+    static constexpr float MIN_WASP_LIFE = 5000.0f;
+    // Avispas tiempo de generacion max
+    static constexpr float MIN_WASP_GENERATOR = 7500.0f;
+    // Avispas tiempo de generacion min
+    static constexpr float MAX_WASP_GENERATOR = 9500.0f;
+    // WASP -- (wasp offset)
+    static constexpr int WASP_OFFSET_X = 8;
+    static constexpr int WASP_OFFSET_Y = 4;
+
 
     enum Type
     {
@@ -44,6 +57,8 @@ private:
     It frog;
     InfoBar* infoBar;
     int ArchiveLine;
+    float nextWasp;
+    Uint32 waspSpawn;
 
     std::vector<std::pair<Point2D<float>, bool> > homeFrogsPos = {
         std::pair(Point2D<float>(POS_X_HOMEFROG,POS_Y_HOMEFROG), false),
@@ -58,7 +73,7 @@ private:
     int archiveLine = 1;
 
 public:
-    PlayState(SDLApplication* g, const std::string& map);
+    PlayState(SDLApplication* g, const std::string& map, std::list<SceneObject*> list);
     ~PlayState();
 
     // Métodos principales
@@ -68,15 +83,10 @@ public:
     // Cargar mapa
     void loadMap();
 
-    // Crear objetos
-    //void addObject(SceneObject* obj);
-
-    //void waspUpdate();
-    void homeReached(Point2D<float>);
 
     //// Eliminar objetos (Wasp)
     //void deleteAfter(It it);
-    //void waspDelete();
+    void waspDelete(It);
 
     PlayState::Collision checkCollision(const SDL_FRect& rect) const;
 
@@ -84,6 +94,13 @@ public:
     // Lectura de archivo
     int getArchiveLine() const { return archiveLine; }
     void incArchiveLine() { archiveLine++; }
+
+    void homeReached(Point2D<float>);
+    void pause();
+
+private:
+    void waspUpdate();
+    int getRandomRange(int, int);
 };
 
 

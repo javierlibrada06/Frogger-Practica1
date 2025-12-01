@@ -1,5 +1,6 @@
 #include "PlayState.h"
 #include "EndState.h"
+#include "PauseState.h"
 #include "MainMenuState.h"
 #include "Frog.h"
 #include "Vehicle.h"
@@ -18,12 +19,16 @@
 #include <sstream>
 #include <iostream>
 #include <string>
+#include <format>
 
 constexpr const char* const MAP_FILE = "../assets/maps/";
 
-PlayState::PlayState(SDLApplication* g, const std::string& map)
+PlayState::PlayState(SDLApplication* g, const std::string& map, std::list<SceneObject*> list)
     : GameState(g), mapFile(map) {
+    sceneObjects = list;
     loadMap();
+    nextWasp = getRandomRange(MIN_WASP_GENERATOR, MAX_WASP_GENERATOR);
+    waspSpawn = SDL_GetTicks();
 }
 
 PlayState::~PlayState() {
@@ -35,18 +40,18 @@ PlayState::~PlayState() {
 
 void PlayState::update() {
 
-    //waspUpdate(); // Se actualizan las avispas (creación)
-    for (auto it = sceneObjects.begin(); it != sceneObjects.end(); ++it) (*it)->update(); //Update de todos los sceneObjects
     if ((static_cast<Frog*>(*frog))->getHomesReached() == PlayState::NUM_HOMEFROGS)
     {
-       game->replaceState(new EndState(game, true));
+        game->replaceState(new EndState(game, true));
     }
     else if ((static_cast<Frog*>(*frog))->getLives() == 0)
     {
         game->replaceState(new EndState(game, false));
     }
+    waspUpdate(); // Se actualizan las avispas (creación)
+    for (auto it = sceneObjects.begin(); it != sceneObjects.end(); ++it) (*it)->update(); //Update de todos los sceneObjects
     infoBar->update();
-    //processPendingDeletes();; // Aqui se eliminan todas las avispas muertas
+    delayedCallBack();
 }
 
 void PlayState::render() const {
@@ -55,58 +60,51 @@ void PlayState::render() const {
     infoBar->render();
 }
 
-//void PlayState::addObject(SceneObject* obj) {
-//    sceneObjects.push_back(obj);
-//}
+void
+PlayState::waspDelete(It it)
+{
+    delete* it;         // Libera memoria
+    sceneObjects.erase(it); // Elimina del vector
+}
 
-//void PlayState::deleteAfter(It it) {
-//    toDelete = it;
-//}
+void
+PlayState::waspUpdate() {
+    
+    if (SDL_GetTicks() - waspSpawn >= nextWasp)
+    {
+        waspSpawn = SDL_GetTicks();
+        if ((static_cast<Frog*>(*frog))->getHomesReached() != Game::NUMBER_HFROGS - 1)
+        {
+            // Genera nueva avispa
+            nextWasp = (float)getRandomRange(MIN_WASP_GENERATOR, MAX_WASP_GENERATOR);
+            float lifeTime = (float)getRandomRange(MIN_WASP_LIFE, MAX_WASP_LIFE);
+            bool encontrado = false;
+            int hf = getRandomRange(0, Game::NUMBER_HFROGS - 1);
 
-//void PlayState::processPendingDeletes() {
-//    if (pendingDelete) {
-//        delete* toDelete;
-//        objects.erase(toDelete);
-//        pendingDelete = false;
-//    }
-//}
+            while (!encontrado)
+            {
+                if (!homeFrogsPos[hf].second) encontrado = true;
+                else {
+                    hf++;
+                    if (hf > Game::NUMBER_HFROGS - 1) hf = 0;
+                }
+            }
+            Point2D<float> pos = homeFrogsPos[hf].first;
 
-//void
-//PlayState::waspUpdate() {
-//    
-//    if (SDL_GetTicks() - waspSpawn >= nextWasp)
-//    {
-//        waspSpawn = SDL_GetTicks();
-//        if ((static_cast<Frog*>(*frog))->getHomesReached() != Game::NUMBER_HFROGS - 1)
-//        {
-//            // Genera nueva avispa
-//            nextWasp = (float)getRandomRange(MIN_WASP_GENERATOR, MAX_WASP_GENERATOR);
-//            float lifeTime = (float)getRandomRange(MIN_WASP_LIFE, MAX_WASP_LIFE);
-//            bool encontrado = false;
-//            int hf = getRandomRange(0, Game::NUMBER_HFROGS - 1);
-//
-//            while (!encontrado)
-//            {
-//                if (!homeFrogsPos[hf].second) encontrado = true;
-//                else {
-//                    hf++;
-//                    if (hf > Game::NUMBER_HFROGS - 1) hf = 0;
-//                }
-//            }
-//            Point2D<float> pos = homeFrogsPos[hf].first;
-//
-//            pos = pos + Point2D<float>(Game::WASP_OFFSET_X, Game::WASP_OFFSET_Y);
-//            Vector2D<float> speed(0, 0);
-//
-//            sceneObjects.push_back(nullptr);  // reserva un hueco
-//            PlayState::It it = --sceneObjects.end();
-//            *it = new Wasp(this, pos, lifeTime, speed, it);
-//        }
-//    }
-//}
+            pos = pos + Point2D<float>(Game::WASP_OFFSET_X, Game::WASP_OFFSET_Y);
+
+            std::string wasp = std::format("{} {} {} {} {}", pos.getX(), pos.getY(), 0, 0, lifeTime);
+            std::istringstream inputString(wasp);
+            sceneObjects.push_back(nullptr);  // reserva un hueco
+            PlayState::It it = --sceneObjects.end();
+            *it = new Wasp(inputString, this, it, "Avispa Update");
+        }
+    }
+}
 
 void 
 PlayState::loadMap() {
+    if (sceneObjects.empty()) {
         std::ifstream inputMap;
         inputMap.open(std::string(MAP_FILE) + mapFile);
         if (!inputMap.is_open()) throw FileNotFoundError(mapFile);
@@ -129,6 +127,11 @@ PlayState::loadMap() {
                         addEventListener(f);
                         frog = --sceneObjects.end();
                     }
+                    else if (c == 'W') {
+                        sceneObjects.push_back(nullptr);
+                        PlayState::It it = --sceneObjects.end();
+                        *it = new Wasp(inputString, this, it, mapFile);
+                    }
                     else if (c == '#');
                     else throw FileFormatError(mapFile, ArchiveLine, "Error de lectura sobre el tipo de elemento");
                 }
@@ -137,16 +140,17 @@ PlayState::loadMap() {
         }
         inputMap.close();
 
-    // Load InfoBar
-    infoBar = new InfoBar(this, ((static_cast<Frog*>(*frog))));
+        // Load InfoBar
+        infoBar = new InfoBar(this, ((static_cast<Frog*>(*frog))));
 
-    //Load HomeFrogs
-    for (int i = 0; i < PlayState::NUM_HOMEFROGS; i++)
-    {
-        HomeFrog* homeFrog = new HomeFrog(this, homeFrogsPos[i].first, (static_cast<Frog*>(*frog)));
-        sceneObjects.push_back(homeFrog);
+        //Load HomeFrogs
+        for (int i = 0; i < PlayState::NUM_HOMEFROGS; i++)
+        {
+            HomeFrog* homeFrog = new HomeFrog(this, homeFrogsPos[i].first, (static_cast<Frog*>(*frog)));
+            sceneObjects.push_back(homeFrog);
+        }
+        //frog = sceneObjects.end();
     }
-    //frog = sceneObjects.end();
 }
 
 PlayState::Collision
@@ -168,5 +172,19 @@ void
 PlayState::homeReached(Point2D<float> position) {
     int hf = position.getX() / Game::SEPARATION_HOMEFROG;
     homeFrogsPos[hf].second = true;
+}
+
+// Random (wasps)
+int
+PlayState::getRandomRange(int min, int max) {
+    static std::random_device rd;
+    static std::mt19937 randomGenerator(rd());
+    std::uniform_int_distribution<int> dist(min, max);
+    return dist(randomGenerator);
+}
+
+void
+PlayState::pause() {
+    game->replaceState(new PauseState(game, mapFile, sceneObjects));
 }
 

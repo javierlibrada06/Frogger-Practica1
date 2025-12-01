@@ -45,7 +45,6 @@ int main(int argc, char* argv[])
 		auto menuState = std::make_shared<MainMenuState>(&game);
 		//game.pushState(new MainMenuState(&game));
 		game.pushState(menuState);
-		menuState->LoadMaps();
 		game.run();
 	}
 	catch (const GameError& e) {

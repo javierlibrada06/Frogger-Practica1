@@ -2,7 +2,7 @@
 #include "vector2D.h"
 #include "Label.h"
 #include "Button.h"
-#include "PlayState.h"
+#include "MainMenuState.h"
 
 EndState::EndState(SDLApplication* g, bool win)
 	: GameState(g)
@@ -10,8 +10,8 @@ EndState::EndState(SDLApplication* g, bool win)
 	if (win) gameObjects.push_back(new Label(this, Point2D<float>(SDLApplication::WINDOW_WIDTH/2, SDLApplication::WINDOW_HEIGHT / 2), SDLApplication::WIN));
 	else gameObjects.push_back(new Label(this, Point2D<float>(SDLApplication::WINDOW_WIDTH / 2, SDLApplication::WINDOW_HEIGHT / 2), SDLApplication::LOSE));
 	
-	Button* b = new Button(this, Point2D<float>(SDLApplication::WINDOW_WIDTH / 2, SDLApplication::WINDOW_HEIGHT / 2 - 80), SDLApplication::CONTINUE,
-		[this]() { game->replaceState(new PlayState(game, "turtles.txt")); });
+	Button* b = new Button(this, Point2D<float>(SDLApplication::WINDOW_WIDTH / 2, SDLApplication::WINDOW_HEIGHT / 2 - 80), SDLApplication::INICIO,
+		[this]() { game->replaceState(new MainMenuState(game)); });
 
 
 	addEventListener(b);

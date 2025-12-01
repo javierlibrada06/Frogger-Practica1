@@ -39,7 +39,9 @@ public:
 		WIN,
 		LOSE,
 		CONTINUE,
+		INICIO,
 		SALIR,
+		REINICIAR,
 		ORIGINAL,
 		PRACTICA_1,
 		TRIVIAL,
@@ -62,6 +64,8 @@ public:
 	void handleEvents();
 	void addState(GameState* state);
 	void exitGame();
+	SDL_Renderer* getRenderer() { return renderer; }
+	void setRenderer(SDL_Renderer* r) { renderer = r; }
 
 //private: 
 	std::array<Texture*, NUM_TEXTURES> textures;
