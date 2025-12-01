@@ -13,6 +13,7 @@ EndState::EndState(SDLApplication* g, bool win)
 	Button* b = new Button(this, Point2D<float>(SDLApplication::WINDOW_WIDTH / 2, SDLApplication::WINDOW_HEIGHT / 2 - 80), SDLApplication::CONTINUE,
 		[this]() { game->replaceState(new PlayState(game, "turtles.txt")); });
 
+
 	addEventListener(b);
 	gameObjects.push_back(b);
 

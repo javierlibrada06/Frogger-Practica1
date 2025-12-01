@@ -1,9 +1,10 @@
 #include "Button.h"
 #include <SDL3/SDL.h>
-Button::Button(GameState* g, Point2D<float> p, SDLApplication::TextureName t, Callback c)
+Button::Button(GameState* g, Point2D<float> p, SDLApplication::TextureName t, Callback c, bool b)
 	: Label(g, p, t)
 {
     connect(c);
+    selected = b;
 }
 
 void
@@ -44,3 +45,5 @@ Button::isInside(float x, float y) {
             y >= rect.y &&
             y <= rect.y + rect.h;
 }
+void
+Button::setSelected() { selected = !selected; }

@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 ﻿  Button.cpp
   Crosser.cpp
   EndState.cpp
@@ -47,3 +48,8 @@ C:\Users\User\Documents\GitHub\Frogger-Practica1\src\PlayState.cpp(169,12): warn
 C:\Users\User\Documents\GitHub\Frogger-Practica1\src\PlayState.cpp(169,12): warning C4244:         ]
 C:\Users\User\Documents\GitHub\Frogger-Practica1\src\Wasp.cpp(13,26): warning C4244: '=': conversión de 'Uint64' a 'int'; posible pérdida de datos
   src.vcxproj -> C:\Users\User\Documents\GitHub\Frogger-Practica1\bin\srcDebug.exe
+=======
+﻿  MainMenuState.cpp
+C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\src\MainMenuState.cpp(110,37): warning C4267: '=': conversión de 'size_t' a 'int'; posible pérdida de datos
+  src.vcxproj -> C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\bin\srcDebug.exe
+>>>>>>> Stashed changes

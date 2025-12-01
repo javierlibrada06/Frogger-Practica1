@@ -23,8 +23,6 @@ void MainMenuState::LoadMaps()
 {
     leftArrow = new Button(this, Point2D<float>(100, 300), game->getMapTexture("texts/left.png"), [this]() { selectPreviousButton(); });
     rightArrow = new Button(this, Point2D<float>(350, 300), game->getMapTexture("texts/right.png"), [this]() { selectNextButton(); });
-    rightArrow->selected = true;
-    leftArrow->selected = true;
 
 
     for (auto& entry : filesystem::directory_iterator("../assets/maps/"))
@@ -46,9 +44,13 @@ void MainMenuState::LoadMaps()
         for (int i = 0; i < maps.size(); i++) {
             if (maps[i].second == "Original.txt") { 
                 selectedButton = maps[i].first;
-                maps[i].first->selected = true;
                 selectedIndex = i;
             }
+<<<<<<< Updated upstream
+=======
+            else maps[i].first->setSelected();
+            cout << maps[i].second << endl;
+>>>>>>> Stashed changes
         }
     }
 
@@ -96,19 +98,19 @@ void
 MainMenuState::selectNextButton()
 {
     if (maps.empty()) return;
-    selectedButton->selected = false;
+    selectedButton->setSelected();
     if (selectedIndex < maps.size()-1) selectedIndex++;
     else selectedIndex = 0;    selectedButton = maps[selectedIndex].first;
-    selectedButton->selected = true;
+    selectedButton->setSelected();
 }
 
 void 
 MainMenuState::selectPreviousButton()
 {
     if (maps.empty()) return;
-    selectedButton->selected = false;
+    selectedButton->setSelected();
     if (selectedIndex > 0) selectedIndex--;
     else selectedIndex = maps.size()-1;
     selectedButton = maps[selectedIndex].first;
-    selectedButton->selected = true;
+    selectedButton->setSelected();
 }
