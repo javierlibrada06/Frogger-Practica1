@@ -1,6 +1,5 @@
 #include "InfoBar.h"
 #include "Frog.h"
-#include "game.h"
 
 InfoBar::InfoBar(GameState* g, Frog* f) {
 	frog = f;

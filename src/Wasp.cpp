@@ -20,9 +20,9 @@ Wasp::Wasp(std::istream& entrada, PlayState* p, PlayState::It it, std::string na
 	timeAlive = SDL_GetTicks();
 	waspIterator = it;
 	if (sX == 0 && sY == 0) angle = 0;
-	else if (sX > 0) angle = 90;
-	else if (sX < 0) angle = -90;
-	else angle = 180;
+	else if (sX > 0) angle = SceneObject::ANGLE_RIGHT;
+	else if (sX < 0) angle = SceneObject::ANGLE_LEFT;
+	else angle = SceneObject::ANGLE_UPSIDEDOWN;
 }
 
 Wasp::~Wasp() {
@@ -46,7 +46,7 @@ Wasp::update() {
 	}
 	else {
 		position = position + (speed);
-		if (position.getX() <= Game::GAME_END_LEFT || position.getX() >= Game::GAME_END_RIGHT || position.getY() <= 0 || position.getY() >= Game::WINDOW_HEIGHT)
+		if (position.getX() <= PlayState::GAME_END_LEFT || position.getX() >= PlayState::GAME_END_RIGHT || position.getY() <= 0 || position.getY() >= PlayState::WINDOW_HEIGHT)
 		{
 			alive = false;
 		}

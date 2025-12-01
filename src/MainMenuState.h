@@ -30,5 +30,4 @@ class MainMenuState : public GameState
 	void selectNextButton();
 	void selectPreviousButton();
 	void LoadMaps();
-
 };

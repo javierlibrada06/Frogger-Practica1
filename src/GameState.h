@@ -18,6 +18,7 @@ protected:
 public:
 	GameState(SDLApplication* g) : game(g) {};
 	virtual ~GameState() = default;
+	
 	void addEventListener(EventHandler* h) { eventHandlers.push_back(h); };
 	void removeEventListener(EventHandler* h) { eventHandlers.remove(h); };
 	void addDelayedCallBacks(DelayedCallBack d) { delayedCallBacks.push_back(d); }

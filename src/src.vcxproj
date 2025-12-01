@@ -100,7 +100,6 @@
     <ClCompile Include="FileFormatError.cpp" />
     <ClCompile Include="FileNotFoundError.cpp" />
     <ClCompile Include="Frog.cpp" />
-    <ClCompile Include="game.cpp" />
     <ClCompile Include="GameError.cpp" />
     <ClCompile Include="gameStateMachine.cpp" />
     <ClCompile Include="HomeFrog.cpp" />
@@ -128,7 +127,6 @@
     <ClInclude Include="FileFormatError.h" />
     <ClInclude Include="FileNotFoundError.h" />
     <ClInclude Include="Frog.h" />
-    <ClInclude Include="game.h" />
     <ClInclude Include="GameError.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameState.h" />

@@ -11,7 +11,7 @@ class Wasp : public SceneObject
 	int timeAlive;
 	bool alive;
 	int angle;
-	Game::It waspIterator;
+	PlayState::It waspIterator;
 
 public:
 	Wasp(std::istream& entrada, PlayState*, PlayState::It, std::string name);

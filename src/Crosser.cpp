@@ -8,7 +8,7 @@ Crosser::Crosser(std::istream& entrada, PlayState* g, std::string name)
 {
 	float s;
 	if (!(entrada >> s)) throw FileFormatError(name, play->getArchiveLine(), "Error de lectura sobre la velocidad");
-	speed = Vector2D<float>(s / Game::FRAME_RATE, 0);
+	speed = Vector2D<float>(s / PlayState::FRAME_RATE, 0);
 	backJump = 0;
 }
 Crosser::~Crosser() {
@@ -18,6 +18,6 @@ Crosser::~Crosser() {
 void 
 Crosser::update() {
 	position = position + (speed);
-	if (position.getX() <= Game::GAME_END_LEFT - backJump) position = Point2D<float>(Game::GAME_START_RIGHT + backJump, position.getY());
-	if (position.getX() >= Game::GAME_END_RIGHT + backJump) position = Point2D<float>(Game::GAME_START_LEFT - getBoundingBox().w - backJump, position.getY());
+	if (position.getX() <= PlayState::GAME_END_LEFT - backJump) position = Point2D<float>(PlayState::GAME_START_RIGHT + backJump, position.getY());
+	if (position.getX() >= PlayState::GAME_END_RIGHT + backJump) position = Point2D<float>(PlayState::GAME_START_LEFT - getBoundingBox().w - backJump, position.getY());
 }

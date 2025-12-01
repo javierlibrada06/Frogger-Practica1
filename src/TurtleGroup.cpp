@@ -29,7 +29,7 @@ TurtleGroup::update() {
 
 	frameCounter++;
 
-	if (frameCounter >= Game::FRAME_RATE / 2) {
+	if (frameCounter >= PlayState::FRAME_RATE / 2) {
 		frameCounter = 0;
 
 		if (submersible)

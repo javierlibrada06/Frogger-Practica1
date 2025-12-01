@@ -1,13 +1,16 @@
 #pragma once
-#include "game.h"
 #include "SceneObject.h"
 #include "vector2D.h"
 #include "texture.h"
 class Frog : public SceneObject, public EventHandler
 {	
-	static constexpr int ANGLE_LEFT = -90;
-	static constexpr int ANGLE_RIGHT = 90;
-	static constexpr int ANGLE_UPSIDEDOWN = 180;
+	static constexpr float FROG_INICIO = 205.0f;
+	static constexpr float FROG_STEP = 32.0f;
+
+	// FROG -- (colision offset)
+	static constexpr int COLLISION_OFFSET_FROG = 3;
+	static constexpr int COLLISION_OFFSET_SCREEN = 9;
+
 
 
 	int lives;

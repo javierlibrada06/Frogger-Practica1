@@ -18,10 +18,10 @@ Frog::Frog(std::istream& entrada, PlayState* g, std::string name)
 	angle = 0;
 
 	SDL_FRect rect = getBoundingBox();
-	rectCollider.x = rect.x + Game::COLLISION_OFFSET_FROG;
-	rectCollider.y = rect.y + Game::COLLISION_OFFSET_FROG;
-	rectCollider.h = rect.h - Game::COLLISION_OFFSET_SCREEN;
-	rectCollider.w = rect.w - Game::COLLISION_OFFSET_SCREEN;
+	rectCollider.x = rect.x + COLLISION_OFFSET_FROG;
+	rectCollider.y = rect.y + COLLISION_OFFSET_FROG;
+	rectCollider.h = rect.h - COLLISION_OFFSET_SCREEN;
+	rectCollider.w = rect.w - COLLISION_OFFSET_SCREEN;
 
 }
 
@@ -33,38 +33,38 @@ Frog::~Frog()
 
 void 
 Frog::update() {
-	rectCollider.x = position.getX() + Game::COLLISION_OFFSET_FROG;
-	rectCollider.y = position.getY() + Game::COLLISION_OFFSET_FROG;
+	rectCollider.x = position.getX() + COLLISION_OFFSET_FROG;
+	rectCollider.y = position.getY() + COLLISION_OFFSET_FROG;
 	PlayState::Collision collision = play->checkCollision(rectCollider);
 
-	if (collision.type == Game::NONE) {
-		if (position.getY() < Game::RIVER_LOW) {
+	if (collision.type == PlayState::NONE) {
+		if (position.getY() < PlayState::RIVER_LOW) {
 
 			lives--;
-			position = Point2D<float>(Game::FROG_INICIO, Game::GAME_SCREENEND_Y);
-			lastPosition = Point2D<float>(Game::FROG_INICIO, Game::GAME_SCREENEND_Y);
+			position = Point2D<float>(FROG_INICIO, PlayState::GAME_SCREENEND_Y);
+			lastPosition = Point2D<float>(FROG_INICIO, PlayState::GAME_SCREENEND_Y);
 			angle = 0;
 		}
 		if (lastPosition != position) lastPosition = position; // Actualiza la posición
 	}
 	else if (collision.type == PlayState::ENEMY) {
 		lives--;
-		position = Point2D<float>(Game::FROG_INICIO, Game::GAME_SCREENEND_Y);
-		lastPosition = Point2D<float>(Game::FROG_INICIO, Game::GAME_SCREENEND_Y);
+		position = Point2D<float>(FROG_INICIO, PlayState::GAME_SCREENEND_Y);
+		lastPosition = Point2D<float>(FROG_INICIO, PlayState::GAME_SCREENEND_Y);
 		angle = 0;
 	}
 	else if (collision.type == PlayState::PLATFORM)
 	{
 		position = position + (collision.speed);
-		if (position.getX() > Game::GAME_SCREENEND_X) position = Point2D<float>(Game::FROG_INICIO, Game::GAME_SCREENEND_Y);
+		if (position.getX() > PlayState::GAME_SCREENEND_X) position = Point2D<float>(FROG_INICIO, PlayState::GAME_SCREENEND_Y);
 		lastPosition = position;
 		angle = 0;
 	}
 	else if (collision.type == PlayState::HOME)
 	{
 		play->homeReached(position);
-		position = Point2D<float>(Game::FROG_INICIO, Game::GAME_SCREENEND_Y);
-		lastPosition = Point2D<float>(Game::FROG_INICIO, Game::GAME_SCREENEND_Y);
+		position = Point2D<float>(FROG_INICIO, PlayState::GAME_SCREENEND_Y);
+		lastPosition = Point2D<float>(FROG_INICIO, PlayState::GAME_SCREENEND_Y);
 		angle = 0;
 	}
 }
@@ -82,27 +82,27 @@ Frog::handleEvent(const SDL_Event& event) {
 		switch (event.key.key) {
 		case SDLK_DOWN:
 			state = 1;
-			angle = ANGLE_UPSIDEDOWN;
-			position = position + Point2D<float>(0, Game::FROG_STEP);
-			if (position.getY() > Game::GAME_SCREENEND_Y) position = Point2D<float>(position.getX(), Game::GAME_SCREENEND_Y);
+			angle = SceneObject::ANGLE_UPSIDEDOWN;
+			position = position + Point2D<float>(0, FROG_STEP);
+			if (position.getY() > PlayState::GAME_SCREENEND_Y) position = Point2D<float>(position.getX(), PlayState::GAME_SCREENEND_Y);
 			break;
 		case SDLK_UP:
 			state = 1;
 			angle = 0;
-			position = position + Point2D<float>(0, -Game::FROG_STEP);
+			position = position + Point2D<float>(0, -FROG_STEP);
 			if (position.getY() < 0) position = Point2D<float>(position.getX(), 0);
 			break;
 		case SDLK_LEFT:
 			state = 1;
-			angle = ANGLE_LEFT;
-			position = position + Point2D<float>(-Game::FROG_STEP, 0);
+			angle = SceneObject::ANGLE_LEFT;
+			position = position + Point2D<float>(-FROG_STEP, 0);
 			if (position.getX() < 0) position = Point2D<float>(0, position.getY());
 			break;
 		case SDLK_RIGHT:
 			state = 1;
-			angle = ANGLE_RIGHT;
-			position = position + Point2D<float>(Game::FROG_STEP, 0);
-			if (position.getX() > Game::GAME_SCREENEND_X) position = Point2D<float>(Game::GAME_SCREENEND_X, position.getY());
+			angle = SceneObject::ANGLE_RIGHT;
+			position = position + Point2D<float>(FROG_STEP, 0);
+			if (position.getX() > PlayState::GAME_SCREENEND_X) position = Point2D<float>(PlayState::GAME_SCREENEND_X, position.getY());
 			break;
 		case SDLK_0:
 			play->pause();

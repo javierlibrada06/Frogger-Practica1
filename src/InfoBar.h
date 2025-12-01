@@ -1,7 +1,6 @@
 #pragma once
 #include "GameObject.h"
 #include "Frog.h"
-#include "game.h"
 #include "texture.h"
 class InfoBar : public GameObject
 {

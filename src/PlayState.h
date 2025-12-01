@@ -6,7 +6,7 @@
 
 #include "GameState.h"
 #include "EventHandler.h"
-#include "Game.h"
+#include "vector2D.h"
 
 class Frog; // forward
 class Texture;
@@ -37,6 +37,26 @@ public:
     // WASP -- (wasp offset)
     static constexpr int WASP_OFFSET_X = 8;
     static constexpr int WASP_OFFSET_Y = 4;
+    // Se actualiza el juego cada tantos milisegundos
+    static constexpr int FRAME_RATE = 30;
+    // TamaÃ±o real de la ventana
+    static constexpr int WINDOW_WIDTH = 448;
+    static constexpr int WINDOW_HEIGHT = 484;
+    // Extremo inferior del rÃ­o
+    static constexpr int RIVER_LOW = 210;
+
+    //// Inicio juego fuera pantalla derecha
+    static constexpr float GAME_START_LEFT = 0.0f;
+    //// Inicio juego fuera pantalla derecha
+    static constexpr float GAME_START_RIGHT = 448.0f;
+
+    // Fin pantalla x
+    static constexpr float GAME_SCREENEND_X = 420.0f;
+    // Fin pantalla x
+    static constexpr float GAME_SCREENEND_Y = 402.0f;
+    // Fin juego fuera pantalla derecha
+    static constexpr float GAME_END_RIGHT = 598.0f;
+
 
 
     enum Type
@@ -55,7 +75,6 @@ public:
 private:
     std::list<SceneObject*> sceneObjects;
     It frog;
-    InfoBar* infoBar;
     int ArchiveLine;
     float nextWasp;
     Uint32 waspSpawn;
