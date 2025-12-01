@@ -5,6 +5,7 @@
 #include <SDL3/SDL.h>
 
 #include "GameState.h"
+#include "EventHandler.h"
 #include "Game.h"
 
 class Frog; // forward
@@ -61,7 +62,6 @@ public:
     ~PlayState();
 
     // Métodos principales
-    void handleEvent(SDL_Event& event) override;
     void update() override;
     void render() const override;
 

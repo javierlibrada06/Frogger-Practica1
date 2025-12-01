@@ -15,10 +15,6 @@ EndState::~EndState() {
 	}
 }
 void 
-EndState::handleEvent(SDL_Event& event) {
-
-}
-void 
 EndState::update() {
 
 }

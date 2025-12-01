@@ -104,10 +104,10 @@ SDLApplication::handleEvents() {
 
 	// Only quit is handled directly, everything else is delegated
 	while (SDL_PollEvent(&event)) {
-		if (event.type == SDL_EVENT_QUIT) {
+		/*if (event.type == SDL_EVENT_QUIT) {
 			exit = true;
 		}
-		else handleEvent(event);
+		else*/ handleEvent(event);
 	}
 }
 

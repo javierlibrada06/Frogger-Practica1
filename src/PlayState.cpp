@@ -52,7 +52,6 @@ void PlayState::render() const {
     getGame()->textures[SDLApplication::BACKGROUND]->render();
     for (auto it = sceneObjects.begin(); it != sceneObjects.end(); ++it) (*it)->render();
     infoBar->render();
-    //frog->render();
 }
 
 //void PlayState::addObject(SceneObject* obj) {
@@ -124,7 +123,9 @@ PlayState::loadMap() {
                     else if (c == 'L') sceneObjects.push_back(new Log(inputString, this, mapFile));
                     else if (c == 'T') sceneObjects.push_back(new TurtleGroup(inputString, this, mapFile));
                     else if (c == 'F') {
-                        sceneObjects.push_back(new Frog(inputString, this, mapFile));
+                        Frog* f = new Frog(inputString, this, mapFile);
+                        sceneObjects.push_back(f);
+                        addEventListener(f);
                         frog = --sceneObjects.end();
                     }
                     else if (c == '#');
@@ -159,12 +160,6 @@ PlayState::checkCollision(const SDL_FRect& rect) const
     }
     return collision;
 
-}
-
-
-void 
-PlayState::handleEvent(SDL_Event& event) {
-   (static_cast<Frog*>(*frog))->handleEvent(event);
 }
 
 // Condicion de victoria

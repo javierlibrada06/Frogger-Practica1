@@ -11,7 +11,7 @@ class EndState : public GameState
 public:
 	EndState(SDLApplication* g, bool);
 	~EndState();
-	void handleEvent(SDL_Event& event) override;
+	//void handleEvent(SDL_Event& event) override;
 	void update() override;
 	void render() const override;
 };

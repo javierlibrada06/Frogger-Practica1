@@ -3,7 +3,7 @@
 #include "SceneObject.h"
 #include "vector2D.h"
 #include "texture.h"
-class Frog : public SceneObject
+class Frog : public SceneObject, public EventHandler
 {	
 	static constexpr int ANGLE_LEFT = -90;
 	static constexpr int ANGLE_RIGHT = 90;
@@ -20,7 +20,7 @@ public:
 	~Frog();
 	void update() override;
 	void render() const override;
-	void handleEvent(const SDL_Event&);
+	void handleEvent(const SDL_Event&) override;
 	int getLives() const;
 	int getHomesReached() const;
 	void homeReached();
