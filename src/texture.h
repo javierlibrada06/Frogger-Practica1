@@ -1,4 +1,4 @@
-﻿#ifndef TEXTURE_H
+#ifndef TEXTURE_H
 #define TEXTURE_H
 
 #include <SDL3/SDL.h>
@@ -64,6 +64,8 @@ public:
 
 	/// Render the whole picture to the given rectangle with modified color
 	void render(const SDL_FRect& target, SDL_Color color) const;
+	/// Render the whole picture to the given rectangle with modified color and transparency
+	void render(const SDL_FRect& target, SDL_Color color, int) const;
 };
 
 inline int

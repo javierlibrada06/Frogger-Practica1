@@ -185,6 +185,6 @@ PlayState::getRandomRange(int min, int max) {
 
 void
 PlayState::pause() {
-    game->replaceState(new PauseState(game, mapFile, sceneObjects));
+    game->pushState(new PauseState(game, mapFile, sceneObjects));
 }
 

@@ -1,6 +1,7 @@
 #include "GameState.h"
 #include "SDLApplication.h"
 #include "SceneObject.h"
+#include "PlayState.h"
 
 #include <list>
 #include <string>

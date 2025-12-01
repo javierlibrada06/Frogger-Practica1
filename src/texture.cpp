@@ -136,6 +136,25 @@ Texture::render(const SDL_FRect& rect, SDL_Color color) const
 	SDL_GetTextureColorMod(texture, &original.r, &original.g, &original.b);
 
 	SDL_SetTextureColorMod(texture, color.r, color.g, color.b);
+
 	render(rect);
 	SDL_SetTextureColorMod(texture, original.r, original.g, original.b);
 }
+
+void
+Texture::render(const SDL_FRect& rect, SDL_Color color, int i) const
+{
+	// Guarda el color original para reestablecerlo despuÃ©s
+	SDL_Color original;
+	SDL_GetTextureColorMod(texture, &original.r, &original.g, &original.b);
+	Uint8 originalAlpha;
+	SDL_GetTextureAlphaMod(texture, &originalAlpha);
+
+	SDL_SetTextureColorMod(texture, color.r, color.g, color.b);
+
+	SDL_SetTextureAlphaMod(texture, i);
+	render(rect);
+	SDL_SetTextureAlphaMod(texture, originalAlpha);
+	SDL_SetTextureColorMod(texture, original.r, original.g, original.b);
+}
+

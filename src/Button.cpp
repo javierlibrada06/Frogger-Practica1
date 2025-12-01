@@ -13,7 +13,7 @@ Button::render() const
     if (!texture) return;
     else if (selected) {
         if (hover) {
-            SDL_Color magenta = { 255, 0, 255 };
+            SDL_Color magenta = { 255, 0, 255, 1 };
             texture->render(getBoundingBox(), magenta);
         }
         else texture->render(getBoundingBox());
