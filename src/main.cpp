@@ -8,6 +8,7 @@
 #include "game.h"
 #include "GameError.h"
 #include "SDLApplication.h"
+#include "MainMenuState.h"
 #include "PlayState.h"
 #include <fstream>
 #include <iostream>
@@ -40,8 +41,11 @@ int main(int argc, char* argv[])
 		game.run();*/
 
 		SDLApplication game = SDLApplication();
-		auto playState = std::make_shared<PlayState>(&game, "turtles.txt");
-		game.pushState(playState);
+		//auto playState = std::make_shared<PlayState>(&game, "turtles.txt");
+		auto menuState = std::make_shared<MainMenuState>(&game);
+		//game.pushState(new MainMenuState(&game));
+		game.pushState(menuState);
+		menuState->LoadMaps();
 		game.run();
 	}
 	catch (const GameError& e) {

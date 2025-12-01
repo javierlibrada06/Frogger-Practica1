@@ -1,7 +1,6 @@
 ﻿  Button.cpp
-  EndState.cpp
-C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\src\Button.cpp(24,15): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
-C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\src\Button.cpp(25,15): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
-C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\src\Button.cpp(27,29): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\src\Button.cpp(27,26): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-  src.vcxproj -> C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\bin\srcDebug.exe
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\Button.cpp(29,15): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\Button.cpp(30,15): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\Button.cpp(32,29): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\Button.cpp(32,26): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+  src.vcxproj -> C:\Users\User\Documents\GitHub\Frogger-Practica1\bin\srcDebug.exe

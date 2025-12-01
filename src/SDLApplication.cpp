@@ -20,6 +20,7 @@ constexpr const char* const WINDOW_TITLE = "Frogger 1.0";
 constexpr std::array<TextureSpec, SDLApplication::NUM_TEXTURES> textureList{
 	TextureSpec{"frog.png", 1, 2},
 	{"background.png"},
+	{"menuBackground.png"},
 	{"car1.png"},
 	{"car2.png"},
 	{"car3.png"},
@@ -32,6 +33,13 @@ constexpr std::array<TextureSpec, SDLApplication::NUM_TEXTURES> textureList{
 	{"texts/GAME OVER.png"},
 	{"texts/CONTINUAR.png"},
 	{"texts/SALIR.png"},
+	{"texts/Original.png"},
+	{"texts/Práctica 1.png"},
+	{"texts/Trivial.png"},
+	{"texts/Veloz.png"},
+	{"texts/Avispado.png"},
+	{"texts/left.png"},
+	{"texts/right.png"},
 	TextureSpec{"turtle.png", 1, 7},
 };
 
@@ -120,4 +128,16 @@ SDLApplication::addState(GameState* state) {
 
 void SDLApplication::exitGame() {
 	~SDLApplication();
+}
+
+SDLApplication::TextureName
+SDLApplication::getMapTexture(std::string name) const {
+	if (name == textureList[ORIGINAL].name) return ORIGINAL;
+	else if (name == textureList[TRIVIAL].name) return TRIVIAL;
+	else if (name == textureList[AVISPADO].name) return AVISPADO;
+	else if (name == textureList[PRACTICA_1].name) return PRACTICA_1;
+	else if (name == textureList[VELOZ].name) return VELOZ;
+	else if (name == textureList[LEFT_BUTTON].name) return LEFT_BUTTON;
+	else if (name == textureList[RIGHT_BUTTON].name) return RIGHT_BUTTON;
+	return NUM_TEXTURES;
 }

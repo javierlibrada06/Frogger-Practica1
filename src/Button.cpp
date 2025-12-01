@@ -6,12 +6,17 @@ Button::Button(GameState* g, Point2D<float> p, SDLApplication::TextureName t, Ca
     connect(c);
 }
 
-void 
-Button::render() const {
-
-    texture->render(getBoundingBox());
-    SDL_Color magenta = { 255, 0, 255 };
-    if (hover) texture->render(getBoundingBox(), magenta);
+void
+Button::render() const
+{
+    if (!texture) return;
+    else if (selected) {
+        if (hover) {
+            SDL_Color magenta = { 255, 0, 255 };
+            texture->render(getBoundingBox(), magenta);
+        }
+        else texture->render(getBoundingBox());
+    }
 }
 void 
 Button::connect(Callback cb) {
@@ -25,7 +30,7 @@ Button::handleEvent(const SDL_Event& event) {
         int y = event.motion.y;
 
         hover = isInside(x, y); // hover es un booleano de la clase Button
-        if (hover && event.type == SDL_EVENT_MOUSE_BUTTON_DOWN) {
+        if (hover && selected && event.type == SDL_EVENT_MOUSE_BUTTON_DOWN) {
             if (callback) callback(); // Ejecuta la función
         }
     }

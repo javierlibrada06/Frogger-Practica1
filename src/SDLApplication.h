@@ -1,6 +1,7 @@
 #pragma once
 #include <SDL3/SDL.h>
 #include <array>
+#include <string>
 #include "Texture.h"
 #include "GameState.h"
 #include "gameStateMachine.h"
@@ -26,6 +27,7 @@ public:
 	{
 		FROG = 0,
 		BACKGROUND,
+		MENU_BACKGROUND,
 		CAR1,
 		CAR2,
 		CAR3,
@@ -38,8 +40,15 @@ public:
 		LOSE,
 		CONTINUE,
 		SALIR,
+		ORIGINAL,
+		PRACTICA_1,
+		TRIVIAL,
+		VELOZ,
+		AVISPADO,
+		LEFT_BUTTON,
+		RIGHT_BUTTON,
 		TURTLE,
-		NUM_TEXTURES
+		NUM_TEXTURES,
 	};
 
     SDLApplication();
@@ -47,6 +56,7 @@ public:
 	Texture* getTexture(TextureName name) const;
 
 
+	TextureName getMapTexture(std::string) const;
     void run();
 	void render() const;
 	void handleEvents();

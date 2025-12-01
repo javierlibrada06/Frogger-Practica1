@@ -8,8 +8,10 @@ class Button :
 public: using Callback = std::function<void()>;
 private:
     Callback callback;
-    bool hover=false;
+    bool hover = false;
 public:
+    bool selected = false;
+
     void render() const override;
     using Callback = std::function<void()>;
     Button(GameState*, Point2D<float>, SDLApplication::TextureName, std::function<void()> callback);
