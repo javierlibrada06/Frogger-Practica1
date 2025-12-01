@@ -4,6 +4,7 @@
 #include "SDLApplication.h"
 class Label : public GameObject
 {
+protected:
 	Point2D<float> position;
 	Texture* texture;
 	

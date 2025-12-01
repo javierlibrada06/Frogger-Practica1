@@ -36,6 +36,8 @@ public:
 		WASP,
 		WIN,
 		LOSE,
+		CONTINUE,
+		SALIR,
 		TURTLE,
 		NUM_TEXTURES
 	};
@@ -49,6 +51,7 @@ public:
 	void render() const;
 	void handleEvents();
 	void addState(GameState* state);
+	void exitGame();
 
 //private: 
 	std::array<Texture*, NUM_TEXTURES> textures;

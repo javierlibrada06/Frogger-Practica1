@@ -30,6 +30,8 @@ constexpr std::array<TextureSpec, SDLApplication::NUM_TEXTURES> textureList{
 	{"wasp.png"},
 	{"texts/HAS GANADO.png"},
 	{"texts/GAME OVER.png"},
+	{"texts/CONTINUAR.png"},
+	{"texts/SALIR.png"},
 	TextureSpec{"turtle.png", 1, 7},
 };
 
@@ -114,4 +116,8 @@ SDLApplication::handleEvents() {
 void 
 SDLApplication::addState(GameState* state) {
 	pushState(state);
+}
+
+void SDLApplication::exitGame() {
+	~SDLApplication();
 }
