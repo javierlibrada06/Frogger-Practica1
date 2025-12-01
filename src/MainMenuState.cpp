@@ -49,7 +49,6 @@ void MainMenuState::LoadMaps()
                 maps[i].first->selected = true;
                 selectedIndex = i;
             }
-            cout << maps[i].second << endl;
         }
     }
 

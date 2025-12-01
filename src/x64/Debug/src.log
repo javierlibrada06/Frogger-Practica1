@@ -1,6 +1,49 @@
 ﻿  Button.cpp
+  Crosser.cpp
+  EndState.cpp
+  Frog.cpp
+  gameStateMachine.cpp
+  HomeFrog.cpp
+  InfoBar.cpp
+  Label.cpp
+  Log.cpp
+  main.cpp
+  MainMenuState.cpp
+  PauseState.cpp
+  Platform.cpp
+  PlayState.cpp
+  SceneObject.cpp
+  SDLApplication.cpp
+  TurtleGroup.cpp
+  Vehicle.cpp
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\Label.cpp(21,33): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\Label.cpp(22,34): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
 C:\Users\User\Documents\GitHub\Frogger-Practica1\src\Button.cpp(29,15): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
 C:\Users\User\Documents\GitHub\Frogger-Practica1\src\Button.cpp(30,15): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
 C:\Users\User\Documents\GitHub\Frogger-Practica1\src\Button.cpp(32,29): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
 C:\Users\User\Documents\GitHub\Frogger-Practica1\src\Button.cpp(32,26): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+  Wasp.cpp
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\InfoBar.cpp(25,18): warning C4244: 'inicializando': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\SceneObject.cpp(18,34): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\SceneObject.cpp(18,34): warning C4244:         with
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\SceneObject.cpp(18,34): warning C4244:         [
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\SceneObject.cpp(18,34): warning C4244:             T=float
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\SceneObject.cpp(18,34): warning C4244:         ]
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\SceneObject.cpp(18,28): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\SceneObject.cpp(18,28): warning C4244:         with
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\SceneObject.cpp(18,28): warning C4244:         [
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\SceneObject.cpp(18,28): warning C4244:             T=float
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\SceneObject.cpp(18,28): warning C4244:         ]
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\SceneObject.cpp(32,33): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\SceneObject.cpp(33,34): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\SDLApplication.cpp(88,28): warning C4244: '=': conversión de 'Uint64' a 'Uint32'; posible pérdida de datos
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\SDLApplication.cpp(95,30): warning C4244: '=': conversión de 'Uint64' a 'Uint32'; posible pérdida de datos
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\SDLApplication.cpp(130,2): warning C4552: "~": el resultado de la expresión no se usa
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\MainMenuState.cpp(112,37): warning C4267: '=': conversión de 'size_t' a 'int'; posible pérdida de datos
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\PlayState.cpp(169,12): warning C4244: 'inicializando': conversión de 'T' a 'int'; posible pérdida de datos
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\PlayState.cpp(169,12): warning C4244:         with
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\PlayState.cpp(169,12): warning C4244:         [
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\PlayState.cpp(169,12): warning C4244:             T=float
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\PlayState.cpp(169,12): warning C4244:         ]
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\Wasp.cpp(13,26): warning C4244: '=': conversión de 'Uint64' a 'int'; posible pérdida de datos
   src.vcxproj -> C:\Users\User\Documents\GitHub\Frogger-Practica1\bin\srcDebug.exe
