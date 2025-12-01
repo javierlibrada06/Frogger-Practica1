@@ -20,6 +20,8 @@ public:
     static constexpr float POS_X_HOMEFROG = 13;
     // Separacion HomeFrogs
     static constexpr float SEPARATION_HOMEFROG = 96;
+    // Numero de nidos
+    static constexpr float NUM_HOMEFROGS = 5;
     // Fin juego fuera pantalla izquierda
     static constexpr float GAME_END_LEFT = -150.0f;
 
@@ -39,6 +41,7 @@ public:
 private:
     std::list<SceneObject*> sceneObjects;
     It frog;
+    InfoBar* infoBar;
     int ArchiveLine;
 
     std::vector<std::pair<Point2D<float>, bool> > homeFrogsPos = {
@@ -52,9 +55,6 @@ private:
     // Gestión del mapa
     std::string mapFile;
     int archiveLine = 1;
-
-    // Eliminación segura
-    It toDelete;
 
 public:
     PlayState(SDLApplication* g, const std::string& map);
@@ -77,9 +77,6 @@ public:
     //// Eliminar objetos (Wasp)
     //void deleteAfter(It it);
     //void waspDelete();
-
-    //Acceso a Frog
-    //Frog* getFrog() const { return frog; }
 
     PlayState::Collision checkCollision(const SDL_FRect& rect) const;
 

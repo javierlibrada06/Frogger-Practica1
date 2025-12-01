@@ -17,7 +17,7 @@ struct TextureSpec
 constexpr const char* const imgBase = "../assets/images/";
 constexpr const char* const WINDOW_TITLE = "Frogger 1.0";
 
-constexpr std::array<TextureSpec, Game::NUM_TEXTURES> textureList{
+constexpr std::array<TextureSpec, SDLApplication::NUM_TEXTURES> textureList{
 	TextureSpec{"frog.png", 1, 2},
 	{"background.png"},
 	{"car1.png"},
@@ -28,6 +28,8 @@ constexpr std::array<TextureSpec, Game::NUM_TEXTURES> textureList{
 	{"log1.png"},
 	{"log2.png"},
 	{"wasp.png"},
+	{"texts/HAS GANADO.png"},
+	{"texts/GAME OVER.png"},
 	TextureSpec{"turtle.png", 1, 7},
 };
 
@@ -54,7 +56,9 @@ SDLApplication::SDLApplication()
 	}
 }
 
-SDLApplication::~SDLApplication() {
+SDLApplication::~SDLApplication()
+{
+	for (auto t : textures) delete t;
 	if (renderer) SDL_DestroyRenderer(renderer);
 	if (window) SDL_DestroyWindow(window);
 	SDL_Quit();
@@ -68,12 +72,12 @@ SDLApplication::run()
 	Uint32 frameStart;
 	Uint32 frameTime;
 
-	handleEvents(); //Entrada
 	while (!exit) {
 
 		// TODO: implementar bucle del juego
 		frameStart = SDL_GetTicks();
 
+		handleEvents(); //Entrada
 		update();
 		render();
 
@@ -95,6 +99,7 @@ SDLApplication::render() const
 
 void
 SDLApplication::handleEvents() {
+	
 	SDL_Event event;
 
 	// Only quit is handled directly, everything else is delegated

@@ -6,7 +6,13 @@
 #include "gameStateMachine.h"
 
 class SDLApplication : public GameStateMachine {
-    
+	SDL_Window* window;
+    SDL_Renderer* renderer;
+    bool exit;
+
+    GameState* currentState;
+
+public:
 	// Se actualiza el juego cada tantos milisegundos
 	static constexpr int FRAME_RATE = 30;
 	// Tamaño real de la ventana
@@ -16,13 +22,6 @@ class SDLApplication : public GameStateMachine {
 	// Tick
 	static constexpr int TICK = 1000;
 
-	SDL_Window* window;
-    SDL_Renderer* renderer;
-    bool exit;
-
-    GameState* currentState;
-
-public:
 	enum TextureName
 	{
 		FROG = 0,
@@ -35,6 +34,8 @@ public:
 		LOG1,
 		LOG2,
 		WASP,
+		WIN,
+		LOSE,
 		TURTLE,
 		NUM_TEXTURES
 	};

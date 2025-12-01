@@ -40,7 +40,7 @@ int main(int argc, char* argv[])
 		game.run();*/
 
 		SDLApplication game = SDLApplication();
-		auto playState = std::make_shared<PlayState>(&game, "default.txt");
+		auto playState = std::make_shared<PlayState>(&game, "turtles.txt");
 		game.pushState(playState);
 		game.run();
 	}

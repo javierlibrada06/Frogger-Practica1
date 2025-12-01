@@ -1,9 +1,12 @@
 #include "PlayState.h"
+#include "EndState.h"
 #include "Frog.h"
 #include "Vehicle.h"
 #include "Log.h"
 #include "Wasp.h"
 #include "TurtleGroup.h"
+#include "InfoBar.h"
+#include "HomeFrog.h"
 
 #include "FileFormatError.h"
 #include "FileNotFoundError.h"
@@ -26,19 +29,29 @@ PlayState::~PlayState() {
     for (SceneObject* s : sceneObjects) {
         delete s;
     }
+    delete infoBar;
 }
 
 void PlayState::update() {
 
     //waspUpdate(); // Se actualizan las avispas (creación)
     for (auto it = sceneObjects.begin(); it != sceneObjects.end(); ++it) (*it)->update(); //Update de todos los sceneObjects
-    //infoBar->update();
+    if ((static_cast<Frog*>(*frog))->getHomesReached() == PlayState::NUM_HOMEFROGS)
+    {
+       game->replaceState(new EndState(game, true));
+    }
+    else if ((static_cast<Frog*>(*frog))->getLives() == 0)
+    {
+        game->replaceState(new EndState(game, false));
+    }
+    infoBar->update();
     //processPendingDeletes();; // Aqui se eliminan todas las avispas muertas
 }
 
 void PlayState::render() const {
     getGame()->textures[SDLApplication::BACKGROUND]->render();
     for (auto it = sceneObjects.begin(); it != sceneObjects.end(); ++it) (*it)->render();
+    infoBar->render();
     //frog->render();
 }
 
@@ -123,15 +136,15 @@ PlayState::loadMap() {
         inputMap.close();
 
     // Load InfoBar
-    //infoBar = new InfoBar(this, ((static_cast<Frog*>(*frog))));
+    infoBar = new InfoBar(this, ((static_cast<Frog*>(*frog))));
 
     //Load HomeFrogs
-    /*for (int i = 0; i < NUMBER_HFROGS; i++)
+    for (int i = 0; i < PlayState::NUM_HOMEFROGS; i++)
     {
         HomeFrog* homeFrog = new HomeFrog(this, homeFrogsPos[i].first, (static_cast<Frog*>(*frog)));
         sceneObjects.push_back(homeFrog);
-    }*/
-        frog = sceneObjects.end();
+    }
+    //frog = sceneObjects.end();
 }
 
 PlayState::Collision
@@ -151,7 +164,7 @@ PlayState::checkCollision(const SDL_FRect& rect) const
 
 void 
 PlayState::handleEvent(SDL_Event& event) {
-   if (frog !=sceneObjects.end() ) (static_cast<Frog*>(*frog))->handleEvent(event);
+   (static_cast<Frog*>(*frog))->handleEvent(event);
 }
 
 // Condicion de victoria
