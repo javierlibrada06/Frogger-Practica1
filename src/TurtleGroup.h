@@ -5,6 +5,7 @@ class TurtleGroup : public Platform
 	static constexpr int STATE_SUBMERGIBLE = 7;
 	static constexpr int STATE_NO_SUBMERGIBLE = 5;
 	static constexpr int STATE_NO_SUBMERGIBLE_ANIM = 3;
+	static constexpr float CHANGE_FRAME_DELAY = PlayState::FRAME_RATE / 2;
 
 	int numTurtles, state;
 	bool submersible;

@@ -66,6 +66,8 @@ public:
 	void render(const SDL_FRect& target, SDL_Color color) const;
 	/// Render the whole picture to the given rectangle with modified color and transparency
 	void render(const SDL_FRect& target, SDL_Color color, int) const;
+	void setColorMod(Uint8, Uint8, Uint8);
+
 };
 
 inline int
@@ -91,5 +93,4 @@ Texture::getNumColumns() const
 {
 	return ncolumns;
 }
-
 #endif // TEXTURE_H

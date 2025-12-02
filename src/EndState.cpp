@@ -7,17 +7,25 @@
 EndState::EndState(SDLApplication* g, bool win)
 	: GameState(g)
 {
-	if (win) gameObjects.push_back(new Label(this, Point2D<float>(SDLApplication::WINDOW_WIDTH/2, SDLApplication::WINDOW_HEIGHT / 2), SDLApplication::WIN));
-	else gameObjects.push_back(new Label(this, Point2D<float>(SDLApplication::WINDOW_WIDTH / 2, SDLApplication::WINDOW_HEIGHT / 2), SDLApplication::LOSE));
+	if (win) { 
+		Label* l = new Label(this, Point2D<float>(LABEL_POSX, LABEL_POSY - LABEL_SEPARATION), SDLApplication::WIN);
+		l->setColor(0, COLOR_VALUE, 0);
+		gameObjects.push_back(l);
+	}
+	else {
+		Label* l = new Label(this, Point2D<float>(LABEL_POSX, LABEL_POSY - LABEL_SEPARATION), SDLApplication::LOSE);
+		l->setColor(COLOR_VALUE, 0, 0);
+		gameObjects.push_back(l);
+	}
 	
-	Button* b = new Button(this, Point2D<float>(SDLApplication::WINDOW_WIDTH / 2, SDLApplication::WINDOW_HEIGHT / 2 - 80), SDLApplication::INICIO,
+	Button* b = new Button(this, Point2D<float>(LABEL_POSX, LABEL_POSY), SDLApplication::INICIO,
 		[this]() { game->replaceState(new MainMenuState(game)); });
 
 
 	addEventListener(b);
 	gameObjects.push_back(b);
 
-	Button* e = new Button(this, Point2D<float>(SDLApplication::WINDOW_WIDTH / 2, SDLApplication::WINDOW_HEIGHT / 2 + 80), SDLApplication::SALIR,
+	Button* e = new Button(this, Point2D<float>(LABEL_POSX, LABEL_POSY + LABEL_SEPARATION), SDLApplication::SALIR,
 		[this]() { game->exitGame(); });
 
 	addEventListener(e);
@@ -35,5 +43,6 @@ EndState::update() {
 }
 void 
 EndState::render() const {
+
 	for (auto it = gameObjects.begin(); it != gameObjects.end(); ++it) (*it)->render();
 }

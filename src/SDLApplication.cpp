@@ -130,7 +130,6 @@ SDLApplication::addState(GameState* state) {
 }
 
 void SDLApplication::exitGame() {
-	~SDLApplication();
 	exit = true;
 }
 

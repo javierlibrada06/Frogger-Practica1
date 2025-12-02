@@ -15,10 +15,12 @@ Wasp::Wasp(std::istream& entrada, PlayState* p, PlayState::It it, std::string na
 	speed = Vector2D<float>(sX, sY);
 	int l;
 	if (!(entrada >> l)) throw FileFormatError("map.txt", play->getArchiveLine(), "Error de lectura sobre el tiempo de vida de la avipa");
+	
 	texture = game->getGame()->getTexture(SDLApplication::WASP);
 	liveSpawn = l;
 	timeAlive = SDL_GetTicks();
 	waspIterator = it;
+
 	if (sX == 0 && sY == 0) angle = 0;
 	else if (sX > 0) angle = SceneObject::ANGLE_RIGHT;
 	else if (sX < 0) angle = SceneObject::ANGLE_LEFT;

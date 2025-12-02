@@ -62,7 +62,7 @@ GameStateMachine::render() const
 }
 
 void
-GameStateMachine::handleEvent(SDL_Event& event)
+GameStateMachine::handleEvent(SDL_Event event)
 {
 	if (!gameStates.empty()) {
 

@@ -11,8 +11,6 @@ class SDLApplication : public GameStateMachine {
     SDL_Renderer* renderer;
     bool exit;
 
-    GameState* currentState;
-
 public:
 	// Se actualiza el juego cada tantos milisegundos
 	static constexpr int FRAME_RATE = 30;

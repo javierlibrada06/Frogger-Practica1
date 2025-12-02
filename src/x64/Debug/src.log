@@ -1,59 +1,21 @@
-﻿  Button.cpp
-  Crosser.cpp
-  EndState.cpp
-  Frog.cpp
-  HomeFrog.cpp
-  InfoBar.cpp
-  Label.cpp
-  Log.cpp
-C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\src\Button.cpp(30,15): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
-C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\src\Button.cpp(31,15): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
-C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\src\Button.cpp(33,29): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\src\Button.cpp(33,26): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\src\Label.cpp(21,33): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\src\Label.cpp(22,34): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\src\InfoBar.cpp(24,18): warning C4244: 'inicializando': conversión de 'int' a 'float'; posible pérdida de datos
-  MainMenuState.cpp
-  PauseState.cpp
-  Platform.cpp
+﻿  PauseState.cpp
   PlayState.cpp
-  SDLApplication.cpp
-  SceneObject.cpp
-  TurtleGroup.cpp
-C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\src\SDLApplication.cpp(91,28): warning C4244: '=': conversión de 'Uint64' a 'Uint32'; posible pérdida de datos
-C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\src\SDLApplication.cpp(98,30): warning C4244: '=': conversión de 'Uint64' a 'Uint32'; posible pérdida de datos
-C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\src\SDLApplication.cpp(133,2): warning C4552: "~": el resultado de la expresión no se usa
-C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\src\SceneObject.cpp(18,34): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
-C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\src\SceneObject.cpp(18,34): warning C4244:         with
-C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\src\SceneObject.cpp(18,34): warning C4244:         [
-C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\src\SceneObject.cpp(18,34): warning C4244:             T=float
-C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\src\SceneObject.cpp(18,34): warning C4244:         ]
-C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\src\SceneObject.cpp(18,28): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
-C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\src\SceneObject.cpp(18,28): warning C4244:         with
-C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\src\SceneObject.cpp(18,28): warning C4244:         [
-C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\src\SceneObject.cpp(18,28): warning C4244:             T=float
-C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\src\SceneObject.cpp(18,28): warning C4244:         ]
-C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\src\SceneObject.cpp(32,33): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\src\SceneObject.cpp(33,34): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-  Vehicle.cpp
-  Wasp.cpp
-  main.cpp
-C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\src\MainMenuState.cpp(100,37): warning C4267: '=': conversión de 'size_t' a 'int'; posible pérdida de datos
-C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\src\PlayState.cpp(31,51): warning C4244: 'argumento': conversión de 'const float' a 'int'; posible pérdida de datos
-C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\src\PlayState.cpp(31,31): warning C4244: 'argumento': conversión de 'const float' a 'int'; posible pérdida de datos
-C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\src\PlayState.cpp(31,30): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\src\PlayState.cpp(32,29): warning C4244: '=': conversión de 'Uint64' a 'Uint32'; posible pérdida de datos
-C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\src\PlayState.cpp(78,33): warning C4244: '=': conversión de 'Uint64' a 'Uint32'; posible pérdida de datos
-C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\src\PlayState.cpp(82,66): warning C4244: 'argumento': conversión de 'const float' a 'int'; posible pérdida de datos
-C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\src\PlayState.cpp(82,46): warning C4244: 'argumento': conversión de 'const float' a 'int'; posible pérdida de datos
-C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\src\PlayState.cpp(83,67): warning C4244: 'argumento': conversión de 'const float' a 'int'; posible pérdida de datos
-C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\src\PlayState.cpp(83,52): warning C4244: 'argumento': conversión de 'const float' a 'int'; posible pérdida de datos
-C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\src\PlayState.cpp(85,54): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\src\PlayState.cpp(178,12): warning C4244: 'inicializando': conversión de 'T' a 'int'; posible pérdida de datos
-C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\src\PlayState.cpp(178,12): warning C4244:         with
-C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\src\PlayState.cpp(178,12): warning C4244:         [
-C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\src\PlayState.cpp(178,12): warning C4244:             T=float
-C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\src\PlayState.cpp(178,12): warning C4244:         ]
-C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\src\Wasp.cpp(20,26): warning C4244: '=': conversión de 'Uint64' a 'int'; posible pérdida de datos
-C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\src\Wasp.cpp(71,15): warning C4244: 'inicializando': conversión de 'Uint64' a 'Uint32'; posible pérdida de datos
-  src.vcxproj -> C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\bin\srcDebug.exe
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\PauseState.cpp(57,29): warning C4838: la conversión de 'const float' en 'Uint8' requiere una conversión de restricción
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\PauseState.cpp(57,29): warning C4244: 'inicializando': conversión de 'const float' a 'Uint8'; posible pérdida de datos
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\PauseState.cpp(58,76): warning C4244: 'argumento': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\PlayState.cpp(31,51): warning C4244: 'argumento': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\PlayState.cpp(31,31): warning C4244: 'argumento': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\PlayState.cpp(31,30): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\PlayState.cpp(32,29): warning C4244: '=': conversión de 'Uint64' a 'Uint32'; posible pérdida de datos
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\PlayState.cpp(78,33): warning C4244: '=': conversión de 'Uint64' a 'Uint32'; posible pérdida de datos
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\PlayState.cpp(82,66): warning C4244: 'argumento': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\PlayState.cpp(82,46): warning C4244: 'argumento': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\PlayState.cpp(83,67): warning C4244: 'argumento': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\PlayState.cpp(83,52): warning C4244: 'argumento': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\PlayState.cpp(85,54): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\PlayState.cpp(179,12): warning C4244: 'inicializando': conversión de 'T' a 'int'; posible pérdida de datos
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\PlayState.cpp(179,12): warning C4244:         with
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\PlayState.cpp(179,12): warning C4244:         [
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\PlayState.cpp(179,12): warning C4244:             T=float
+C:\Users\User\Documents\GitHub\Frogger-Practica1\src\PlayState.cpp(179,12): warning C4244:         ]
+  src.vcxproj -> C:\Users\User\Documents\GitHub\Frogger-Practica1\bin\srcDebug.exe

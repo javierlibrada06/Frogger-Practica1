@@ -129,6 +129,7 @@ PlayState::loadMap() {
                 }
                 ArchiveLine++;
             }
+            initialiceInfoBar();
         }
         inputMap.close();
     }

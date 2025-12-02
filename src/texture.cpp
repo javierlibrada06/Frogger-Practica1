@@ -129,6 +129,15 @@ Texture::renderFrame(const SDL_FRect& rect,
 }
 
 void
+Texture::setColorMod(Uint8 r, Uint8 g, Uint8 b)
+{
+	if (texture != nullptr)
+	{
+		SDL_SetTextureColorMod(texture, r, g, b);
+	}
+}
+
+void
 Texture::render(const SDL_FRect& rect, SDL_Color color) const
 {
 	// Guarda el color original para reestablecerlo despuÃ©s

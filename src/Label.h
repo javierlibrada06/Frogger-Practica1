@@ -6,6 +6,7 @@
 #include "SDL3/SDL.h"
 class Label : public GameObject
 {
+	constexpr static float HALF = 2;
 protected:
 	Point2D<float> position;
 	Texture* texture;
@@ -17,5 +18,6 @@ public:
 	void render() const;
 	void update() {};
 	SDL_FRect getBoundingBox() const;
+	void setColor(Uint8, Uint8, Uint8);
 };
 
