@@ -73,12 +73,13 @@ void MainMenuState::CreateArrowButtons()
     addEventListener(rightArrow);
 }
 
-void 
+void
 MainMenuState::render() const
 {
     game->getTexture(SDLApplication::MENU_BACKGROUND)->render();
     GameState::render();
 }
+
 
 void 
 MainMenuState::selectNextButton()

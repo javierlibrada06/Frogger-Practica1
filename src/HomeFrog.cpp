@@ -22,7 +22,7 @@ void
 HomeFrog::render() const 
 {
 	if (active) {
-		texture->renderFrame(getBoundingBox(), 0, 0, 180);
+		texture->renderFrame(getBoundingBox(), 0, 0, SceneObject::ANGLE_UPSIDEDOWN);
 	}
 }
 

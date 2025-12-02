@@ -1,3 +1,25 @@
-﻿  InfoBar.cpp
-C:\Users\usuario_local\Downloads\Frogger-Practica1-main\Frogger-Practica1-main\src\InfoBar.cpp(25,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+﻿  Crosser.cpp
+  Log.cpp
+  Platform.cpp
+  PlayState.cpp
+  TurtleGroup.cpp
+  Vehicle.cpp
+  Wasp.cpp
+C:\Users\usuario_local\Downloads\Frogger-Practica1-main\Frogger-Practica1-main\src\Wasp.cpp(21,26): warning C4244: '=': conversion from 'Uint64' to 'int', possible loss of data
+C:\Users\usuario_local\Downloads\Frogger-Practica1-main\Frogger-Practica1-main\src\Wasp.cpp(73,15): warning C4244: 'initializing': conversion from 'Uint64' to 'Uint32', possible loss of data
+C:\Users\usuario_local\Downloads\Frogger-Practica1-main\Frogger-Practica1-main\src\PlayState.cpp(31,51): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+C:\Users\usuario_local\Downloads\Frogger-Practica1-main\Frogger-Practica1-main\src\PlayState.cpp(31,31): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+C:\Users\usuario_local\Downloads\Frogger-Practica1-main\Frogger-Practica1-main\src\PlayState.cpp(31,30): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\usuario_local\Downloads\Frogger-Practica1-main\Frogger-Practica1-main\src\PlayState.cpp(32,29): warning C4244: '=': conversion from 'Uint64' to 'Uint32', possible loss of data
+C:\Users\usuario_local\Downloads\Frogger-Practica1-main\Frogger-Practica1-main\src\PlayState.cpp(75,33): warning C4244: '=': conversion from 'Uint64' to 'Uint32', possible loss of data
+C:\Users\usuario_local\Downloads\Frogger-Practica1-main\Frogger-Practica1-main\src\PlayState.cpp(79,66): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+C:\Users\usuario_local\Downloads\Frogger-Practica1-main\Frogger-Practica1-main\src\PlayState.cpp(79,46): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+C:\Users\usuario_local\Downloads\Frogger-Practica1-main\Frogger-Practica1-main\src\PlayState.cpp(80,67): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+C:\Users\usuario_local\Downloads\Frogger-Practica1-main\Frogger-Practica1-main\src\PlayState.cpp(80,52): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+C:\Users\usuario_local\Downloads\Frogger-Practica1-main\Frogger-Practica1-main\src\PlayState.cpp(82,54): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\usuario_local\Downloads\Frogger-Practica1-main\Frogger-Practica1-main\src\PlayState.cpp(178,12): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+C:\Users\usuario_local\Downloads\Frogger-Practica1-main\Frogger-Practica1-main\src\PlayState.cpp(178,12): warning C4244:         with
+C:\Users\usuario_local\Downloads\Frogger-Practica1-main\Frogger-Practica1-main\src\PlayState.cpp(178,12): warning C4244:         [
+C:\Users\usuario_local\Downloads\Frogger-Practica1-main\Frogger-Practica1-main\src\PlayState.cpp(178,12): warning C4244:             T=float
+C:\Users\usuario_local\Downloads\Frogger-Practica1-main\Frogger-Practica1-main\src\PlayState.cpp(178,12): warning C4244:         ]
   src.vcxproj -> C:\Users\usuario_local\Downloads\Frogger-Practica1-main\Frogger-Practica1-main\bin\srcDebug.exe

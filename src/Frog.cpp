@@ -51,7 +51,7 @@ Frog::update() {
 		lives--;
 		position = Point2D<float>(FROG_INICIO, PlayState::GAME_SCREENEND_Y);
 		lastPosition = Point2D<float>(FROG_INICIO, PlayState::GAME_SCREENEND_Y);
-		angle = 90;
+		angle = 0;
 	}
 	else if (collision.type == PlayState::PLATFORM)
 	{
