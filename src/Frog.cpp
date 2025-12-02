@@ -104,7 +104,7 @@ Frog::handleEvent(const SDL_Event& event) {
 			position = position + Point2D<float>(FROG_STEP, 0);
 			if (position.getX() > PlayState::GAME_SCREENEND_X) position = Point2D<float>(PlayState::GAME_SCREENEND_X, position.getY());
 			break;
-		case SDLK_0:
+		case SDLK_ESCAPE:
 			play->pause();
 			break;
 		}

@@ -35,6 +35,7 @@ constexpr std::array<TextureSpec, SDLApplication::NUM_TEXTURES> textureList{
 	{"texts/VOLVER AL MENÚ.png"},
 	{"texts/SALIR.png"},
 	{"texts/REINICIAR.png"},
+	{"texts/ELIGE UN MAPA.png"},
 	{"texts/Original.png"},
 	{"texts/Práctica 1.png"},
 	{"texts/Trivial.png"},

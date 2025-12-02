@@ -42,6 +42,7 @@ public:
 		INICIO,
 		SALIR,
 		REINICIAR,
+		ELEGIR,
 		ORIGINAL,
 		PRACTICA_1,
 		TRIVIAL,

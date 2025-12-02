@@ -1,8 +1,6 @@
 ﻿  EndState.cpp
-  MainMenuState.cpp
-  PauseState.cpp
+  main.cpp
   PlayState.cpp
-C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\src\MainMenuState.cpp(98,37): warning C4267: '=': conversión de 'size_t' a 'int'; posible pérdida de datos
 C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\src\PlayState.cpp(31,51): warning C4244: 'argumento': conversión de 'const float' a 'int'; posible pérdida de datos
 C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\src\PlayState.cpp(31,31): warning C4244: 'argumento': conversión de 'const float' a 'int'; posible pérdida de datos
 C:\Users\julia\OneDrive\Documentos\GitHub\Proyectos2025\new\Frogger-Practica1\src\PlayState.cpp(31,30): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos

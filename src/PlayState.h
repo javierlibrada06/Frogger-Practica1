@@ -116,6 +116,7 @@ public:
 
     void homeReached(Point2D<float>);
     void pause();
+    void handleEvent(const SDL_Event& event) override { GameState::handleEvent(event); };
 
 private:
     void waspUpdate();

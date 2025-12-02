@@ -28,6 +28,8 @@ void MainMenuState::LoadMaps()
     gameObjects.push_back(leftArrow);
     gameObjects.push_back(rightArrow);
 
+    gameObjects.push_back(new Label(this, Point2D<float>(SDLApplication::WINDOW_WIDTH/2, 200), SDLApplication::ELEGIR));
+
     for (auto& entry : filesystem::directory_iterator("../assets/maps/"))
     {
         std::string mapPath = entry.path().string();
@@ -38,7 +40,7 @@ void MainMenuState::LoadMaps()
         Button::Callback cb = [this, name, list]() {
             game->replaceState(std::make_shared<PlayState>(game, name, list));
         };
-        Button* b = new Button(this, Point2D<float>(225, 300), game->getMapTexture(textPathString), cb);
+        Button* b = new Button(this, Point2D<float>(SDLApplication::WINDOW_WIDTH / 2, 300), game->getMapTexture(textPathString), cb);
         gameObjects.push_back(b);
 
         maps.push_back({ b, name });
@@ -98,4 +100,15 @@ MainMenuState::selectPreviousButton()
     else selectedIndex = maps.size()-1;
     selectedButton = maps[selectedIndex].first;
     selectedButton->setSelected();
+}
+
+void
+MainMenuState::handleEvent(const SDL_Event& event) {
+    GameState::handleEvent(event);
+    if (event.type == SDL_EVENT_KEY_DOWN ) {
+       if (event.key.key == SDLK_RETURN) maps[selectedIndex].first->CallBack();
+       if (event.key.key == SDLK_LEFT) selectPreviousButton();
+       if (event.key.key == SDLK_RIGHT) selectNextButton();
+    }
+
 }

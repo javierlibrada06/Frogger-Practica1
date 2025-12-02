@@ -23,8 +23,9 @@ public:
 	void removeEventListener(EventHandler* h) { eventHandlers.remove(h); };
 	void addDelayedCallBacks(DelayedCallBack d) { delayedCallBacks.push_back(d); }
 
-	void handleEvent(const SDL_Event& event) {
+	virtual void handleEvent(const SDL_Event& event) {
 		for (EventHandler* e : eventHandlers) {
+
 			e->handleEvent(event);
 		}
 	};

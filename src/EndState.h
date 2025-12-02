@@ -14,5 +14,7 @@ public:
 	//void handleEvent(SDL_Event& event) override;
 	void update() override;
 	void render() const override;
+	void handleEvent(const SDL_Event& event) override { GameState::handleEvent(event); };
+
 };
 

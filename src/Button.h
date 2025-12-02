@@ -17,5 +17,6 @@ public:
     void connect(Callback);
     bool isInside(float, float);
     void setSelected();
+    void CallBack() { callback(); }
 };
 

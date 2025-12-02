@@ -30,4 +30,5 @@ class MainMenuState : public GameState
 	void selectNextButton();
 	void selectPreviousButton();
 	void LoadMaps();
+	void handleEvent(const SDL_Event& event) override;
 };
