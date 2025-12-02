@@ -8,9 +8,10 @@
 #include <string>
 #include <list>
 
-PauseState::PauseState(SDLApplication* g, std::string name, std::list<SceneObject*> list)
+PauseState::PauseState(SDLApplication* g, std::string name, std::list<SceneObject*> list, PlayState* p)
 	: GameState(g), sceneObjects(list)
 {
+	play = p;
 	//Texture* background = new Texture(r);
 	Button* b = new Button(this, Point2D<float>(BUTTON_POSX, BUTTON_POSY - BUTTON_SEPARATION * DOUBLE), SDLApplication::CONTINUE,
 		[this, name, list]() { game->popState(); });
@@ -39,22 +40,14 @@ PauseState::PauseState(SDLApplication* g, std::string name, std::list<SceneObjec
 	gameObjects.push_back(b);
 
 }
-PauseState::~PauseState() {
-	for (GameObject* g : gameObjects) {
-		delete g;
-	}
-}
-void 
-PauseState::update() {
 
-}
-void 
-PauseState::render() const {
-	
+void
+PauseState::render() const{
 	game->getTexture(SDLApplication::BACKGROUND)->render();
-	for (auto s : sceneObjects) s->render();
+	play->render();
 	SDL_FRect fullScreenRect = { 0, 0, SDLApplication::WINDOW_WIDTH, SDLApplication::WINDOW_HEIGHT };
 	SDL_Color dim = { 0, 0, 0, BACKGROUND_ALPHA };
 	game->getTexture(SDLApplication::BACKGROUND)->render(fullScreenRect, dim, BACKGROUND_ALPHA);
-	for (auto it = gameObjects.begin(); it != gameObjects.end(); ++it) (*it)->render();
+	GameState::render();
+
 }

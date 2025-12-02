@@ -10,6 +10,7 @@
 
 class Frog; // forward
 class Texture;
+class Wasp;
 class SDLApplication;
 class SceneObject;
 
@@ -75,6 +76,7 @@ public:
 private:
     std::list<SceneObject*> sceneObjects;
     It frog;
+    Wasp* firstWasp;
     Frog* fr;
     int ArchiveLine;
     float nextWasp;

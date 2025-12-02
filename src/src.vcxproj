@@ -101,6 +101,7 @@
     <ClCompile Include="FileNotFoundError.cpp" />
     <ClCompile Include="Frog.cpp" />
     <ClCompile Include="GameError.cpp" />
+    <ClCompile Include="GameState.cpp" />
     <ClCompile Include="gameStateMachine.cpp" />
     <ClCompile Include="HomeFrog.cpp" />
     <ClCompile Include="InfoBar.cpp" />

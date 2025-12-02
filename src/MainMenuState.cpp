@@ -18,9 +18,6 @@ MainMenuState::MainMenuState(SDLApplication* g)
     gameObjects.push_back(b);
     addEventListener(b);
 }
-MainMenuState::~MainMenuState() {
-    for (GameObject* g : gameObjects) delete(g);
-}
 
 std::string path2string(const std::filesystem::path& p) {
 	return reinterpret_cast<const char*>(p.u8string().c_str());
@@ -76,19 +73,11 @@ void MainMenuState::CreateArrowButtons()
     addEventListener(rightArrow);
 }
 
-void
-MainMenuState::update()
-{
-
-}
 void 
 MainMenuState::render() const
 {
     game->getTexture(SDLApplication::MENU_BACKGROUND)->render();
-    // render flechas
-    for (auto g : gameObjects) {
-        g->render();
-    }
+    GameState::render();
 }
 
 void 

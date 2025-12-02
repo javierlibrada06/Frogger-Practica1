@@ -24,9 +24,7 @@ class MainMenuState : public GameState
 	public:	
 
 	MainMenuState(SDLApplication*);
-	~MainMenuState();
 
-	void update() override;
 	void render() const override;
 	void selectNextButton();
 	void selectPreviousButton();

@@ -8,6 +8,7 @@
 #pragma once
 class PauseState : public GameState
 {
+	PlayState* play;
 	static constexpr float BUTTON_SEPARATION = 75,
 						    BUTTON_POSX = SDLApplication::WINDOW_WIDTH / 2,
 							BUTTON_POSY = SDLApplication::WINDOW_HEIGHT / 2,
@@ -15,9 +16,7 @@ class PauseState : public GameState
 							DOUBLE = 2;
 	std::list<SceneObject*> sceneObjects;
 public:
-	PauseState(SDLApplication*, std::string, std::list<SceneObject*>);
-	~PauseState();
-	void update() override;
+	PauseState(SDLApplication*, std::string, std::list<SceneObject*>, PlayState*);
 	void render() const override;
 	void handleEvent(const SDL_Event& event) override { GameState::handleEvent(event); };
 };

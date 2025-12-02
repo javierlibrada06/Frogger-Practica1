@@ -36,9 +36,6 @@ PlayState::~PlayState() {
     for (SceneObject* s : sceneObjects) {
         delete s;
     }
-    for (GameObject* g : gameObjects) {
-        delete g;
-    }
 }
 
 void PlayState::update() {
@@ -72,7 +69,7 @@ PlayState::waspDelete(It it)
 
 void
 PlayState::waspUpdate() {
-    
+    //if(firstWasp) firstWasp->update();
     if (SDL_GetTicks() - waspSpawn >= nextWasp)
     {
         waspSpawn = SDL_GetTicks();
@@ -153,9 +150,12 @@ PlayState::initialiceFrog(std::istream& inputString) {
 }
 void
 PlayState::initialiceWasp(std::istream& inputString) {
-    sceneObjects.push_back(nullptr);
-    PlayState::It it = --sceneObjects.end();
+    sceneObjects.push_front(nullptr);
+    PlayState::It it = sceneObjects.begin();
+    //firstWasp = new Wasp(inputString, this, it, mapFile);
+    //*it = firstWasp;
     *it = new Wasp(inputString, this, it, mapFile);
+
 }
 
 PlayState::Collision
@@ -190,6 +190,6 @@ PlayState::getRandomRange(int min, int max) {
 
 void
 PlayState::pause() {
-    game->pushState(new PauseState(game, mapFile, sceneObjects));
+    game->pushState(new PauseState(game, mapFile, sceneObjects, this));
 }
 

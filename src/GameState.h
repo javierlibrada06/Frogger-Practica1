@@ -16,34 +16,23 @@ protected:
 	std::list<GameObject*> gameObjects;
 
 public:
-	GameState(SDLApplication* g) : game(g) {};
-	virtual ~GameState() = default;
+	GameState(SDLApplication* g);
+	virtual ~GameState();
 	
-	void addEventListener(EventHandler* h) { eventHandlers.push_back(h); };
-	void removeEventListener(EventHandler* h) { eventHandlers.remove(h); };
-	void addDelayedCallBacks(DelayedCallBack d) { delayedCallBacks.push_back(d); }
+	void addEventListener(EventHandler* h);
+	void removeEventListener(EventHandler* h);
+	void addDelayedCallBacks(DelayedCallBack d);
 
-	virtual void handleEvent(const SDL_Event& event) {
-		for (EventHandler* e : eventHandlers) {
+	virtual void handleEvent(const SDL_Event& event);
 
-			e->handleEvent(event);
-		}
-	};
+	void delayedCallBack();
+	virtual void update();
+	virtual void render() const;
 
-	void delayedCallBack() {
-		for (DelayedCallBack e : delayedCallBacks) {
-			e();
-		}
-		delayedCallBacks.clear();
-	}
+	virtual void onEnter();
+	virtual void onExit();
 
-	virtual void update() = 0;
-	virtual void render() const = 0;
-
-	virtual void onEnter() {}
-	virtual void onExit() {}
-
-	SDLApplication* getGame() const { return game; };
+	SDLApplication* getGame() const;
 };
 
 

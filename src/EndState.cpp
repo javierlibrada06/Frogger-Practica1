@@ -31,18 +31,3 @@ EndState::EndState(SDLApplication* g, bool win)
 	addEventListener(e);
 	gameObjects.push_back(e);
 }
-
-EndState::~EndState() {
-	for (GameObject* g : gameObjects) {
-		delete g;
-	}
-}
-void 
-EndState::update() {
-
-}
-void 
-EndState::render() const {
-
-	for (auto it = gameObjects.begin(); it != gameObjects.end(); ++it) (*it)->render();
-}
