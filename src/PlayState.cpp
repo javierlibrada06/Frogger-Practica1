@@ -43,11 +43,11 @@ PlayState::~PlayState() {
 
 void PlayState::update() {
 
-    if ((static_cast<Frog*>(*frog))->getHomesReached() == PlayState::NUM_HOMEFROGS)
+    if (fr->getHomesReached() == PlayState::NUM_HOMEFROGS)
     {
         game->replaceState(new EndState(game, true));
     }
-    else if ((static_cast<Frog*>(*frog))->getLives() == 0)
+    else if (fr->getLives() == 0)
     {
         game->replaceState(new EndState(game, false));
     }
@@ -76,7 +76,7 @@ PlayState::waspUpdate() {
     if (SDL_GetTicks() - waspSpawn >= nextWasp)
     {
         waspSpawn = SDL_GetTicks();
-        if ((static_cast<Frog*>(*frog))->getHomesReached() != NUM_HOMEFROGS - 1)
+        if (fr->getHomesReached() != NUM_HOMEFROGS - 1)
         {
             // Genera nueva avispa
             nextWasp = (float)getRandomRange(MIN_WASP_GENERATOR, MAX_WASP_GENERATOR);
@@ -136,21 +136,20 @@ PlayState::loadMap() {
 }
 void 
 PlayState::initialiceInfoBar() {
-    gameObjects.push_back(new InfoBar(this, ((static_cast<Frog*>(*frog)))));
+    gameObjects.push_back(new InfoBar(this, fr));
 
     //Load HomeFrogs
     for (int i = 0; i < PlayState::NUM_HOMEFROGS; i++)
     {
-        HomeFrog* homeFrog = new HomeFrog(this, homeFrogsPos[i].first, (static_cast<Frog*>(*frog)));
+        HomeFrog* homeFrog = new HomeFrog(this, homeFrogsPos[i].first, fr);
         sceneObjects.push_back(homeFrog);
     }
 }
 void 
 PlayState::initialiceFrog(std::istream& inputString) {
-    Frog* f = new Frog(inputString, this, mapFile);
-    sceneObjects.push_back(f);
-    addEventListener(f);
-    frog = --sceneObjects.end();
+    fr = new Frog(inputString, this, mapFile);
+    sceneObjects.push_back(fr);
+    addEventListener(fr);
 }
 void
 PlayState::initialiceWasp(std::istream& inputString) {

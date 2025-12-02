@@ -23,7 +23,7 @@ void
 InfoBar::render() const {
 	float iconWidth = texture->getFrameWidth();
 	for (int i = 0; i < livesRemaining; i++) {
-		SDL_FRect pos = { rect.x + i * (iconWidth + 5), rect.y, iconWidth, iconWidth };
+		SDL_FRect pos = { rect.x + i * (iconWidth + ICON_SEPARATION), rect.y, iconWidth, iconWidth };
 		texture->renderFrame(pos, 0, 0);
 	}
 }

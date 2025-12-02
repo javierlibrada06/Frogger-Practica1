@@ -75,6 +75,7 @@ public:
 private:
     std::list<SceneObject*> sceneObjects;
     It frog;
+    Frog* fr;
     int ArchiveLine;
     float nextWasp;
     Uint32 waspSpawn;

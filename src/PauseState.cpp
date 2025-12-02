@@ -12,7 +12,7 @@ PauseState::PauseState(SDLApplication* g, std::string name, std::list<SceneObjec
 	: GameState(g), sceneObjects(list)
 {
 	//Texture* background = new Texture(r);
-	Button* b = new Button(this, Point2D<float>(BUTTON_POSX, BUTTON_POSY - BUTTON_SEPARATION*2 ), SDLApplication::CONTINUE,
+	Button* b = new Button(this, Point2D<float>(BUTTON_POSX, BUTTON_POSY - BUTTON_SEPARATION * DOUBLE), SDLApplication::CONTINUE,
 		[this, name, list]() { game->popState(); });
 
 	addEventListener(b);
@@ -32,7 +32,7 @@ PauseState::PauseState(SDLApplication* g, std::string name, std::list<SceneObjec
 	gameObjects.push_back(b);
 
 
-	b = new Button(this, Point2D<float>(BUTTON_POSX, BUTTON_POSY + BUTTON_SEPARATION*2), SDLApplication::SALIR,
+	b = new Button(this, Point2D<float>(BUTTON_POSX, BUTTON_POSY + BUTTON_SEPARATION * DOUBLE), SDLApplication::SALIR,
 		[this]() { game->exitGame(); });
 
 	addEventListener(b);

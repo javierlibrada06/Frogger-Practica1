@@ -6,10 +6,10 @@
 #pragma once
 class EndState : public GameState
 {
-	constexpr static float COLOR_VALUE = 255;
-	constexpr static float LABEL_POSX = SDLApplication::WINDOW_WIDTH / 2;
-	constexpr static float LABEL_POSY = SDLApplication::WINDOW_HEIGHT / 2;
-	constexpr static float LABEL_SEPARATION = 80;
+	static constexpr float COLOR_VALUE = 255;
+	static constexpr float LABEL_POSX = SDLApplication::WINDOW_WIDTH / 2;
+	static constexpr float LABEL_POSY = SDLApplication::WINDOW_HEIGHT / 2;
+	static constexpr float LABEL_SEPARATION = 80;
 	std::list<GameObject*> gameObjects;
 
 public:

@@ -4,6 +4,7 @@
 #include "texture.h"
 #include "FileFormatError.h"
 #include "Crosser.h"
+#include <string>
 #include <iostream>
 using namespace std;
 
@@ -12,16 +13,7 @@ Vehicle::Vehicle(istream& entrada, PlayState* g, std::string name)
 {
 	int type;
 	if (!(entrada >> type)) throw FileFormatError(name, g->getArchiveLine(), "Error de lectura sobre el tipo de coche");
-
-	switch (type)
-	{
-	case 1: texture = game->getGame()->getTexture(SDLApplication::CAR1); break;
-	case 2: texture = game->getGame()->getTexture(SDLApplication::CAR2); break;
-	case 3: texture = game->getGame()->getTexture(SDLApplication::CAR3); break;
-	case 4: texture = game->getGame()->getTexture(SDLApplication::CAR4); break;
-	case 5: texture = game->getGame()->getTexture(SDLApplication::CAR5); break;
-	}
-
+	texture = game->getGame()->getTexture(SDLApplication::TextureName(SDLApplication::CAR1 + (type - 1)));
 	backJump = 0;
 }
 

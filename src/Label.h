@@ -6,7 +6,7 @@
 #include "SDL3/SDL.h"
 class Label : public GameObject
 {
-	constexpr static float HALF = 2;
+	static constexpr float HALF = 2;
 protected:
 	Point2D<float> position;
 	Texture* texture;
