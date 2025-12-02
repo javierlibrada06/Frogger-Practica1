@@ -1,9 +1,10 @@
 #include "InfoBar.h"
 #include "Frog.h"
 
-InfoBar::InfoBar(GameState* g, Frog* f) {
+InfoBar::InfoBar(GameState* g, Frog* f)
+	:GameObject::GameObject(g)
+{
 	frog = f;
-	game = g;
 	texture = g->getGame()->getTexture(SDLApplication::FROG);
 
 	rect = { INFOBAR_WIDTH, INFOBAR_HEIGHT, INFOBAR_X, INFOBAR_X };
