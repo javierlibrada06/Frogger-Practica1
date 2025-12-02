@@ -2,7 +2,7 @@
 #include <SDL3/SDL.h>
 #include <array>
 #include <string>
-#include "Texture.h"
+#include "texture.h"
 #include "GameState.h"
 #include "gameStateMachine.h"
 
@@ -57,8 +57,6 @@ public:
     SDLApplication();
     ~SDLApplication();
 	Texture* getTexture(TextureName name) const;
-
-
 	TextureName getMapTexture(std::string) const;
     void run();
 	void render() const;
@@ -68,9 +66,8 @@ public:
 	SDL_Renderer* getRenderer() { return renderer; }
 	void setRenderer(SDL_Renderer* r) { renderer = r; }
 
-//private: 
+private: 
 	std::array<Texture*, NUM_TEXTURES> textures;
-
 };
 
 inline Texture*

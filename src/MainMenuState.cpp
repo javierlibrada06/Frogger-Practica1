@@ -74,7 +74,7 @@ MainMenuState::update()
 void 
 MainMenuState::render() const
 {
-    game->textures[SDLApplication::MENU_BACKGROUND]->render();
+    game->getTexture(SDLApplication::MENU_BACKGROUND)->render();
     // render flechas
     for (auto g : gameObjects) {
         g->render();

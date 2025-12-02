@@ -2,6 +2,7 @@
 #include "GameObject.h"
 #include "Frog.h"
 #include "texture.h"
+#include "SDL3/SDL.h"
 class InfoBar : public GameObject
 {
 	static constexpr int INFOBAR_HEIGHT = 448;

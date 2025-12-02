@@ -2,6 +2,7 @@
 #include "GameObject.h"
 #include "vector2D.h"
 #include "PlayState.h"
+#include "SDL3/SDL.h"
 class SceneObject : public GameObject
 {
 protected:

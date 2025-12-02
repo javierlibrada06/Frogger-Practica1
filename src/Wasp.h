@@ -16,9 +16,9 @@ class Wasp : public SceneObject
 public:
 	Wasp(std::istream& entrada, PlayState*, PlayState::It, std::string name);
 	~Wasp();
-	void update();
+	void update() override;
 	void render() const override;
-	PlayState::Collision checkCollision(const SDL_FRect&);
+	PlayState::Collision checkCollision(const SDL_FRect&) override;
 	bool isAlive() const;
 };
 

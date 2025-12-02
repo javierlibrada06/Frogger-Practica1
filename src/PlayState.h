@@ -121,6 +121,9 @@ public:
 private:
     void waspUpdate();
     int getRandomRange(int, int);
+    void initialiceInfoBar();
+    void initialiceFrog(std::istream& entrada);
+    void initialiceWasp(std::istream& entrada);
 };
 
 

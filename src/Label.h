@@ -2,6 +2,8 @@
 #include "GameObject.h"
 #include "vector2D.h"
 #include "SDLApplication.h"
+#include "texture.h"
+#include "SDL3/SDL.h"
 class Label : public GameObject
 {
 protected:

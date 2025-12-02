@@ -58,7 +58,7 @@ void PlayState::update() {
 }
 
 void PlayState::render() const {
-    getGame()->textures[SDLApplication::BACKGROUND]->render();
+    game->getTexture(SDLApplication::BACKGROUND)->render();
     for (auto it = sceneObjects.begin(); it != sceneObjects.end(); ++it) (*it)->render();
     for (auto it = gameObjects.begin(); it != gameObjects.end(); ++it) (*it)->render();
 }
@@ -98,9 +98,7 @@ PlayState::waspUpdate() {
 
             std::string wasp = std::format("{} {} {} {} {}", pos.getX(), pos.getY(), 0, 0, lifeTime);
             std::istringstream inputString(wasp);
-            sceneObjects.push_back(nullptr);  // reserva un hueco
-            PlayState::It it = --sceneObjects.end();
-            *it = new Wasp(inputString, this, it, "Avispa Update");
+            initialiceWasp(inputString);
         }
     }
 }
@@ -124,17 +122,8 @@ PlayState::loadMap() {
                     if (c == 'V') sceneObjects.push_back(new Vehicle(inputString, this, mapFile));
                     else if (c == 'L') sceneObjects.push_back(new Log(inputString, this, mapFile));
                     else if (c == 'T') sceneObjects.push_back(new TurtleGroup(inputString, this, mapFile));
-                    else if (c == 'F') {
-                        Frog* f = new Frog(inputString, this, mapFile);
-                        sceneObjects.push_back(f);
-                        addEventListener(f);
-                        frog = --sceneObjects.end();
-                    }
-                    else if (c == 'W') {
-                        sceneObjects.push_back(nullptr);
-                        PlayState::It it = --sceneObjects.end();
-                        *it = new Wasp(inputString, this, it, mapFile);
-                    }
+                    else if (c == 'F') initialiceFrog(inputString);
+                    else if (c == 'W') initialiceWasp(inputString);
                     else if (c == '#');
                     else throw FileFormatError(mapFile, ArchiveLine, "Error de lectura sobre el tipo de elemento");
                 }
@@ -142,19 +131,31 @@ PlayState::loadMap() {
             }
         }
         inputMap.close();
-
-        // Load InfoBar
-        //infoBar = new InfoBar(this, ((static_cast<Frog*>(*frog))));
-        gameObjects.push_back(new InfoBar(this, ((static_cast<Frog*>(*frog)))));
-
-        //Load HomeFrogs
-        for (int i = 0; i < PlayState::NUM_HOMEFROGS; i++)
-        {
-            HomeFrog* homeFrog = new HomeFrog(this, homeFrogsPos[i].first, (static_cast<Frog*>(*frog)));
-            sceneObjects.push_back(homeFrog);
-        }
-        //frog = sceneObjects.end();
     }
+}
+void 
+PlayState::initialiceInfoBar() {
+    gameObjects.push_back(new InfoBar(this, ((static_cast<Frog*>(*frog)))));
+
+    //Load HomeFrogs
+    for (int i = 0; i < PlayState::NUM_HOMEFROGS; i++)
+    {
+        HomeFrog* homeFrog = new HomeFrog(this, homeFrogsPos[i].first, (static_cast<Frog*>(*frog)));
+        sceneObjects.push_back(homeFrog);
+    }
+}
+void 
+PlayState::initialiceFrog(std::istream& inputString) {
+    Frog* f = new Frog(inputString, this, mapFile);
+    sceneObjects.push_back(f);
+    addEventListener(f);
+    frog = --sceneObjects.end();
+}
+void
+PlayState::initialiceWasp(std::istream& inputString) {
+    sceneObjects.push_back(nullptr);
+    PlayState::It it = --sceneObjects.end();
+    *it = new Wasp(inputString, this, it, mapFile);
 }
 
 PlayState::Collision

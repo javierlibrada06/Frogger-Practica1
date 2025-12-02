@@ -2,6 +2,7 @@
 #include "SceneObject.h"
 #include "vector2D.h"
 #include "texture.h"
+#include "SDL3/SDL.h"
 class Frog : public SceneObject, public EventHandler
 {	
 	static constexpr float FROG_INICIO = 205.0f;
